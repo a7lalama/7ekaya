@@ -1079,7 +1079,7 @@ html::-webkit-scrollbar-thumb {
 	font-variant: normal;
 	text-rendering: auto;
 	line-height: 1;
-	font-family: 'FontAwesome';
+	font-family: FontAwesome;
 	margin-left: 5px
 }
 
