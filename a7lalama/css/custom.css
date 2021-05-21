@@ -1,22 +1,22 @@
 @font-face {font-family: "NeoSansArabic";
   font-style: normal;
 font-weight: normal;
-    src: url("fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.eot");
-    src: url("fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.eot?#iefix") format("embedded-opentype"),
-    url("fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.woff2") format("woff2"),
-    url("fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.woff") format("woff"),
-    url("fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.ttf") format("truetype"),
-    url("fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.svg#NeoSansArabic-Medium") format("svg");
+    src: url("Fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.eot");
+    src: url("Fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.eot?#iefix") format("embedded-opentype"),
+    url("Fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.woff2") format("woff2"),
+    url("Fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.woff") format("woff"),
+    url("Fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.ttf") format("truetype"),
+    url("Fonts/neosansarabic/7668f634eb4865a48f04d52ea3fb9b27.svg#NeoSansArabic-Medium") format("svg");
 }
 @font-face {font-family: "NeoSansArabic";
   font-style: normal;
 font-weight: bold;
-    src: url("fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.eot");
-    src: url("fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.eot?#iefix") format("embedded-opentype"),
-    url("fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.woff2") format("woff2"),
-    url("fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.woff") format("woff"),
-    url("fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.ttf") format("truetype"),
-    url("fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.svg#NeoSansArabic-Medium") format("svg");
+    src: url("Fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.eot");
+    src: url("Fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.eot?#iefix") format("embedded-opentype"),
+    url("Fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.woff2") format("woff2"),
+    url("Fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.woff") format("woff"),
+    url("Fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.ttf") format("truetype"),
+    url("Fonts/neosansarabic-medium/7668f634eb4865a48f04d52ea3fb9b27.svg#NeoSansArabic-Medium") format("svg");
 }
 
 .tooltip{ font-family:'NeoSansArabic'; }
