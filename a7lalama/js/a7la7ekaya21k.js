@@ -1222,7 +1222,7 @@
     
     var F = S.Deferred();
 function B() {
-        S.ready()
+
     }
     S.fn.ready = function(e) {
         return F.then(e)["catch"](function(e) {
