@@ -1,48 +1,5 @@
-﻿* {
-	transition-duration: 0;
-	transition-property: all;
-	transition-timing-function: cubic-bezier(0.4,0,0.2,1);
-}
-*, :after, :before {
-	border: none;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-* html {
-	scrollbar-3dlight-color: #;
-	scrollbar-arrow-color: #;
-	scrollbar-darkshadow-color: #;
-	scrollbar-face-color: #;
-	scrollbar-highlight-color: #;
-	scrollbar-shadow-color: #;
-	scrollbar-track-color: #;
-}
-* + html {
-	scrollbar-3dlight-color: #;
-	scrollbar-arrow-color: #;
-	scrollbar-darkshadow-color: #;
-	scrollbar-face-color: #;
-	scrollbar-highlight-color: #;
-	scrollbar-shadow-color: #;
-	scrollbar-track-color: #;
-}
-body, html {
-	background-attachment: scroll;
-	background-color: #fff;
-	background-image: url(https://2img.net/i/fa/empty.gif);
-	color: #;
-	font-family: Roboto, sans-serif;
-	font-size: 10px;
-	height: 100%;
-	line-height: 1.526;
-	text-rendering: optimizeLegibility;
-}
-body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
+
+
 .conteneur_minwidth_IE {
 	flex: 1;
 }
