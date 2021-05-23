@@ -1478,16 +1478,7 @@
         }
     });
     var ce, fe, pe = /^(?:checkbox|radio)$/i,
-        de = /<([a-z][^\/\0>\x20\t\r\n\f]*)/i,
-        he = /^$|^module$|\/(?:java|ecma)script/i;
-    ce = E.createDocumentFragment().appendChild(E.createElement("div")), (fe = E.createElement("i11nput")).setAttribute("type", "radio"), fe.setAttribute("checked", "checked"), fe.setAttribute("name", "t"), ce.appendChild(fe), y.checkClone = ce.cloneNode(!0).cloneNode(!0).lastChild.checked, ce.innerHTML = "<t11extare111a>x</t11extare11a>", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<o11ption></o11ption>", y.option = !!ce.lastChild;
-    var ge = {
-        thead: [1, "<t22able>", "</tab22le>"],
-        col: [2, "<22table><colg22roup>", "</co22lgroup></t22able>"],
-        tr: [2, "<tab22le><t22body>", "</22tbody></t22able>"],
-        td: [3, "<t22able><t22body><t22r>", "</t22r></t22body></t22able>"],
-        _default: [0, "", ""]
-    };
+      
 
     function ve(e, t) {
         var n;
