@@ -957,3 +957,106 @@
             return !!D(this, "string" == typeof e && k.test(e) ? S(e) : e || [], !1).length
         }
     });
+
+    var j, q = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/;
+    (S.fn.init = function (e, t, n) {
+        var r, i;
+        if (!e) return this;
+        if (n = n || j, "string" == typeof e) {
+            if (!(r = "<" === e[0] && ">" === e[e.length - 1] && 3 <= e.length ? [null, e, null] : q.exec(e)) || !r[1] && t) return !t || t.jquery ? (t || n).find(e) : this.constructor(t).find(e);
+            if (r[1]) {
+                if (t = t instanceof S ? t[0] : t, S.merge(this, S.parseHTML(r[1], t && t.nodeType ? t.ownerDocument || t : E, !0)), N.test(r[1]) && S.isPlainObject(t))
+                    for (r in t) m(this[r]) ? this[r](t[r]) : this.attr(r, t[r]);
+                return this
+            }
+            return (i = E.getElementById(r[2])) && (this[0] = i, this.length = 1), this
+        }
+        return e.nodeType ? (this[0] = e, this.length = 1, this) : m(e) ? void 0 !== n.ready ? n.ready(e) : e(S) : S.makeArray(e, this)
+    }).prototype = S.fn, j = S(E);
+    var L = /^(?:parents|prev(?:Until|All))/,
+        H = {
+            children: !0,
+            contents: !0,
+            next: !0,
+            prev: !0
+        };
+    
+    function O(e, t) {
+        while ((e = e[t]) && 1 !== e.nodeType);
+        return e
+    }
+    S.fn.extend({
+        has: function (e) {
+            var t = S(e, this),
+                n = t.length;
+            return this.filter(function () {
+                for (var e = 0; e < n; e++)
+                    if (S.contains(this, t[e])) return !0
+            })
+        },
+        closest: function (e, t) {
+            var n, r = 0,
+                i = this.length,
+                o = [],
+                a = "string" != typeof e && S(e);
+            if (!k.test(e))
+                for (; r < i; r++)
+                    for (n = this[r]; n && n !== t; n = n.parentNode)
+                        if (n.nodeType < 11 && (a ? -1 < a.index(n) : 1 === n.nodeType && S.find.matchesSelector(n, e))) {
+                            o.push(n);
+                            break
+                        } return this.pushStack(1 < o.length ? S.uniqueSort(o) : o)
+        },
+        index: function (e) {
+            return e ? "string" == typeof e ? i.call(S(e), this[0]) : i.call(this, e.jquery ? e[0] : e) : this[0] && this[0].parentNode ? this.first().prevAll().length : -1
+        },
+        add: function (e, t) {
+            return this.pushStack(S.uniqueSort(S.merge(this.get(), S(e, t))))
+        },
+        addBack: function (e) {
+            return this.add(null == e ? this.prevObject : this.prevObject.filter(e))
+        }
+    }), S.each({
+        parent: function (e) {
+            var t = e.parentNode;
+            return t && 11 !== t.nodeType ? t : null
+        },
+        parents: function (e) {
+            return h(e, "parentNode")
+        },
+        parentsUntil: function (e, t, n) {
+            return h(e, "parentNode", n)
+        },
+        next: function (e) {
+            return O(e, "nextSibling")
+        },
+        prev: function (e) {
+            return O(e, "previousSibling")
+        },
+        nextAll: function (e) {
+            return h(e, "nextSibling")
+        },
+        prevAll: function (e) {
+            return h(e, "previousSibling")
+        },
+        nextUntil: function (e, t, n) {
+            return h(e, "nextSibling", n)
+        },
+        prevUntil: function (e, t, n) {
+            return h(e, "previousSibling", n)
+        },
+        siblings: function (e) {
+            return T((e.parentNode || {}).firstChild, e)
+        },
+        children: function (e) {
+            return T(e.firstChild)
+        },
+        contents: function (e) {
+            return null != e.contentDocument && r(e.contentDocument) ? e.contentDocument : (A(e, "template") && (e = e.content || e), S.merge([], e.childNodes))
+        }
+    }, function (r, i) {
+        S.fn[r] = function (e, t) {
+            var n = S.map(this, i, e);
+            return "Until" !== r.slice(-5) && (t = e), t && "string" == typeof t && (n = S.filter(t, n)), 1 < this.length && (H[r] || S.uniqueSort(n), L.test(r) && n.reverse()), this.pushStack(n)
+        }
+    });
