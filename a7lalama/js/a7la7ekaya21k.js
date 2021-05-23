@@ -36,12 +36,7 @@
             noModule: !0
         };
 
-    function b(e, t, n) {
-        var r, i, o = (n = n || E).createElement("script");
-        if (o.text = e, t)
-            for (r in c)(i = t[r] || t.getAttribute && t.getAttribute(r)) && o.setAttribute(r, i);
-        n.head.appendChild(o).parentNode.removeChild(o)
-    }
+    
 
     function w(e) {
         return null == e ? e + "" : "object" == typeof e || "function" == typeof e ? n[o.call(e)] || "object" : typeof e
