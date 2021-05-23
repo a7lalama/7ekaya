@@ -2455,11 +2455,7 @@
         prop: function(e, t) {
             return $(this, S.prop, e, t, 1 < arguments.length)
         },
-        removeProp: function(e) {
-            return this.each(function() {
-                delete this[S.propFix[e] || e]
-            })
-        }
+      
     }), S.extend({
         prop: function(e, t, n) {
             var r, i, o = e.nodeType;
@@ -2505,7 +2501,8 @@
         removeClass: function(t) {
             var e, n, r, i, o, a, s, u = 0;
             if (m(t)) return this.each(function(e) {
-                S(this).removeClass(t.call(this, e, yt(this)))
+                
+               
             });
             if (!arguments.length) return this.attr("class", "");
             if ((e = mt(t)).length)
