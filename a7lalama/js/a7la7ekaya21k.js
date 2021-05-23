@@ -2548,112 +2548,7 @@
             return !1
         }
     });
-    var xt = /\r/g;
-    S.fn.extend({
-        val: function(n) {
-            var r, e, i, t = this[0];
-            return arguments.length ? (i = m(n), this.each(function(e) {
-                var t;
-                1 === this.nodeType && (null == (t = i ? n.call(this, e, S(this).val()) : n) ? t = "" : "number" == typeof t ? t += "" : Array.isArray(t) && (t = S.map(t, function(e) {
-                    return null == e ? "" : e + ""
-                })), (r = S.valHooks[this.type] || S.valHooks[this.nodeName.toLowerCase()]) && "set" in r && void 0 !== r.set(this, t, "value") || (this.value = t))
-            })) : t ? (r = S.valHooks[t.type] || S.valHooks[t.nodeName.toLowerCase()]) && "get" in r && void 0 !== (e = r.get(t, "value")) ? e : "string" == typeof(e = t.value) ? e.replace(xt, "") : null == e ? "" : e : void 0
-        }
-    }), S.extend({
-        valHooks: {
-            option: {
-                get: function(e) {
-                    var t = S.find.attr(e, "value");
-                    return null != t ? t : vt(S.text(e))
-                }
-            },
-            select: {
-                get: function(e) {
-                    var t, n, r, i = e.options,
-                        o = e.selectedIndex,
-                        a = "select-one" === e.type,
-                        s = a ? null : [],
-                        u = a ? o + 1 : i.length;
-                    for (r = o < 0 ? u : a ? o : 0; r < u; r++)
-                        if (((n = i[r]).selected || r === o) && !n.disabled && (!n.parentNode.disabled || !A(n.parentNode, "optgroup"))) {
-                            if (t = S(n).val(), a) return t;
-                            s.push(t)
-                        } return s
-                },
-                set: function(e, t) {
-                    var n, r, i = e.options,
-                        o = S.makeArray(t),
-                        a = i.length;
-                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.option.get(r), o)) && (n = !0);
-                    return n || (e.selectedIndex = -1), o
-                }
-            }
-        }
-    }), S.each(["radio", "checkbox"], function() {
-        S.valHooks[this] = {
-            set: function(e, t) {
-                if (Array.isArray(t)) return e.checked = -1 < S.inArray(S(e).val(), t)
-            }
-        }, y.checkOn || (S.valHooks[this].get = function(e) {
-            return null === e.getAttribute("value") ? "on" : e.value
-        })
-    }), y.focusin = "onfocusin" in C;
-    var bt = /^(?:focusinfocus|focusoutblur)$/,
-        wt = function(e) {
-            e.stopPropagation()
-        };
-    S.extend(S.event, {
-        trigger: function(e, t, n, r) {
-            var i, o, a, s, u, l, c, f, p = [n || E],
-                d = v.call(e, "type") ? e.type : e,
-                h = v.call(e, "namespace") ? e.namespace.split(".") : [];
-            if (o = f = a = n = n || E, 3 !== n.nodeType && 8 !== n.nodeType && !bt.test(d + S.event.triggered) && (-1 < d.indexOf(".") && (d = (h = d.split(".")).shift(), h.sort()), u = d.indexOf(":") < 0 && "on" + d, (e = e[S.expando] ? e : new S.Event(d, "object" == typeof e && e)).isTrigger = r ? 2 : 3, e.namespace = h.join("."), e.rnamespace = e.namespace ? new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)") : null, e.result = void 0, e.target || (e.target = n), t = null == t ? [e] : S.makeArray(t, [e]), c = S.event.special[d] || {}, r || !c.trigger || !1 !== c.trigger.apply(n, t))) {
-                if (!r && !c.noBubble && !x(n)) {
-                    for (s = c.delegateType || d, bt.test(s + d) || (o = o.parentNode); o; o = o.parentNode) p.push(o), a = o;
-                    a === (n.ownerDocument || E) && p.push(a.defaultView || a.parentWindow || C)
-                }
-                i = 0;
-                while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : c.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
-                return e.type = d, r || e.isDefaultPrevented() || c._default && !1 !== c._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.removeEventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
-            }
-        },
-        simulate: function(e, t, n) {
-            var r = S.extend(new S.Event, n, {
-                type: e,
-                isSimulated: !0
-            });
-            S.event.trigger(r, null, t)
-        }
-    }), S.fn.extend({
-        trigger: function(e, t) {
-            return this.each(function() {
-                S.event.trigger(e, t, this)
-            })
-        },
-        triggerHandler: function(e, t) {
-            var n = this[0];
-            if (n) return S.event.trigger(e, t, n, !0)
-        }
-    }), y.focusin || S.each({
-        focus: "focusin",
-        blur: "focusout"
-    }, function(n, r) {
-        var i = function(e) {
-            S.event.simulate(r, e.target, S.event.fix(e))
-        };
-        S.event.special[r] = {
-            setup: function() {
-                var e = this.ownerDocument || this.document || this,
-                    t = Y.access(e, r);
-                t || e.addEventListener(n, i, !0), Y.access(e, r, (t || 0) + 1)
-            },
-            teardown: function() {
-                var e = this.ownerDocument || this.document || this,
-                    t = Y.access(e, r) - 1;
-                t ? Y.access(e, r, t) : (e.removeEventListener(n, i, !0), Y.remove(e, r))
-            }
-        }
-    });
+   
     var Tt = C.location,
         Ct = {
             guid: Date.now()
@@ -3073,8 +2968,151 @@
             }
         }
     });
-    
-    
+    var Ut, Xt = [],
+        Vt = /(=)\?(?=&|$)|\?\?/;
+    S.ajaxSetup({
+        jsonp: "callback",
+        jsonpCallback: function() {
+            var e = Xt.pop() || S.expando + "_" + Ct.guid++;
+            return this[e] = !0, e
+        }
+    }), S.ajaxPrefilter("json jsonp", function(e, t, n) {
+        var r, i, o, a = !1 !== e.jsonp && (Vt.test(e.url) ? "url" : "string" == typeof e.data && 0 === (e.contentType || "").indexOf("application/x-www-form-urlencoded") && Vt.test(e.data) && "data");
+        if (a || "jsonp" === e.dataTypes[0]) return r = e.jsonpCallback = m(e.jsonpCallback) ? e.jsonpCallback() : e.jsonpCallback, a ? e[a] = e[a].replace(Vt, "$1" + r) : !1 !== e.jsonp && (e.url += (Et.test(e.url) ? "&" : "?") + e.jsonp + "=" + r), e.converters["script json"] = function() {
+            return o || S.error(r + " was not called"), o[0]
+        }, e.dataTypes[0] = "json", i = C[r], C[r] = function() {
+            o = arguments
+        }, n.always(function() {
+            void 0 === i ? S(C).removeProp(r) : C[r] = i, e[r] && (e.jsonpCallback = t.jsonpCallback, Xt.push(r)), o && m(i) && i(o[0]), o = i = void 0
+        }), "script"
+    }), y.createHTMLDocument = ((Ut = E.implementation.createHTMLDocument("").body).innerHTML = "<form></form><form></form>", 2 === Ut.childNodes.length), S.parseHTML = function(e, t, n) {
+        return "string" != typeof e ? [] : ("boolean" == typeof t && (n = t, t = !1), t || (y.createHTMLDocument ? ((r = (t = E.implementation.createHTMLDocument("")).createElement("base")).href = E.location.href, t.head.appendChild(r)) : t = E), o = !n && [], (i = N.exec(e)) ? [t.createElement(i[1])] : (i = xe([e], t, o), o && o.length && S(o).remove(), S.merge([], i.childNodes)));
+        var r, i, o
+    }, S.fn.load = function(e, t, n) {
+        var r, i, o, a = this,
+            s = e.indexOf(" ");
+        return -1 < s && (r = vt(e.slice(s)), e = e.slice(0, s)), m(t) ? (n = t, t = void 0) : t && "object" == typeof t && (i = "POST"), 0 < a.length && S.ajax({
+            url: e,
+            type: i || "GET",
+            dataType: "html",
+            data: t
+        }).done(function(e) {
+            o = arguments, a.html(r ? S("<div>").append(S.parseHTML(e)).find(r) : e)
+        }).always(n && function(e, t) {
+            a.each(function() {
+                n.apply(this, o || [e.responseText, t, e])
+            })
+        }), this
+    }, S.expr.pseudos.animated = function(t) {
+        return S.grep(S.timers, function(e) {
+            return t === e.elem
+        }).length
+    }, S.offset = {
+        setOffset: function(e, t, n) {
+            var r, i, o, a, s, u, l = S.css(e, "position"),
+                c = S(e),
+                f = {};
+            "static" === l && (e.style.position = "relative"), s = c.offset(), o = S.css(e, "top"), u = S.css(e, "left"), ("absolute" === l || "fixed" === l) && -1 < (o + u).indexOf("auto") ? (a = (r = c.position()).top, i = r.left) : (a = parseFloat(o) || 0, i = parseFloat(u) || 0), m(t) && (t = t.call(e, n, S.extend({}, s))), null != t.top && (f.top = t.top - s.top + a), null != t.left && (f.left = t.left - s.left + i), "using" in t ? t.using.call(e, f) : ("number" == typeof f.top && (f.top += "px"), "number" == typeof f.left && (f.left += "px"), c.css(f))
+        }
+    }, S.fn.extend({
+        offset: function(t) {
+            if (arguments.length) return void 0 === t ? this : this.each(function(e) {
+                S.offset.setOffset(this, t, e)
+            });
+            var e, n, r = this[0];
+            return r ? r.getClientRects().length ? (e = r.getBoundingClientRect(), n = r.ownerDocument.defaultView, {
+                top: e.top + n.pageYOffset,
+                left: e.left + n.pageXOffset
+            }) : {
+                top: 0,
+                left: 0
+            } : void 0
+        },
+        position: function() {
+            if (this[0]) {
+                var e, t, n, r = this[0],
+                    i = {
+                        top: 0,
+                        left: 0
+                    };
+                if ("fixed" === S.css(r, "position")) t = r.getBoundingClientRect();
+                else {
+                    t = this.offset(), n = r.ownerDocument, e = r.offsetParent || n.documentElement;
+                    while (e && (e === n.body || e === n.documentElement) && "static" === S.css(e, "position")) e = e.parentNode;
+                    e && e !== r && 1 === e.nodeType && ((i = S(e).offset()).top += S.css(e, "borderTopWidth", !0), i.left += S.css(e, "borderLeftWidth", !0))
+                }
+                return {
+                    top: t.top - i.top - S.css(r, "marginTop", !0),
+                    left: t.left - i.left - S.css(r, "marginLeft", !0)
+                }
+            }
+        },
+        offsetParent: function() {
+            return this.map(function() {
+                var e = this.offsetParent;
+                while (e && "static" === S.css(e, "position")) e = e.offsetParent;
+                return e || re
+            })
+        }
+    }), S.each({
+        scrollLeft: "pageXOffset",
+        scrollTop: "pageYOffset"
+    }, function(t, i) {
+        var o = "pageYOffset" === i;
+        S.fn[t] = function(e) {
+            return $(this, function(e, t, n) {
+                var r;
+                if (x(e) ? r = e : 9 === e.nodeType && (r = e.defaultView), void 0 === n) return r ? r[i] : e[t];
+                r ? r.scrollTo(o ? r.pageXOffset : n, o ? n : r.pageYOffset) : e[t] = n
+            }, t, e, arguments.length)
+        }
+    }), S.each(["top", "left"], function(e, n) {
+        S.cssHooks[n] = $e(y.pixelPosition, function(e, t) {
+            if (t) return t = Be(e, n), Me.test(t) ? S(e).position()[n] + "px" : t
+        })
+    }), S.each({
+        Height: "height",
+        Width: "width"
+    }, function(a, s) {
+        S.each({
+            padding: "inner" + a,
+            content: s,
+            "": "outer" + a
+        }, function(r, o) {
+            S.fn[o] = function(e, t) {
+                var n = arguments.length && (r || "boolean" != typeof e),
+                    i = r || (!0 === e || !0 === t ? "margin" : "border");
+                return $(this, function(e, t, n) {
+                    var r;
+                    return x(e) ? 0 === o.indexOf("outer") ? e["inner" + a] : e.document.documentElement["client" + a] : 9 === e.nodeType ? (r = e.documentElement, Math.max(e.body["scroll" + a], r["scroll" + a], e.body["offset" + a], r["offset" + a], r["client" + a])) : void 0 === n ? S.css(e, t, i) : S.style(e, t, n, i)
+                }, s, n ? e : void 0, n)
+            }
+        })
+    }), S.each(["ajaxStart", "ajaxStop", "ajaxComplete", "ajaxError", "ajaxSuccess", "ajaxSend"], function(e, t) {
+        S.fn[t] = function(e) {
+            return this.on(t, e)
+        }
+    }), S.fn.extend({
+        bind: function(e, t, n) {
+            return this.on(e, null, t, n)
+        },
+        unbind: function(e, t) {
+            return this.off(e, null, t)
+        },
+        delegate: function(e, t, n, r) {
+            return this.on(t, e, n, r)
+        },
+        undelegate: function(e, t, n) {
+            return 1 === arguments.length ? this.off(e, "**") : this.off(t, e || "**", n)
+        },
+        hover: function(e, t) {
+            return this.mouseenter(e).mouseleave(t || e)
+        }
+    }), S.each("blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(" "), function(e, n) {
+        S.fn[n] = function(e, t) {
+            return 0 < arguments.length ? this.on(n, null, e, t) : this.trigger(n)
+        }
+    });
     var Gt = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
     S.proxy = function(e, t) {
         var n, r, i;
