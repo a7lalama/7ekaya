@@ -1578,20 +1578,7 @@
                 }, o), (p = u[d]) || ((p = u[d] = []).delegateCount = 0, f.setup && !1 !== f.setup.call(t, r, h, a) || t.addEventListener && t.addEventListener(d, a)), f.add && (f.add.call(t, c), c.handler.guid || (c.handler.guid = n.guid)), i ? p.splice(p.delegateCount++, 0, c) : p.push(c), S.event.global[d] = !0)
             }
         },
-        remove: function(e, t, n, r, i) {
-            var o, a, s, u, l, c, f, p, d, h, g, v = Y.hasData(e) && Y.get(e);
-            if (v && (u = v.events)) {
-                l = (t = (t || "").match(P) || [""]).length;
-                while (l--)
-                    if (d = g = (s = Te.exec(t[l]) || [])[1], h = (s[2] || "").split(".").sort(), d) {
-                        f = S.event.special[d] || {}, p = u[d = (r ? f.delegateType : f.bindType) || d] || [], s = s[2] && new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)"), a = o = p.length;
-                        while (o--) c = p[o], !i && g !== c.origType || n && n.guid !== c.guid || s && !s.test(c.namespace) || r && r !== c.selector && ("**" !== r || !c.selector) || (p.splice(o, 1), c.selector && p.delegateCount--, f.remove && f.remove.call(e, c));
-                        a && !p.length && (f.teardown && !1 !== f.teardown.call(e, h, v.handle) || S.removeEvent(e, d, v.handle), delete u[d])
-                    } else
-                        for (d in u) S.event.remove(e, d + t[l], n, r, !0);
-                S.isEmptyObject(u) && Y.remove(e, "handle events")
-            }
-        },
+       
         dispatch: function(e) {
             var t, n, r, i, o, a, s = new Array(arguments.length),
                 u = S.event.fix(e),
@@ -1670,9 +1657,9 @@
                 }
             }
         }
-    }, S.removeEvent = function(e, t, n) {
-        e.removeEventListener && e.removeEventListener(t, n)
-    }, S.Event = function(e, t) {
+    }, 
+        
+        S.Event = function(e, t) {
         if (!(this instanceof S.Event)) return new S.Event(e, t);
         e && e.type ? (this.originalEvent = e, this.type = e.type, this.isDefaultPrevented = e.defaultPrevented || void 0 === e.defaultPrevented && !1 === e.returnValue ? Ce : Ee, this.target = e.target && 3 === e.target.nodeType ? e.target.parentNode : e.target, this.currentTarget = e.currentTarget, this.relatedTarget = e.relatedTarget) : this.type = e, t && S.extend(this, t), this.timeStamp = e && e.timeStamp || Date.now(), this[S.expando] = !0
     }, S.Event.prototype = {
