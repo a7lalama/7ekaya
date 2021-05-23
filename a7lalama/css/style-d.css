@@ -8183,19 +8183,6 @@ div.noprint {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1, M12=0, M21=0, M22=-1, SizingMethod='auto expand')";
 	filter: progid:DXImageTransform.Microsoft.Matrix( M11=1, M12=0, M21=0, M22=-1, SizingMethod="auto expand");
 }
-.block[data-widget-definition="new_posts"] .block-minorHeader:before, [data-widget-key="forum_overview_share_page"] h3.block-minorHeader:before,[data-widget-key="forum_overview_forum_statistics"] h3.block-minorHeader:before, [data-widget-key="forum_overview_forum_statistics"] h3.block-minorHeader:before, [data-widget-section="onlineNow"] h3.block-minorHeader:before {
-padding-left: 5px;
-    padding-right: 5px;
-    min-width: 30px;
-}
-@font-face {font-family: "FontAwesome";
-    src: url("http://db.onlinewebfonts.com/t/0b28d43e90a11a93d935b305ff2cefb2.eot"); /* IE9*/
-    src: url("http://db.onlinewebfonts.com/t/0b28d43e90a11a93d935b305ff2cefb2.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("http://db.onlinewebfonts.com/t/0b28d43e90a11a93d935b305ff2cefb2.woff2") format("woff2"), /* chrome firefox */
-    url("http://db.onlinewebfonts.com/t/0b28d43e90a11a93d935b305ff2cefb2.woff") format("woff"), /* chrome firefox */
-    url("http://db.onlinewebfonts.com/t/0b28d43e90a11a93d935b305ff2cefb2.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
-    url("http://db.onlinewebfonts.com/t/0b28d43e90a11a93d935b305ff2cefb2.svg#FontAwesome") format("svg"); /* iOS 4.1- */
-}
 
 div.message-cell.message-cell--user {
     min-width: 220px;
