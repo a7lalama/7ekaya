@@ -223,7 +223,7 @@
                 needsContext: new RegExp("^" + M + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + M + "*((?:-\\d)?\\d*)" + M + "*\\)|)(?=[^-]|$)", "i")
             },
             Y = /HTML$/i,
-            Q = /^(?:input|select|button)$/i,
+            Q = /^(?:input|select|textarea|button)$/i,
             J = /^h\d$/i,
             K = /^[^{]+\{\s*\[native \w/,
             Z = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
@@ -1479,7 +1479,8 @@
     });
     var ce, fe, pe = /^(?:checkbox|radio)$/i,
         de = /<([a-z][^\/\0>\x20\t\r\n\f]*)/i,
-        he = /^$|^module$|\/(?:java|ecma)script/i;", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<option></option>", y.option = !!ce.lastChild;
+        he = /^$|^module$|\/(?:java|ecma)script/i;
+    ce = E.createDocumentFragment().appendChild(E.createElement("div")), (fe = E.createElement("input")).setAttribute("type", "radio"), fe.setAttribute("checked", "checked"), fe.setAttribute("name", "t"), ce.appendChild(fe), y.checkClone = ce.cloneNode(!0).cloneNode(!0).lastChild.checked, ce.innerHTML = "<textarea>x</textarea>", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<option></option>", y.option = !!ce.lastChild;
     var ge = {
         thead: [1, "<table>", "</table>"],
         col: [2, "<table><colgroup>", "</colgroup></table>"],
@@ -1842,7 +1843,7 @@
             var r, i, o, a, s, u, l, c = e.cloneNode(!0),
                 f = ie(e);
             if (!(y.noCloneChecked || 1 !== e.nodeType && 11 !== e.nodeType || S.isXMLDoc(e)))
-                for (a = ve(c), r = 0, i = (o = ve(e)).length; r < i; r++) s = o[r], u = a[r], void 0, "input" === (l = u.nodeName.toLowerCase()) && pe.test(s.type) ? u.checked = s.checked : "input" !== l && "" !== l || (u.defaultValue = s.defaultValue);
+                for (a = ve(c), r = 0, i = (o = ve(e)).length; r < i; r++) s = o[r], u = a[r], void 0, "input" === (l = u.nodeName.toLowerCase()) && pe.test(s.type) ? u.checked = s.checked : "input" !== l && "textarea" !== l || (u.defaultValue = s.defaultValue);
             if (t)
                 if (n)
                     for (o = o || ve(e), a = a || ve(c), r = 0, i = o.length; r < i; r++) Oe(o[r], a[r]);
@@ -2446,7 +2447,7 @@
             return n || (i = dt[o], dt[o] = r, r = null != a(e, t, n) ? o : null, dt[o] = i), r
         }
     });
-    var ht = /^(?:input|select|button)$/i,
+    var ht = /^(?:input|select|textarea|button)$/i,
         gt = /^(?:a|area)$/i;
 
     function vt(e) {
@@ -2671,7 +2672,7 @@
     var St = /\[\]$/,
         kt = /\r?\n/g,
         At = /^(?:submit|button|image|reset|file)$/i,
-        Nt = /^(?:input|select|keygen)/i;
+        Nt = /^(?:input|select|textarea|keygen)/i;
 
     function Dt(n, e, r, i) {
         var t;
