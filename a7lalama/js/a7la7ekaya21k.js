@@ -1478,7 +1478,7 @@
         }
     });
     var ce, fe, pe = /^(?:checkbox|radio)$/i,
-      
+     
 
     function ve(e, t) {
         var n;
@@ -1578,7 +1578,8 @@
                 }, o), (p = u[d]) || ((p = u[d] = []).delegateCount = 0, f.setup && !1 !== f.setup.call(t, r, h, a) || t.addEventListener && t.addEventListener(d, a)), f.add && (f.add.call(t, c), c.handler.guid || (c.handler.guid = n.guid)), i ? p.splice(p.delegateCount++, 0, c) : p.push(c), S.event.global[d] = !0)
             }
         },
-       
+        
+        
         dispatch: function(e) {
             var t, n, r, i, o, a, s = new Array(arguments.length),
                 u = S.event.fix(e),
@@ -1657,9 +1658,9 @@
                 }
             }
         }
-    }, 
-        
-        S.Event = function(e, t) {
+    }, S.removeEvent = function(e, t, n) {
+        e.removeEventListener && e.removeEventListener(t, n)
+    }, S.Event = function(e, t) {
         if (!(this instanceof S.Event)) return new S.Event(e, t);
         e && e.type ? (this.originalEvent = e, this.type = e.type, this.isDefaultPrevented = e.defaultPrevented || void 0 === e.defaultPrevented && !1 === e.returnValue ? Ce : Ee, this.target = e.target && 3 === e.target.nodeType ? e.target.parentNode : e.target, this.currentTarget = e.currentTarget, this.relatedTarget = e.relatedTarget) : this.type = e, t && S.extend(this, t), this.timeStamp = e && e.timeStamp || Date.now(), this[S.expando] = !0
     }, S.Event.prototype = {
