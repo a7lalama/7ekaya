@@ -1792,3 +1792,164 @@
             })
         }
     });   
+
+    
+    
+    var Ne = /<script|<style|<link/i,
+        De = /checked\s*(?:[^=]|=\s*.checked.)/i,
+        je = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
+    
+    function qe(e, t) {
+        return A(e, "table") && A(11 !== t.nodeType ? t : t.firstChild, "tr") && S(e).children("tbody")[0] || e
+    }
+    
+    function Le(e) {
+        return e.type = (null !== e.getAttribute("type")) + "/" + e.type, e
+    }
+    
+    function He(e) {
+        return "true/" === (e.type || "").slice(0, 5) ? e.type = e.type.slice(5) : e.removeAttribute("type"), e
+    }
+    
+    function Oe(e, t) {
+        var n, r, i, o, a, s;
+        if (1 === t.nodeType) {
+            if (Y.hasData(e) && (s = Y.get(e).events))
+                for (i in Y.remove(t, "handle events"), s)
+                    for (n = 0, r = s[i].length; n < r; n++) S.event.add(t, i, s[i][n]);
+            Q.hasData(e) && (o = Q.access(e), a = S.extend({}, o), Q.set(t, a))
+        }
+    }
+    
+    function Pe(n, r, i, o) {
+        r = g(r);
+        var e, t, a, s, u, l, c = 0,
+            f = n.length,
+            p = f - 1,
+            d = r[0],
+            h = m(d);
+        if (h || 1 < f && "string" == typeof d && !y.checkClone && De.test(d)) return n.each(function (e) {
+            var t = n.eq(e);
+            h && (r[0] = d.call(this, e, t.html())), Pe(t, r, i, o)
+        });
+        if (f && (t = (e = xe(r, n[0].ownerDocument, !1, n, o)).firstChild, 1 === e.childNodes.length && (e = t), t || o)) {
+            for (s = (a = S.map(ve(e, "script"), Le)).length; c < f; c++) u = e, c !== p && (u = S.clone(u, !0, !0), s && S.merge(a, ve(u, "script"))), i.call(n[c], u, c);
+            if (s)
+                for (l = a[a.length - 1].ownerDocument, S.map(a, He), c = 0; c < s; c++) u = a[c], he.test(u.type || "") && !Y.access(u, "globalEval") && S.contains(l, u) && (u.src && "module" !== (u.type || "").toLowerCase() ? S._evalUrl && !u.noModule && S._evalUrl(u.src, {
+                    nonce: u.nonce || u.getAttribute("nonce")
+                }, l) : b(u.textContent.replace(je, ""), u, l))
+        }
+        return n
+    }
+    
+    function Re(e, t, n) {
+        for (var r, i = t ? S.filter(t, e) : e, o = 0; null != (r = i[o]); o++) n || 1 !== r.nodeType || S.cleanData(ve(r)), r.parentNode && (n && ie(r) && ye(ve(r, "script")), r.parentNode.removeChild(r));
+        return e
+    }
+    S.extend({
+        htmlPrefilter: function (e) {
+            return e
+        },
+        clone: function (e, t, n) {
+            var r, i, o, a, s, u, l, c = e.cloneNode(!0),
+                f = ie(e);
+            if (!(y.noCloneChecked || 1 !== e.nodeType && 11 !== e.nodeType || S.isXMLDoc(e)))
+                for (a = ve(c), r = 0, i = (o = ve(e)).length; r < i; r++) s = o[r], u = a[r], void 0, "input" === (l = u.nodeName.toLowerCase()) && pe.test(s.type) ? u.checked = s.checked : "input" !== l && "textarea" !== l || (u.defaultValue = s.defaultValue);
+            if (t)
+                if (n)
+                    for (o = o || ve(e), a = a || ve(c), r = 0, i = o.length; r < i; r++) Oe(o[r], a[r]);
+                else Oe(e, c);
+            return 0 < (a = ve(c, "script")).length && ye(a, !f && ve(e, "script")), c
+        },
+        cleanData: function (e) {
+            for (var t, n, r, i = S.event.special, o = 0; void 0 !== (n = e[o]); o++)
+                if (V(n)) {
+                    if (t = n[Y.expando]) {
+                        if (t.events)
+                            for (r in t.events) i[r] ? S.event.remove(n, r) : S.removeEvent(n, r, t.handle);
+                        n[Y.expando] = void 0
+                    }
+                    n[Q.expando] && (n[Q.expando] = void 0)
+                }
+        }
+    }), S.fn.extend({
+        detach: function (e) {
+            return Re(this, e, !0)
+        },
+        remove: function (e) {
+            return Re(this, e)
+        },
+        text: function (e) {
+            return $(this, function (e) {
+                return void 0 === e ? S.text(this) : this.empty().each(function () {
+                    1 !== this.nodeType && 11 !== this.nodeType && 9 !== this.nodeType || (this.textContent = e)
+                })
+            }, null, e, arguments.length)
+        },
+        append: function () {
+            return Pe(this, arguments, function (e) {
+                1 !== this.nodeType && 11 !== this.nodeType && 9 !== this.nodeType || qe(this, e).appendChild(e)
+            })
+        },
+        prepend: function () {
+            return Pe(this, arguments, function (e) {
+                if (1 === this.nodeType || 11 === this.nodeType || 9 === this.nodeType) {
+                    var t = qe(this, e);
+                    t.insertBefore(e, t.firstChild)
+                }
+            })
+        },
+        before: function () {
+            return Pe(this, arguments, function (e) {
+                this.parentNode && this.parentNode.insertBefore(e, this)
+            })
+        },
+        after: function () {
+            return Pe(this, arguments, function (e) {
+                this.parentNode && this.parentNode.insertBefore(e, this.nextSibling)
+            })
+        },
+        empty: function () {
+            for (var e, t = 0; null != (e = this[t]); t++) 1 === e.nodeType && (S.cleanData(ve(e, !1)), e.textContent = "");
+            return this
+        },
+        clone: function (e, t) {
+            return e = null != e && e, t = null == t ? e : t, this.map(function () {
+                return S.clone(this, e, t)
+            })
+        },
+        html: function (e) {
+            return $(this, function (e) {
+                var t = this[0] || {},
+                    n = 0,
+                    r = this.length;
+                if (void 0 === e && 1 === t.nodeType) return t.innerHTML;
+                if ("string" == typeof e && !Ne.test(e) && !ge[(de.exec(e) || ["", ""])[1].toLowerCase()]) {
+                    e = S.htmlPrefilter(e);
+                    try {
+                        for (; n < r; n++) 1 === (t = this[n] || {}).nodeType && (S.cleanData(ve(t, !1)), t.innerHTML = e);
+                        t = 0
+                    } catch (e) {}
+                }
+                t && this.empty().append(e)
+            }, null, e, arguments.length)
+        },
+        replaceWith: function () {
+            var n = [];
+            return Pe(this, arguments, function (e) {
+                var t = this.parentNode;
+                S.inArray(this, n) < 0 && (S.cleanData(ve(this)), t && t.replaceChild(e, this))
+            }, n)
+        }
+    }), S.each({
+        appendTo: "append",
+        prependTo: "prepend",
+        insertBefore: "before",
+        insertAfter: "after",
+        replaceAll: "replaceWith"
+    }, function (e, a) {
+        S.fn[e] = function (e) {
+            for (var t, n = [], r = S(e), i = r.length - 1, o = 0; o <= i; o++) t = o === i ? this : this.clone(!0), S(r[o])[a](t), u.apply(n, t.get());
+            return this.pushStack(n)
+        }
+    });
