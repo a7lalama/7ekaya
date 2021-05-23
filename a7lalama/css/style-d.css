@@ -8341,10 +8341,7 @@ html#min-width a,.footer_bottom a, .footer_bottom a span {
 	font-size: 14px;
 }
 
-i.fab.fa-facebook-f::before, i.fab.fa-twitter::before, i.fab.fa-youtube::before, i.fab.fa-linkedin::before, i.far.fa-rss::before, ::before{
-    font-family: 'FontAwesome';
-  line-height: 2.3;
-}
+
 
 span.label.label--yelllow, span.label.label--yelllow strong {
 	font-size: 0px;
