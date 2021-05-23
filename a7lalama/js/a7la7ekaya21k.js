@@ -1061,6 +1061,7 @@
         }
     });
 
+    
     var P = /[^\x20\t\r\n\f]+/g;
     
     function R(e) {
@@ -1222,6 +1223,8 @@
             return o.promise()
         }
     });
+    
+    
     var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     S.Deferred.exceptionHook = function (e, t) {
         C.console && C.console.warn && e && W.test(e.name) && C.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
@@ -1419,5 +1422,61 @@
             "string" != typeof e && (t = e, e = void 0), e = e || "fx";
             while (a--)(n = Y.get(o[a], e + "queueHooks")) && n.empty && (r++, n.empty.add(s));
             return s(), i.promise(t)
+        }
+    });
+
+
+    var ee = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,
+        te = new RegExp("^(?:([+-])=|)(" + ee + ")([a-z%]*)$", "i"),
+        ne = ["Top", "Right", "Bottom", "Left"],
+        re = E.documentElement,
+        ie = function (e) {
+            return S.contains(e.ownerDocument, e)
+        },
+        oe = {
+            composed: !0
+        };
+    re.getRootNode && (ie = function (e) {
+        return S.contains(e.ownerDocument, e) || e.getRootNode(oe) === e.ownerDocument
+    });
+    var ae = function (e, t) {
+        return "none" === (e = t || e).style.display || "" === e.style.display && ie(e) && "none" === S.css(e, "display")
+    };
+    
+    function se(e, t, n, r) {
+        var i, o, a = 20,
+            s = r ? function () {
+                return r.cur()
+            } : function () {
+                return S.css(e, t, "")
+            },
+            u = s(),
+            l = n && n[3] || (S.cssNumber[t] ? "" : "px"),
+            c = e.nodeType && (S.cssNumber[t] || "px" !== l && +u) && te.exec(S.css(e, t));
+        if (c && c[3] !== l) {
+            u /= 2, l = l || c[3], c = +u || 1;
+            while (a--) S.style(e, t, c + l), (1 - o) * (1 - (o = s() / u || .5)) <= 0 && (a = 0), c /= o;
+            c *= 2, S.style(e, t, c + l), n = n || []
+        }
+        return n && (c = +c || +u || 0, i = n[1] ? c + (n[1] + 1) * n[2] : +n[2], r && (r.unit = l, r.start = c, r.end = i)), i
+    }
+    var ue = {};
+    
+    function le(e, t) {
+        for (var n, r, i, o, a, s, u, l = [], c = 0, f = e.length; c < f; c++)(r = e[c]).style && (n = r.style.display, t ? ("none" === n && (l[c] = Y.get(r, "display") || null, l[c] || (r.style.display = "")), "" === r.style.display && ae(r) && (l[c] = (u = a = o = void 0, a = (i = r).ownerDocument, s = i.nodeName, (u = ue[s]) || (o = a.body.appendChild(a.createElement(s)), u = S.css(o, "display"), o.parentNode.removeChild(o), "none" === u && (u = "block"), ue[s] = u)))) : "none" !== n && (l[c] = "none", Y.set(r, "display", n)));
+        for (c = 0; c < f; c++) null != l[c] && (e[c].style.display = l[c]);
+        return e
+    }
+    S.fn.extend({
+        show: function () {
+            return le(this, !0)
+        },
+        hide: function () {
+            return le(this)
+        },
+        toggle: function (e) {
+            return "boolean" == typeof e ? e ? this.show() : this.hide() : this.each(function () {
+                ae(this) ? S(this).show() : S(this).hide()
+            })
         }
     });
