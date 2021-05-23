@@ -223,7 +223,7 @@
                 needsContext: new RegExp("^" + M + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + M + "*((?:-\\d)?\\d*)" + M + "*\\)|)(?=[^-]|$)", "i")
             },
             Y = /HTML$/i,
-            Q = /^(?:input|select|textarea|button)$/i,
+            Q = /^(?:input|select|button)$/i,
             J = /^h\d$/i,
             K = /^[^{]+\{\s*\[native \w/,
             Z = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
@@ -1479,8 +1479,7 @@
     });
     var ce, fe, pe = /^(?:checkbox|radio)$/i,
         de = /<([a-z][^\/\0>\x20\t\r\n\f]*)/i,
-        he = /^$|^module$|\/(?:java|ecma)script/i;
-    ce = E.createDocumentFragment().appendChild(E.createElement("div")), (fe = E.createElement("input")).setAttribute("type", "radio"), fe.setAttribute("checked", "checked"), fe.setAttribute("name", "t"), ce.appendChild(fe), y.checkClone = ce.cloneNode(!0).cloneNode(!0).lastChild.checked, ce.innerHTML = "<textarea>x</textarea>", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<option></option>", y.option = !!ce.lastChild;
+        he = /^$|^module$|\/(?:java|ecma)script/i;", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<option></option>", y.option = !!ce.lastChild;
     var ge = {
         thead: [1, "<table>", "</table>"],
         col: [2, "<table><colgroup>", "</colgroup></table>"],
@@ -1843,7 +1842,7 @@
             var r, i, o, a, s, u, l, c = e.cloneNode(!0),
                 f = ie(e);
             if (!(y.noCloneChecked || 1 !== e.nodeType && 11 !== e.nodeType || S.isXMLDoc(e)))
-                for (a = ve(c), r = 0, i = (o = ve(e)).length; r < i; r++) s = o[r], u = a[r], void 0, "input" === (l = u.nodeName.toLowerCase()) && pe.test(s.type) ? u.checked = s.checked : "input" !== l && "textarea" !== l || (u.defaultValue = s.defaultValue);
+                for (a = ve(c), r = 0, i = (o = ve(e)).length; r < i; r++) s = o[r], u = a[r], void 0, "input" === (l = u.nodeName.toLowerCase()) && pe.test(s.type) ? u.checked = s.checked : "input" !== l && "" !== l || (u.defaultValue = s.defaultValue);
             if (t)
                 if (n)
                     for (o = o || ve(e), a = a || ve(c), r = 0, i = o.length; r < i; r++) Oe(o[r], a[r]);
@@ -2447,7 +2446,7 @@
             return n || (i = dt[o], dt[o] = r, r = null != a(e, t, n) ? o : null, dt[o] = i), r
         }
     });
-    var ht = /^(?:input|select|textarea|button)$/i,
+    var ht = /^(?:input|select|button)$/i,
         gt = /^(?:a|area)$/i;
 
     function vt(e) {
@@ -2548,7 +2547,112 @@
             return !1
         }
     });
-   
+    var xt = /\r/g;
+    S.fn.extend({
+        val: function(n) {
+            var r, e, i, t = this[0];
+            return arguments.length ? (i = m(n), this.each(function(e) {
+                var t;
+                1 === this.nodeType && (null == (t = i ? n.call(this, e, S(this).val()) : n) ? t = "" : "number" == typeof t ? t += "" : Array.isArray(t) && (t = S.map(t, function(e) {
+                    return null == e ? "" : e + ""
+                })), (r = S.valHooks[this.type] || S.valHooks[this.nodeName.toLowerCase()]) && "set" in r && void 0 !== r.set(this, t, "value") || (this.value = t))
+            })) : t ? (r = S.valHooks[t.type] || S.valHooks[t.nodeName.toLowerCase()]) && "get" in r && void 0 !== (e = r.get(t, "value")) ? e : "string" == typeof(e = t.value) ? e.replace(xt, "") : null == e ? "" : e : void 0
+        }
+    }), S.extend({
+        valHooks: {
+            option: {
+                get: function(e) {
+                    var t = S.find.attr(e, "value");
+                    return null != t ? t : vt(S.text(e))
+                }
+            },
+            select: {
+                get: function(e) {
+                    var t, n, r, i = e.options,
+                        o = e.selectedIndex,
+                        a = "select-one" === e.type,
+                        s = a ? null : [],
+                        u = a ? o + 1 : i.length;
+                    for (r = o < 0 ? u : a ? o : 0; r < u; r++)
+                        if (((n = i[r]).selected || r === o) && !n.disabled && (!n.parentNode.disabled || !A(n.parentNode, "optgroup"))) {
+                            if (t = S(n).val(), a) return t;
+                            s.push(t)
+                        } return s
+                },
+                set: function(e, t) {
+                    var n, r, i = e.options,
+                        o = S.makeArray(t),
+                        a = i.length;
+                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.option.get(r), o)) && (n = !0);
+                    return n || (e.selectedIndex = -1), o
+                }
+            }
+        }
+    }), S.each(["radio", "checkbox"], function() {
+        S.valHooks[this] = {
+            set: function(e, t) {
+                if (Array.isArray(t)) return e.checked = -1 < S.inArray(S(e).val(), t)
+            }
+        }, y.checkOn || (S.valHooks[this].get = function(e) {
+            return null === e.getAttribute("value") ? "on" : e.value
+        })
+    }), y.focusin = "onfocusin" in C;
+    var bt = /^(?:focusinfocus|focusoutblur)$/,
+        wt = function(e) {
+            e.stopPropagation()
+        };
+    S.extend(S.event, {
+        trigger: function(e, t, n, r) {
+            var i, o, a, s, u, l, c, f, p = [n || E],
+                d = v.call(e, "type") ? e.type : e,
+                h = v.call(e, "namespace") ? e.namespace.split(".") : [];
+            if (o = f = a = n = n || E, 3 !== n.nodeType && 8 !== n.nodeType && !bt.test(d + S.event.triggered) && (-1 < d.indexOf(".") && (d = (h = d.split(".")).shift(), h.sort()), u = d.indexOf(":") < 0 && "on" + d, (e = e[S.expando] ? e : new S.Event(d, "object" == typeof e && e)).isTrigger = r ? 2 : 3, e.namespace = h.join("."), e.rnamespace = e.namespace ? new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)") : null, e.result = void 0, e.target || (e.target = n), t = null == t ? [e] : S.makeArray(t, [e]), c = S.event.special[d] || {}, r || !c.trigger || !1 !== c.trigger.apply(n, t))) {
+                if (!r && !c.noBubble && !x(n)) {
+                    for (s = c.delegateType || d, bt.test(s + d) || (o = o.parentNode); o; o = o.parentNode) p.push(o), a = o;
+                    a === (n.ownerDocument || E) && p.push(a.defaultView || a.parentWindow || C)
+                }
+                i = 0;
+                while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : c.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
+                return e.type = d, r || e.isDefaultPrevented() || c._default && !1 !== c._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.removeEventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
+            }
+        },
+        simulate: function(e, t, n) {
+            var r = S.extend(new S.Event, n, {
+                type: e,
+                isSimulated: !0
+            });
+            S.event.trigger(r, null, t)
+        }
+    }), S.fn.extend({
+        trigger: function(e, t) {
+            return this.each(function() {
+                S.event.trigger(e, t, this)
+            })
+        },
+        triggerHandler: function(e, t) {
+            var n = this[0];
+            if (n) return S.event.trigger(e, t, n, !0)
+        }
+    }), y.focusin || S.each({
+        focus: "focusin",
+        blur: "focusout"
+    }, function(n, r) {
+        var i = function(e) {
+            S.event.simulate(r, e.target, S.event.fix(e))
+        };
+        S.event.special[r] = {
+            setup: function() {
+                var e = this.ownerDocument || this.document || this,
+                    t = Y.access(e, r);
+                t || e.addEventListener(n, i, !0), Y.access(e, r, (t || 0) + 1)
+            },
+            teardown: function() {
+                var e = this.ownerDocument || this.document || this,
+                    t = Y.access(e, r) - 1;
+                t ? Y.access(e, r, t) : (e.removeEventListener(n, i, !0), Y.remove(e, r))
+            }
+        }
+    });
     var Tt = C.location,
         Ct = {
             guid: Date.now()
@@ -2567,7 +2671,7 @@
     var St = /\[\]$/,
         kt = /\r?\n/g,
         At = /^(?:submit|button|image|reset|file)$/i,
-        Nt = /^(?:input|select|textarea|keygen)/i;
+        Nt = /^(?:input|select|keygen)/i;
 
     function Dt(n, e, r, i) {
         var t;
