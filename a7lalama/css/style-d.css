@@ -114,13 +114,7 @@ h1.comments-title:after {
 	margin-right: 18px;
 	margin-top: 22px;
 }
-h2 {
-	color: #;
-	font-family: Roboto, sans-serif;
-	font-size: 2em;
-	font-weight: 400;
-	margin: 0;
-}
+
 h1.solo {
 	margin-bottom: 18px;
 }
@@ -132,21 +126,7 @@ h1.solo {
 .h3 strong, h3 strong {
 	font-weight: 400;
 }
-.h3 a, h3 a {
-	color: #;
-}
-.h3 a:link, h3 a:link {
-	color: #;
-}
-.h3 a:visited, h3 a:visited {
-	color: #;
-}
-.h3 a:active, h3 a:active {
-	color: #;
-}
-.h3 a:hover, h3 a:hover {
-	color: #;
-}
+
 .introduction .h3, .postbody .h3 {
 	margin-top: 8px;
 }
