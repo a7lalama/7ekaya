@@ -1862,8 +1862,7 @@
 			for (var t, n, r, i = S.event.special, o = 0; void 0 !== (n = e[o]); o++)
 				if (V(n)) {
 					if (t = n[Y.expando]) {
-						if (t.events)
-							for (r in t.events) i[r] ? S.event.remove(n, r) : S.removeEvent(n, r, t.handle);
+						if (t.events);
 						n[Y.expando] = void 0
 					}
 					n[Q.expando] && (n[Q.expando] = void 0)
