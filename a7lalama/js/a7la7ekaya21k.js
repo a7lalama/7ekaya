@@ -1728,8 +1728,6 @@
 		charCode: !0,
 		key: !0,
 		keyCode: !0,
-		button: !0,
-		buttons: !0,
 		clientX: !0,
 		clientY: !0,
 		offsetX: !0,
@@ -1742,7 +1740,7 @@
 		toElement: !0,
 		touches: !0,
 		which: function (e) {
-			var t = e.button;
+			var t = e.buttton;
 			return null == e.which && be.test(e.type) ? null != e.charCode ? e.charCode : e.keyCode : !e.which && void 0 !== t && we.test(e.type) ? 1 & t ? 1 : 2 & t ? 3 : 4 & t ? 2 : 0 : e.which
 		}
 	}, S.event.addProp), S.each({
@@ -2461,7 +2459,7 @@
 			return n || (i = dt[o], dt[o] = r, r = null != a(e, t, n) ? o : null, dt[o] = i), r
 		}
 	});
-	var ht = /^(?:input|select|textarea|button)$/i,
+	var ht = /^(?:input|select|textarea)$/i,
 		gt = /^(?:a|area)$/i;
 
 	function vt(e) {
@@ -2688,7 +2686,7 @@
 	};
 	var St = /\[\]$/,
 		kt = /\r?\n/g,
-		At = /^(?:submit|button|image|reset|file)$/i,
+		At = /^(?:submit|image|reset|file)$/i,
 		Nt = /^(?:input|select|textarea|keygen)/i;
 
 	function Dt(n, e, r, i) {
