@@ -2683,6 +2683,21 @@
         }
     });
     
+     var Tt = C.location,
+        Ct = {
+            guid: Date.now()
+        },
+        Et = /\?/;
+    S.parseXML = function (e) {
+        var t;
+        if (!e || "string" != typeof e) return null;
+        try {
+            t = (new C.DOMParser).parseFromString(e, "text/xml")
+        } catch (e) {
+            t = void 0
+        }
+        return t && !t.getElementsByTagName("parsererror").length || S.error("Invalid XML: " + e), t
+    };
     
     var St = /\[\]$/,
         kt = /\r?\n/g,
