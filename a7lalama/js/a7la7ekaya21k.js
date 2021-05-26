@@ -177,6 +177,10 @@
     }), "function" == typeof Symbol && (S.fn[Symbol.iterator] = t[Symbol.iterator]), S.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "), function (e, t) {
         n["[object " + t + "]"] = t.toLowerCase()
     });
+    
+    
+    
+    
     var d = function (n) {
         var e, d, b, o, i, h, f, g, w, u, l, T, C, a, E, v, s, c, y, S = "sizzle" + 1 * new Date,
             p = n.document,
@@ -200,7 +204,7 @@
                     if (e[n] === t) return n;
                 return -1
             },
-            R = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
+            R = "checked|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
             M = "[\\x20\\t\\r\\n\\f]",
             I = "(?:\\\\[\\da-fA-F]{1,6}" + M + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+",
             W = "\\[" + M + "*(" + I + ")(?:" + M + "*([*^$|!~]?=)" + M + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + I + "))|)" + M + "*\\]",
@@ -957,6 +961,8 @@
             return !!D(this, "string" == typeof e && k.test(e) ? S(e) : e || [], !1).length
         }
     });
+    
+    
     var j, q = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/;
     (S.fn.init = function (e, t, n) {
         var r, i;
@@ -1059,6 +1065,9 @@
             return "Until" !== r.slice(-5) && (t = e), t && "string" == typeof t && (n = S.filter(t, n)), 1 < this.length && (H[r] || S.uniqueSort(n), L.test(r) && n.reverse()), this.pushStack(n)
         }
     });
+    
+    
+    
     var P = /[^\x20\t\r\n\f]+/g;
     
     function R(e) {
@@ -1224,6 +1233,8 @@
             return o.promise()
         }
     });
+    
+    
     var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     S.Deferred.exceptionHook = function (e, t) {
         C.console && C.console.warn && e && W.test(e.name) && C.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
@@ -1423,6 +1434,8 @@
             return s(), i.promise(t)
         }
     });
+    
+    
     var ee = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,
         te = new RegExp("^(?:([+-])=|)(" + ee + ")([a-z%]*)$", "i"),
         ne = ["Top", "Right", "Bottom", "Left"],
@@ -1477,6 +1490,8 @@
             })
         }
     });
+    
+    
     var ce, fe, pe = /^(?:checkbox|radio)$/i,
         de = /<([a-z][^\/\0>\x20\t\r\n\f]*)/i,
         he = /^$|^module$|\/(?:java|ecma)script/i;
@@ -1942,6 +1957,8 @@
             return this.pushStack(n)
         }
     });
+    
+    
     var Me = new RegExp("^(" + ee + ")(?!px)[a-z%]+$", "i"),
         Ie = function (e) {
             var t = e.ownerDocument.defaultView;
@@ -2003,6 +2020,7 @@
             }
         }))
     }();
+    
     var _e = ["Webkit", "Moz", "ms"],
         ze = E.createElement("div").style,
         Ue = {};
@@ -2548,6 +2566,8 @@
             return !1
         }
     });
+    
+    
     var xt = /\r/g;
     S.fn.extend({
         val: function (n) {
@@ -2656,7 +2676,141 @@
     });
     
     
+    var Tt = C.location,
+        Ct = {
+            guid: Date.now()
+        },
+        Et = /\?/;
+    S.parseXML = function (e) {
+        var t;
+        if (!e || "string" != typeof e) return null;
+        try {
+            t = (new C.DOMParser).parseFromString(e, "text/xml")
+        } catch (e) {
+            t = void 0
+        }
+        return t && !t.getElementsByTagName("parsererror").length || S.error("Invalid XML: " + e), t
+    };
+    var St = /\[\]$/,
+        kt = /\r?\n/g,
+        At = /^(?:submit|button|image|reset|file)$/i,
+        Nt = /^(?:input|select|textarea|keygen)/i;
+    
+    function Dt(n, e, r, i) {
+        var t;
+        if (Array.isArray(e)) S.each(e, function (e, t) {
+            r || St.test(n) ? i(n, t) : Dt(n + "[" + ("object" == typeof t && null != t ? e : "") + "]", t, r, i)
+        });
+        else if (r || "object" !== w(e)) i(n, e);
+        else
+            for (t in e) Dt(n + "[" + t + "]", e[t], r, i)
+    }
+    S.param = function (e, t) {
+        var n, r = [],
+            i = function (e, t) {
+                var n = m(t) ? t() : t;
+                r[r.length] = encodeURIComponent(e) + "=" + encodeURIComponent(null == n ? "" : n)
+            };
+        if (null == e) return "";
+        if (Array.isArray(e) || e.jquery && !S.isPlainObject(e)) S.each(e, function () {
+            i(this.name, this.value)
+        });
+        else
+            for (n in e) Dt(n, e[n], t, i);
+        return r.join("&")
+    }, S.fn.extend({
+        serialize: function () {
+            return S.param(this.serializeArray())
+        },
+        serializeArray: function () {
+            return this.map(function () {
+                var e = S.prop(this, "elements");
+                return e ? S.makeArray(e) : this
+            }).filter(function () {
+                var e = this.type;
+                return this.name && !S(this).is(":disabled") && Nt.test(this.nodeName) && !At.test(e) && (this.checked || !pe.test(e))
+            }).map(function (e, t) {
+                var n = S(this).val();
+                return null == n ? null : Array.isArray(n) ? S.map(n, function (e) {
+                    return {
+                        name: t.name,
+                        value: e.replace(kt, "\r\n")
+                    }
+                }) : {
+                    name: t.name,
+                    value: n.replace(kt, "\r\n")
+                }
+            }).get()
+        }
+    });
 
+    var Tt = C.location,
+        Ct = {
+            guid: Date.now()
+        },
+        Et = /\?/;
+    S.parseXML = function (e) {
+        var t;
+        if (!e || "string" != typeof e) return null;
+        try {
+            t = (new C.DOMParser).parseFromString(e, "text/xml")
+        } catch (e) {
+            t = void 0
+        }
+        return t && !t.getElementsByTagName("parsererror").length || S.error("Invalid XML: " + e), t
+    };
+    var St = /\[\]$/,
+        kt = /\r?\n/g,
+        At = /^(?:submit|button|image|reset|file)$/i,
+        Nt = /^(?:input|select|textarea|keygen)/i;
+    
+    function Dt(n, e, r, i) {
+        var t;
+        if (Array.isArray(e)) S.each(e, function (e, t) {
+            r || St.test(n) ? i(n, t) : Dt(n + "[" + ("object" == typeof t && null != t ? e : "") + "]", t, r, i)
+        });
+        else if (r || "object" !== w(e)) i(n, e);
+        else
+            for (t in e) Dt(n + "[" + t + "]", e[t], r, i)
+    }
+    S.param = function (e, t) {
+        var n, r = [],
+            i = function (e, t) {
+                var n = m(t) ? t() : t;
+                r[r.length] = encodeURIComponent(e) + "=" + encodeURIComponent(null == n ? "" : n)
+            };
+        if (null == e) return "";
+        if (Array.isArray(e) || e.jquery && !S.isPlainObject(e)) S.each(e, function () {
+            i(this.name, this.value)
+        });
+        else
+            for (n in e) Dt(n, e[n], t, i);
+        return r.join("&")
+    }, S.fn.extend({
+        serialize: function () {
+            return S.param(this.serializeArray())
+        },
+        serializeArray: function () {
+            return this.map(function () {
+                var e = S.prop(this, "elements");
+                return e ? S.makeArray(e) : this
+            }).filter(function () {
+                var e = this.type;
+                return this.name && !S(this).is(":disabled") && Nt.test(this.nodeName) && !At.test(e) && (this.checked || !pe.test(e))
+            }).map(function (e, t) {
+                var n = S(this).val();
+                return null == n ? null : Array.isArray(n) ? S.map(n, function (e) {
+                    return {
+                        name: t.name,
+                        value: e.replace(kt, "\r\n")
+                    }
+                }) : {
+                    name: t.name,
+                    value: n.replace(kt, "\r\n")
+                }
+            }).get()
+        }
+    });
     
     var jt = /%20/g,
         qt = /#.*$/,
