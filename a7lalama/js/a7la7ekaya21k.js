@@ -3237,7 +3237,7 @@ var jt = /%20/g,
         hover: function (e, t) {
             return this.mouseenter(e).mouseleave(t || e)
         }
-    })
+    }),
     });
     
   
