@@ -3258,3 +3258,11 @@
     }, "function" == typeof define && define.amd && define("jquery", [], function () {
         return S
     });
+
+    
+    var Yt = C.jQuery,
+        Qt = C.$;
+    return S.noConflict = function (e) {
+        return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
+    }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
+});
