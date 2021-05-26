@@ -3221,10 +3221,6 @@ var jt = /%20/g,
         S.fn[t] = function (e) {
             return this.on(t, e)
         }
-    }), S.each("blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(" "), function (e, n) {
-        S.fn[n] = function (e, t) {
-            return 0 < arguments.length ? this.on(n, null, e, t) : this.trigger(n)
-        }
     });
     
   
