@@ -2455,3 +2455,107 @@
             return n || (i = dt[o], dt[o] = r, r = null != a(e, t, n) ? o : null, dt[o] = i), r
         }
     });   
+
+    
+  
+    var ht = /^(?:input|select|textarea|button)$/i,
+        gt = /^(?:a|area)$/i;
+    
+    function vt(e) {
+        return (e.match(P) || []).join(" ")
+    }
+    
+    function yt(e) {
+        return e.getAttribute && e.getAttribute("class") || ""
+    }
+    
+    function mt(e) {
+        return Array.isArray(e) ? e : "string" == typeof e && e.match(P) || []
+    }
+    S.fn.extend({
+        prop: function (e, t) {
+            return $(this, S.prop, e, t, 1 < arguments.length)
+        },
+        removeProp: function (e) {
+            return this.each(function () {
+                delete this[S.propFix[e] || e]
+            })
+        }
+    }), S.extend({
+        prop: function (e, t, n) {
+            var r, i, o = e.nodeType;
+            if (3 !== o && 8 !== o && 2 !== o) return 1 === o && S.isXMLDoc(e) || (t = S.propFix[t] || t, i = S.propHooks[t]), void 0 !== n ? i && "set" in i && void 0 !== (r = i.set(e, n, t)) ? r : e[t] = n : i && "get" in i && null !== (r = i.get(e, t)) ? r : e[t]
+        },
+        propHooks: {
+            tabIndex: {
+                get: function (e) {
+                    var t = S.find.attr(e, "tabindex");
+                    return t ? parseInt(t, 10) : ht.test(e.nodeName) || gt.test(e.nodeName) && e.href ? 0 : -1
+                }
+            }
+        },
+        propFix: {
+            "for": "htmlFor",
+            "class": "className"
+        }
+    }), y.optSelected || (S.propHooks.selected = {
+        get: function (e) {
+            var t = e.parentNode;
+            return t && t.parentNode && t.parentNode.selectedIndex, null
+        },
+        set: function (e) {
+            var t = e.parentNode;
+            t && (t.selectedIndex, t.parentNode && t.parentNode.selectedIndex)
+        }
+    }), S.each(["tabIndex", "readOnly", "maxLength", "cellSpacing", "cellPadding", "rowSpan", "colSpan", "useMap", "frameBorder", "contentEditable"], function () {
+        S.propFix[this.toLowerCase()] = this
+    }), S.fn.extend({
+        addClass: function (t) {
+            var e, n, r, i, o, a, s, u = 0;
+            if (m(t)) return this.each(function (e) {
+                S(this).addClass(t.call(this, e, yt(this)))
+            });
+            if ((e = mt(t)).length)
+                while (n = this[u++])
+                    if (i = yt(n), r = 1 === n.nodeType && " " + vt(i) + " ") {
+                        a = 0;
+                        while (o = e[a++]) r.indexOf(" " + o + " ") < 0 && (r += o + " ");
+                        i !== (s = vt(r)) && n.setAttribute("class", s)
+                    } return this
+        },
+        removeClass: function (t) {
+            var e, n, r, i, o, a, s, u = 0;
+            if (m(t)) return this.each(function (e) {
+                S(this).removeClass(t.call(this, e, yt(this)))
+            });
+            if (!arguments.length) return this.attr("class", "");
+            if ((e = mt(t)).length)
+                while (n = this[u++])
+                    if (i = yt(n), r = 1 === n.nodeType && " " + vt(i) + " ") {
+                        a = 0;
+                        while (o = e[a++])
+                            while (-1 < r.indexOf(" " + o + " ")) r = r.replace(" " + o + " ", " ");
+                        i !== (s = vt(r)) && n.setAttribute("class", s)
+                    } return this
+        },
+        toggleClass: function (i, t) {
+            var o = typeof i,
+                a = "string" === o || Array.isArray(i);
+            return "boolean" == typeof t && a ? t ? this.addClass(i) : this.removeClass(i) : m(i) ? this.each(function (e) {
+                S(this).toggleClass(i.call(this, e, yt(this), t), t)
+            }) : this.each(function () {
+                var e, t, n, r;
+                if (a) {
+                    t = 0, n = S(this), r = mt(i);
+                    while (e = r[t++]) n.hasClass(e) ? n.removeClass(e) : n.addClass(e)
+                } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
+            })
+        },
+        hasClass: function (e) {
+            var t, n, r = 0;
+            t = " " + e + " ";
+            while (n = this[r++])
+                if (1 === n.nodeType && -1 < (" " + vt(yt(n)) + " ").indexOf(t)) return !0;
+            return !1
+        }
+    });  
