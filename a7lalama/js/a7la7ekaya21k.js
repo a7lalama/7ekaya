@@ -3221,23 +3221,10 @@ var jt = /%20/g,
         S.fn[t] = function (e) {
             return this.on(t, e)
         }
-    }), S.fn.extend({
-        bind: function (e, t, n) {
-            return this.on(e, null, t, n)
-        },
-        unbind: function (e, t) {
-            return this.off(e, null, t)
-        },
-        delegate: function (e, t, n, r) {
-            return this.on(t, e, n, r)
-        },
-        undelegate: function (e, t, n) {
-            return 1 === arguments.length ? this.off(e, "**") : this.off(t, e || "**", n)
-        },
-        hover: function (e, t) {
-            return this.mouseenter(e).mouseleave(t || e)
+    }), S.each("blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(" "), function (e, n) {
+        S.fn[n] = function (e, t) {
+            return 0 < arguments.length ? this.on(n, null, e, t) : this.trigger(n)
         }
-    }),
     });
     
   
