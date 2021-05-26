@@ -3073,7 +3073,6 @@
                 return S.globalEval(e), e
             }
         }
-    }),
     });
 
     
