@@ -3198,6 +3198,25 @@ var jt = /%20/g,
         S.cssHooks[n] = $e(y.pixelPosition, function (e, t) {
             if (t) return t = Be(e, n), Me.test(t) ? S(e).position()[n] + "px" : t
         })
+    }), S.each({
+        Height: "height",
+        Width: "width"
+    }, function (a, s) {
+        S.each({
+            padding: "inner" + a,
+            content: s,
+            "": "outer" + a
+        }, function (r, o) {
+            S.fn[o] = function (e, t) {
+                var n = arguments.length && (r || "boolean" != typeof e),
+                    i = r || (!0 === e || !0 === t ? "margin" : "border");
+                return $(this, function (e, t, n) {
+                    var r;
+                    return x(e) ? 0 === o.indexOf("outer") ? e["inner" + a] : e.document.documentElement["client" + a] : 9 === e.nodeType ? (r = e.documentElement, Math.max(e.body["scroll" + a], r["scroll" + a], e.body["offset" + a], r["offset" + a], r["client" + a])) : void 0 === n ? S.css(e, t, i) : S.style(e, t, n, i)
+                }, s, n ? e : void 0, n)
+            }
+        })
+
     }), S.each("blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(" "), function (e, n) {
         S.fn[n] = function (e, t) {
             return 0 < arguments.length ? this.on(n, null, e, t) : this.trigger(n)
