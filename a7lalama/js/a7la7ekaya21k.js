@@ -957,7 +957,7 @@
             return !!D(this, "string" == typeof e && k.test(e) ? S(e) : e || [], !1).length
         }
     });
-  var j, q = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/;
+    var j, q = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/;
     (S.fn.init = function (e, t, n) {
         var r, i;
         if (!e) return this;
@@ -1224,8 +1224,6 @@
             return o.promise()
         }
     });
-    
-   
     var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     S.Deferred.exceptionHook = function (e, t) {
         C.console && C.console.warn && e && W.test(e.name) && C.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
@@ -1425,10 +1423,6 @@
             return s(), i.promise(t)
         }
     });
-
-    
-
-    
     var ee = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,
         te = new RegExp("^(?:([+-])=|)(" + ee + ")([a-z%]*)$", "i"),
         ne = ["Top", "Right", "Bottom", "Left"],
@@ -1790,7 +1784,7 @@
             })
         }
     });
- var Ne = /<script|<style|<link/i,
+    var Ne = /<script|<style|<link/i,
         De = /checked\s*(?:[^=]|=\s*.checked.)/i,
         je = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
     
@@ -2009,8 +2003,6 @@
             }
         }))
     }();
-
-    
     var _e = ["Webkit", "Moz", "ms"],
         ze = E.createElement("div").style,
         Ue = {};
@@ -2454,12 +2446,8 @@
             var r, i, o = t.toLowerCase();
             return n || (i = dt[o], dt[o] = r, r = null != a(e, t, n) ? o : null, dt[o] = i), r
         }
-    });   
-
-    
-
-  
-var ht = /^(?:input|select|textarea|button)$/i,
+    });
+    var ht = /^(?:input|select|textarea|button)$/i,
         gt = /^(?:a|area)$/i;
     
     function vt(e) {
@@ -2560,10 +2548,180 @@ var ht = /^(?:input|select|textarea|button)$/i,
             return !1
         }
     });
+    var xt = /\r/g;
+    S.fn.extend({
+        val: function (n) {
+            var r, e, i, t = this[0];
+            return arguments.length ? (i = m(n), this.each(function (e) {
+                var t;
+                1 === this.nodeType && (null == (t = i ? n.call(this, e, S(this).val()) : n) ? t = "" : "number" == typeof t ? t += "" : Array.isArray(t) && (t = S.map(t, function (e) {
+                    return null == e ? "" : e + ""
+                })), (r = S.valHooks[this.type] || S.valHooks[this.nodeName.toLowerCase()]) && "set" in r && void 0 !== r.set(this, t, "value") || (this.value = t))
+            })) : t ? (r = S.valHooks[t.type] || S.valHooks[t.nodeName.toLowerCase()]) && "get" in r && void 0 !== (e = r.get(t, "value")) ? e : "string" == typeof (e = t.value) ? e.replace(xt, "") : null == e ? "" : e : void 0
+        }
+    }), S.extend({
+        valHooks: {
+            option: {
+                get: function (e) {
+                    var t = S.find.attr(e, "value");
+                    return null != t ? t : vt(S.text(e))
+                }
+            },
+            select: {
+                get: function (e) {
+                    var t, n, r, i = e.options,
+                        o = e.selectedIndex,
+                        a = "select-one" === e.type,
+                        s = a ? null : [],
+                        u = a ? o + 1 : i.length;
+                    for (r = o < 0 ? u : a ? o : 0; r < u; r++)
+                        if (((n = i[r]).selected || r === o) && !n.disabled && (!n.parentNode.disabled || !A(n.parentNode, "optgroup"))) {
+                            if (t = S(n).val(), a) return t;
+                            s.push(t)
+                        } return s
+                },
+                set: function (e, t) {
+                    var n, r, i = e.options,
+                        o = S.makeArray(t),
+                        a = i.length;
+                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.option.get(r), o)) && (n = !0);
+                    return n || (e.selectedIndex = -1), o
+                }
+            }
+        }
+    }), S.each(["radio", "checkbox"], function () {
+        S.valHooks[this] = {
+            set: function (e, t) {
+                if (Array.isArray(t)) return e.checked = -1 < S.inArray(S(e).val(), t)
+            }
+        }, y.checkOn || (S.valHooks[this].get = function (e) {
+            return null === e.getAttribute("value") ? "on" : e.value
+        })
+    }), y.focusin = "onfocusin" in C;
+    var bt = /^(?:focusinfocus|focusoutblur)$/,
+        wt = function (e) {
+            e.stopPropagation()
+        };
+    S.extend(S.event, {
+        trigger: function (e, t, n, r) {
+            var i, o, a, s, u, l, c, f, p = [n || E],
+                d = v.call(e, "type") ? e.type : e,
+                h = v.call(e, "namespace") ? e.namespace.split(".") : [];
+            if (o = f = a = n = n || E, 3 !== n.nodeType && 8 !== n.nodeType && !bt.test(d + S.event.triggered) && (-1 < d.indexOf(".") && (d = (h = d.split(".")).shift(), h.sort()), u = d.indexOf(":") < 0 && "on" + d, (e = e[S.expando] ? e : new S.Event(d, "object" == typeof e && e)).isTrigger = r ? 2 : 3, e.namespace = h.join("."), e.rnamespace = e.namespace ? new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)") : null, e.result = void 0, e.target || (e.target = n), t = null == t ? [e] : S.makeArray(t, [e]), c = S.event.special[d] || {}, r || !c.trigger || !1 !== c.trigger.apply(n, t))) {
+                if (!r && !c.noBubble && !x(n)) {
+                    for (s = c.delegateType || d, bt.test(s + d) || (o = o.parentNode); o; o = o.parentNode) p.push(o), a = o;
+                    a === (n.ownerDocument || E) && p.push(a.defaultView || a.parentWindow || C)
+                }
+                i = 0;
+                while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : c.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
+                return e.type = d, r || e.isDefaultPrevented() || c._default && !1 !== c._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.removeEventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
+            }
+        },
+        simulate: function (e, t, n) {
+            var r = S.extend(new S.Event, n, {
+                type: e,
+                isSimulated: !0
+            });
+            S.event.trigger(r, null, t)
+        }
+    }), S.fn.extend({
+        trigger: function (e, t) {
+            return this.each(function () {
+                S.event.trigger(e, t, this)
+            })
+        },
+        triggerHandler: function (e, t) {
+            var n = this[0];
+            if (n) return S.event.trigger(e, t, n, !0)
+        }
+    }), y.focusin || S.each({
+        focus: "focusin",
+        blur: "focusout"
+    }, function (n, r) {
+        var i = function (e) {
+            S.event.simulate(r, e.target, S.event.fix(e))
+        };
+        S.event.special[r] = {
+            setup: function () {
+                var e = this.ownerDocument || this.document || this,
+                    t = Y.access(e, r);
+                t || e.addEventListener(n, i, !0), Y.access(e, r, (t || 0) + 1)
+            },
+            teardown: function () {
+                var e = this.ownerDocument || this.document || this,
+                    t = Y.access(e, r) - 1;
+                t ? Y.access(e, r, t) : (e.removeEventListener(n, i, !0), Y.remove(e, r))
+            }
+        }
+    });
+    var Tt = C.location,
+        Ct = {
+            guid: Date.now()
+        },
+        Et = /\?/;
+    S.parseXML = function (e) {
+        var t;
+        if (!e || "string" != typeof e) return null;
+        try {
+            t = (new C.DOMParser).parseFromString(e, "text/xml")
+        } catch (e) {
+            t = void 0
+        }
+        return t && !t.getElementsByTagName("parsererror").length || S.error("Invalid XML: " + e), t
+    };
+    var St = /\[\]$/,
+        kt = /\r?\n/g,
+        At = /^(?:submit|button|image|reset|file)$/i,
+        Nt = /^(?:input|select|textarea|keygen)/i;
     
-    
-   
- var jt = /%20/g,
+    function Dt(n, e, r, i) {
+        var t;
+        if (Array.isArray(e)) S.each(e, function (e, t) {
+            r || St.test(n) ? i(n, t) : Dt(n + "[" + ("object" == typeof t && null != t ? e : "") + "]", t, r, i)
+        });
+        else if (r || "object" !== w(e)) i(n, e);
+        else
+            for (t in e) Dt(n + "[" + t + "]", e[t], r, i)
+    }
+    S.param = function (e, t) {
+        var n, r = [],
+            i = function (e, t) {
+                var n = m(t) ? t() : t;
+                r[r.length] = encodeURIComponent(e) + "=" + encodeURIComponent(null == n ? "" : n)
+            };
+        if (null == e) return "";
+        if (Array.isArray(e) || e.jquery && !S.isPlainObject(e)) S.each(e, function () {
+            i(this.name, this.value)
+        });
+        else
+            for (n in e) Dt(n, e[n], t, i);
+        return r.join("&")
+    }, S.fn.extend({
+        serialize: function () {
+            return S.param(this.serializeArray())
+        },
+        serializeArray: function () {
+            return this.map(function () {
+                var e = S.prop(this, "elements");
+                return e ? S.makeArray(e) : this
+            }).filter(function () {
+                var e = this.type;
+                return this.name && !S(this).is(":disabled") && Nt.test(this.nodeName) && !At.test(e) && (this.checked || !pe.test(e))
+            }).map(function (e, t) {
+                var n = S(this).val();
+                return null == n ? null : Array.isArray(n) ? S.map(n, function (e) {
+                    return {
+                        name: t.name,
+                        value: e.replace(kt, "\r\n")
+                    }
+                }) : {
+                    name: t.name,
+                    value: n.replace(kt, "\r\n")
+                }
+            }).get()
+        }
+    });
+    var jt = /%20/g,
         qt = /#.*$/,
         Lt = /([?&])_=[^&]*/,
         Ht = /^(.*?):[ \t]*([^\r\n]*)$/gm,
@@ -2915,8 +3073,6 @@ var ht = /^(?:input|select|textarea|button)$/i,
             }
         }
     });
-
-
     var Ut, Xt = [],
         Vt = /(=)\?(?=&|$)|\?\?/;
     S.ajaxSetup({
@@ -3063,24 +3219,7 @@ var ht = /^(?:input|select|textarea|button)$/i,
         }
     });
     
-  
-    var Gt = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-    S.proxy = function (e, t) {
-        var n, r, i;
-        if ("string" == typeof t && (n = e[t], t = e, e = n), m(e)) return r = s.call(arguments, 2), (i = function () {
-            return e.apply(t || this, r.concat(s.call(arguments)))
-        }).guid = e.guid = e.guid || S.guid++, i
-    }, S.holdReady = function (e) {
-        e ? S.readyWait++ : S.ready(!0)
-    }, S.isArray = Array.isArray, S.parseJSON = JSON.parse, S.nodeName = A, S.isFunction = m, S.isWindow = x, S.camelCase = X, S.type = w, S.now = Date.now, S.isNumeric = function (e) {
-        var t = S.type(e);
-        return ("number" === t || "string" === t) && !isNaN(e - parseFloat(e))
-    }, S.trim = function (e) {
-        return null == e ? "" : (e + "").replace(Gt, "")
-    }, "function" == typeof define && define.amd && define("jquery", [], function () {
-        return S
-    });
-    
+ 
     var Yt = C.jQuery,
         Qt = C.$;
     return S.noConflict = function (e) {
