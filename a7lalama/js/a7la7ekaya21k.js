@@ -2917,12 +2917,7 @@ var ht = /^(?:input|select|textarea|button)$/i,
     });
 
 
-
-    
-
-   
-    
-     var Ut, Xt = [],
+    var Ut, Xt = [],
         Vt = /(=)\?(?=&|$)|\?\?/;
     S.ajaxSetup({
         jsonp: "callback",
@@ -2930,9 +2925,33 @@ var ht = /^(?:input|select|textarea|button)$/i,
             var e = Xt.pop() || S.expando + "_" + Ct.guid++;
             return this[e] = !0, e
         }
+    }), S.ajaxPrefilter("json jsonp", function (e, t, n) {
+        var r, i, o, a = !1 !== e.jsonp && (Vt.test(e.url) ? "url" : "string" == typeof e.data && 0 === (e.contentType || "").indexOf("application/x-www-form-urlencoded") && Vt.test(e.data) && "data");
+        if (a || "jsonp" === e.dataTypes[0]) return r = e.jsonpCallback = m(e.jsonpCallback) ? e.jsonpCallback() : e.jsonpCallback, a ? e[a] = e[a].replace(Vt, "$1" + r) : !1 !== e.jsonp && (e.url += (Et.test(e.url) ? "&" : "?") + e.jsonp + "=" + r), e.converters["script json"] = function () {
+            return o || S.error(r + " was not called"), o[0]
+        }, e.dataTypes[0] = "json", i = C[r], C[r] = function () {
+            o = arguments
+        }, n.always(function () {
+            void 0 === i ? S(C).removeProp(r) : C[r] = i, e[r] && (e.jsonpCallback = t.jsonpCallback, Xt.push(r)), o && m(i) && i(o[0]), o = i = void 0
+        }), "script"
     }), y.createHTMLDocument = ((Ut = E.implementation.createHTMLDocument("").body).innerHTML = "<form></form><form></form>", 2 === Ut.childNodes.length), S.parseHTML = function (e, t, n) {
         return "string" != typeof e ? [] : ("boolean" == typeof t && (n = t, t = !1), t || (y.createHTMLDocument ? ((r = (t = E.implementation.createHTMLDocument("")).createElement("base")).href = E.location.href, t.head.appendChild(r)) : t = E), o = !n && [], (i = N.exec(e)) ? [t.createElement(i[1])] : (i = xe([e], t, o), o && o.length && S(o).remove(), S.merge([], i.childNodes)));
         var r, i, o
+    }, S.fn.load = function (e, t, n) {
+        var r, i, o, a = this,
+            s = e.indexOf(" ");
+        return -1 < s && (r = vt(e.slice(s)), e = e.slice(0, s)), m(t) ? (n = t, t = void 0) : t && "object" == typeof t && (i = "POST"), 0 < a.length && S.ajax({
+            url: e,
+            type: i || "GET",
+            dataType: "html",
+            data: t
+        }).done(function (e) {
+            o = arguments, a.html(r ? S("<div>").append(S.parseHTML(e)).find(r) : e)
+        }).always(n && function (e, t) {
+            a.each(function () {
+                n.apply(this, o || [e.responseText, t, e])
+            })
+        }), this
     }, S.expr.pseudos.animated = function (t) {
         return S.grep(S.timers, function (e) {
             return t === e.elem
@@ -3018,7 +3037,26 @@ var ht = /^(?:input|select|textarea|button)$/i,
                 }, s, n ? e : void 0, n)
             }
         })
-
+    }), S.each(["ajaxStart", "ajaxStop", "ajaxComplete", "ajaxError", "ajaxSuccess", "ajaxSend"], function (e, t) {
+        S.fn[t] = function (e) {
+            return this.on(t, e)
+        }
+    }), S.fn.extend({
+        bind: function (e, t, n) {
+            return this.on(e, null, t, n)
+        },
+        unbind: function (e, t) {
+            return this.off(e, null, t)
+        },
+        delegate: function (e, t, n, r) {
+            return this.on(t, e, n, r)
+        },
+        undelegate: function (e, t, n) {
+            return 1 === arguments.length ? this.off(e, "**") : this.off(t, e || "**", n)
+        },
+        hover: function (e, t) {
+            return this.mouseenter(e).mouseleave(t || e)
+        }
     }), S.each("blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(" "), function (e, n) {
         S.fn[n] = function (e, t) {
             return 0 < arguments.length ? this.on(n, null, e, t) : this.trigger(n)
