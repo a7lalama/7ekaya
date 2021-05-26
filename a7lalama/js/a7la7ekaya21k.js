@@ -2459,7 +2459,7 @@
     
 
   
-    var ht = /^(?:input|select|textarea|button)$/i,
+var ht = /^(?:input|select|textarea|button)$/i,
         gt = /^(?:a|area)$/i;
     
     function vt(e) {
@@ -2473,7 +2473,6 @@
     function mt(e) {
         return Array.isArray(e) ? e : "string" == typeof e && e.match(P) || []
     }
-    
     S.fn.extend({
         prop: function (e, t) {
             return $(this, S.prop, e, t, 1 < arguments.length)
@@ -2553,7 +2552,6 @@
                 } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
             })
         },
-        
         hasClass: function (e) {
             var t, n, r = 0;
             t = " " + e + " ";
@@ -2561,7 +2559,7 @@
                 if (1 === n.nodeType && -1 < (" " + vt(yt(n)) + " ").indexOf(t)) return !0;
             return !1
         }
-    });  
+    });
     
     
    
