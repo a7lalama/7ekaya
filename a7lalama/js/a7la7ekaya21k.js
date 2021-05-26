@@ -2654,73 +2654,10 @@
             }
         }
     });
-    var Tt = C.location,
-        Ct = {
-            guid: Date.now()
-        },
-        Et = /\?/;
-    S.parseXML = function (e) {
-        var t;
-        if (!e || "string" != typeof e) return null;
-        try {
-            t = (new C.DOMParser).parseFromString(e, "text/xml")
-        } catch (e) {
-            t = void 0
-        }
-        return t && !t.getElementsByTagName("parsererror").length || S.error("Invalid XML: " + e), t
-    };
-    var St = /\[\]$/,
-        kt = /\r?\n/g,
-        At = /^(?:submit|button|image|reset|file)$/i,
-        Nt = /^(?:input|select|textarea|keygen)/i;
     
-    function Dt(n, e, r, i) {
-        var t;
-        if (Array.isArray(e)) S.each(e, function (e, t) {
-            r || St.test(n) ? i(n, t) : Dt(n + "[" + ("object" == typeof t && null != t ? e : "") + "]", t, r, i)
-        });
-        else if (r || "object" !== w(e)) i(n, e);
-        else
-            for (t in e) Dt(n + "[" + t + "]", e[t], r, i)
-    }
-    S.param = function (e, t) {
-        var n, r = [],
-            i = function (e, t) {
-                var n = m(t) ? t() : t;
-                r[r.length] = encodeURIComponent(e) + "=" + encodeURIComponent(null == n ? "" : n)
-            };
-        if (null == e) return "";
-        if (Array.isArray(e) || e.jquery && !S.isPlainObject(e)) S.each(e, function () {
-            i(this.name, this.value)
-        });
-        else
-            for (n in e) Dt(n, e[n], t, i);
-        return r.join("&")
-    }, S.fn.extend({
-        serialize: function () {
-            return S.param(this.serializeArray())
-        },
-        serializeArray: function () {
-            return this.map(function () {
-                var e = S.prop(this, "elements");
-                return e ? S.makeArray(e) : this
-            }).filter(function () {
-                var e = this.type;
-                return this.name && !S(this).is(":disabled") && Nt.test(this.nodeName) && !At.test(e) && (this.checked || !pe.test(e))
-            }).map(function (e, t) {
-                var n = S(this).val();
-                return null == n ? null : Array.isArray(n) ? S.map(n, function (e) {
-                    return {
-                        name: t.name,
-                        value: e.replace(kt, "\r\n")
-                    }
-                }) : {
-                    name: t.name,
-                    value: n.replace(kt, "\r\n")
-                }
-            }).get()
-        }
-    });
+    
+
+    
     var jt = /%20/g,
         qt = /#.*$/,
         Lt = /([?&])_=[^&]*/,
@@ -3073,6 +3010,8 @@
             }
         }
     });
+    
+    
     var Ut, Xt = [],
         Vt = /(=)\?(?=&|$)|\?\?/;
     S.ajaxSetup({
