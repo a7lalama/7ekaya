@@ -177,9 +177,6 @@
     }), "function" == typeof Symbol && (S.fn[Symbol.iterator] = t[Symbol.iterator]), S.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "), function (e, t) {
         n["[object " + t + "]"] = t.toLowerCase()
     });
-    
-    
-    
     var d = function (n) {
         var e, d, b, o, i, h, f, g, w, u, l, T, C, a, E, v, s, c, y, S = "sizzle" + 1 * new Date,
             p = n.document,
@@ -960,9 +957,6 @@
             return !!D(this, "string" == typeof e && k.test(e) ? S(e) : e || [], !1).length
         }
     });
-    
-    
-    
     var j, q = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/;
     (S.fn.init = function (e, t, n) {
         var r, i;
@@ -1230,8 +1224,6 @@
             return o.promise()
         }
     });
-    
-    
     var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     S.Deferred.exceptionHook = function (e, t) {
         C.console && C.console.warn && e && W.test(e.name) && C.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
@@ -1431,8 +1423,6 @@
             return s(), i.promise(t)
         }
     });
-    
-    
     var ee = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,
         te = new RegExp("^(?:([+-])=|)(" + ee + ")([a-z%]*)$", "i"),
         ne = ["Top", "Right", "Bottom", "Left"],
@@ -1487,9 +1477,6 @@
             })
         }
     });
-    
-    
-    
     var ce, fe, pe = /^(?:checkbox|radio)$/i,
         de = /<([a-z][^\/\0>\x20\t\r\n\f]*)/i,
         he = /^$|^module$|\/(?:java|ecma)script/i;
@@ -1797,9 +1784,6 @@
             })
         }
     });
-    
-    
-    
     var Ne = /<script|<style|<link/i,
         De = /checked\s*(?:[^=]|=\s*.checked.)/i,
         je = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
@@ -1958,8 +1942,6 @@
             return this.pushStack(n)
         }
     });
-    
-    
     var Me = new RegExp("^(" + ee + ")(?!px)[a-z%]+$", "i"),
         Ie = function (e) {
             var t = e.ownerDocument.defaultView;
@@ -2021,9 +2003,6 @@
             }
         }))
     }();
-    
-    
-    
     var _e = ["Webkit", "Moz", "ms"],
         ze = E.createElement("div").style,
         Ue = {};
@@ -2468,10 +2447,6 @@
             return n || (i = dt[o], dt[o] = r, r = null != a(e, t, n) ? o : null, dt[o] = i), r
         }
     });
-    
-    
-    
-    
     var ht = /^(?:input|select|textarea|button)$/i,
         gt = /^(?:a|area)$/i;
     
@@ -2573,9 +2548,6 @@
             return !1
         }
     });
-    
-    
-    
     var xt = /\r/g;
     S.fn.extend({
         val: function (n) {
@@ -2682,8 +2654,7 @@
             }
         }
     });
-    
-     var Tt = C.location,
+    var Tt = C.location,
         Ct = {
             guid: Date.now()
         },
@@ -2698,7 +2669,6 @@
         }
         return t && !t.getElementsByTagName("parsererror").length || S.error("Invalid XML: " + e), t
     };
-    
     var St = /\[\]$/,
         kt = /\r?\n/g,
         At = /^(?:submit|button|image|reset|file)$/i,
@@ -2751,10 +2721,7 @@
             }).get()
         }
     });
-    
-    
-    
- var jt = /%20/g,
+    var jt = /%20/g,
         qt = /#.*$/,
         Lt = /([?&])_=[^&]*/,
         Ht = /^(.*?):[ \t]*([^\r\n]*)$/gm,
@@ -2972,6 +2939,16 @@
         getScript: function (e, t) {
             return S.get(e, void 0, t, "script")
         }
+    }), S.each(["get", "post"], function (e, i) {
+        S[i] = function (e, t, n, r) {
+            return m(t) && (r = r || n, n = t, t = void 0), S.ajax(S.extend({
+                url: e,
+                type: i,
+                dataType: r,
+                data: t,
+                success: n
+            }, S.isPlainObject(e) && e))
+        }
     }), S.ajaxPrefilter(function (e) {
         var t;
         for (t in e.headers) "content-type" === t.toLowerCase() && (e.contentType = e.headers[t] || "")
@@ -3095,8 +3072,7 @@
                 i && i()
             }
         }
-    });    
-    
+    });
     var Ut, Xt = [],
         Vt = /(=)\?(?=&|$)|\?\?/;
     S.ajaxSetup({
@@ -3117,6 +3093,25 @@
     }), y.createHTMLDocument = ((Ut = E.implementation.createHTMLDocument("").body).innerHTML = "<form></form><form></form>", 2 === Ut.childNodes.length), S.parseHTML = function (e, t, n) {
         return "string" != typeof e ? [] : ("boolean" == typeof t && (n = t, t = !1), t || (y.createHTMLDocument ? ((r = (t = E.implementation.createHTMLDocument("")).createElement("base")).href = E.location.href, t.head.appendChild(r)) : t = E), o = !n && [], (i = N.exec(e)) ? [t.createElement(i[1])] : (i = xe([e], t, o), o && o.length && S(o).remove(), S.merge([], i.childNodes)));
         var r, i, o
+    }, S.fn.load = function (e, t, n) {
+        var r, i, o, a = this,
+            s = e.indexOf(" ");
+        return -1 < s && (r = vt(e.slice(s)), e = e.slice(0, s)), m(t) ? (n = t, t = void 0) : t && "object" == typeof t && (i = "POST"), 0 < a.length && S.ajax({
+            url: e,
+            type: i || "GET",
+            dataType: "html",
+            data: t
+        }).done(function (e) {
+            o = arguments, a.html(r ? S("<div>").append(S.parseHTML(e)).find(r) : e)
+        }).always(n && function (e, t) {
+            a.each(function () {
+                n.apply(this, o || [e.responseText, t, e])
+            })
+        }), this
+    }, S.expr.pseudos.animated = function (t) {
+        return S.grep(S.timers, function (e) {
+            return t === e.elem
+        }).length
     }, S.offset = {
         setOffset: function (e, t, n) {
             var r, i, o, a, s, u, l = S.css(e, "position"),
@@ -3223,7 +3218,6 @@
             return 0 < arguments.length ? this.on(n, null, e, t) : this.trigger(n)
         }
     });
-    
     var Gt = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
     S.proxy = function (e, t) {
         var n, r, i;
@@ -3240,8 +3234,6 @@
     }, "function" == typeof define && define.amd && define("jquery", [], function () {
         return S
     });
-    
-    
     var Yt = C.jQuery,
         Qt = C.$;
     return S.noConflict = function (e) {
