@@ -3117,25 +3117,6 @@
     }), y.createHTMLDocument = ((Ut = E.implementation.createHTMLDocument("").body).innerHTML = "<form></form><form></form>", 2 === Ut.childNodes.length), S.parseHTML = function (e, t, n) {
         return "string" != typeof e ? [] : ("boolean" == typeof t && (n = t, t = !1), t || (y.createHTMLDocument ? ((r = (t = E.implementation.createHTMLDocument("")).createElement("base")).href = E.location.href, t.head.appendChild(r)) : t = E), o = !n && [], (i = N.exec(e)) ? [t.createElement(i[1])] : (i = xe([e], t, o), o && o.length && S(o).remove(), S.merge([], i.childNodes)));
         var r, i, o
-    }, S.fn.load = function (e, t, n) {
-        var r, i, o, a = this,
-            s = e.indexOf(" ");
-        return -1 < s && (r = vt(e.slice(s)), e = e.slice(0, s)), m(t) ? (n = t, t = void 0) : t && "object" == typeof t && (i = "POST"), 0 < a.length && S.ajax({
-            url: e,
-            type: i || "GET",
-            dataType: "html",
-            data: t
-        }).done(function (e) {
-            o = arguments, a.html(r ? S("<div>").append(S.parseHTML(e)).find(r) : e)
-        }).always(n && function (e, t) {
-            a.each(function () {
-                n.apply(this, o || [e.responseText, t, e])
-            })
-        }), this
-    }, S.expr.pseudos.animated = function (t) {
-        return S.grep(S.timers, function (e) {
-            return t === e.elem
-        }).length
     }, S.offset = {
         setOffset: function (e, t, n) {
             var r, i, o, a, s, u, l = S.css(e, "position"),
