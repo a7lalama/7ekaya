@@ -1832,7 +1832,17 @@
                 else Oe(e, c);
             return 0 < (a = ve(c, "script")).length && ye(a, !f && ve(e, "script")), c
         },
-        
+         cleanData: function (e) {
+            for (var t, n, r, i = S.event.special, o = 0; void 0 !== (n = e[o]); o++)
+                if (V(n)) {
+                    if (t = n[Y.expando]) {
+                        if (t.events)
+                            for (r in t.events) i[r] ? S.event.remove(n, r) : S.removeEvent(n, r, t.handle);
+                        n[Y.expando] = void 0
+                    }
+                    n[Q.expando] && (n[Q.expando] = void 0)
+                }
+        }
     }), S.fn.extend({
         detach: function (e) {
             return Re(this, e, !0)
