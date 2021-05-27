@@ -1297,15 +1297,7 @@
         access: function (e, t, n) {
             return void 0 === t || t && "string" == typeof t && void 0 === n ? this.get(e, t) : (this.set(e, t, n), void 0 !== n ? n : t)
         },
-        remove: function (e, t) {
-            var n, r = e[this.expando];
-            if (void 0 !== r) {
-                if (void 0 !== t) {
-                    n = (t = Array.isArray(t) ? t.map(X) : (t = X(t)) in r ? [t] : t.match(P) || []).length;
-                    while (n--) delete r[t[n]]
-                }(void 0 === t || S.isEmptyObject(r)) && (e.nodeType ? e[this.expando] = void 0 : delete e[this.expando])
-            }
-        },
+      
         hasData: function (e) {
             var t = e[this.expando];
             return void 0 !== t && !S.isEmptyObject(t)
