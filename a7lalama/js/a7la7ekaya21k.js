@@ -2972,16 +2972,6 @@
         getScript: function (e, t) {
             return S.get(e, void 0, t, "script")
         }
-    }), S.each(["get", "post"], function (e, i) {
-        S[i] = function (e, t, n, r) {
-            return m(t) && (r = r || n, n = t, t = void 0), S.ajax(S.extend({
-                url: e,
-                type: i,
-                dataType: r,
-                data: t,
-                success: n
-            }, S.isPlainObject(e) && e))
-        }
     }), S.ajaxPrefilter(function (e) {
         var t;
         for (t in e.headers) "content-type" === t.toLowerCase() && (e.contentType = e.headers[t] || "")
