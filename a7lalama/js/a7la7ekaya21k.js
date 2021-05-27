@@ -337,11 +337,6 @@
             }
         }
         
-        function ge(t) {
-            return function (e) {
-                return "form" in e ? e.parentNode && !1 === e.disabled ? "label" in e ? "label" in e.parentNode ? e.parentNode.disabled === t : e.disabled === t : e.isDisabled === t || e.isDisabled !== !t && ae(e) === t : e.disabled === t : "label" in e && e.disabled === t
-            }
-        }
         
         function ve(a) {
             return le(function (o) {
@@ -1221,7 +1216,10 @@
         })
     };
     var F = S.Deferred();
-    
+     
+    function B() {
+        E.removeEventListener("DOMContentLoaded", B), C.removeEventListener("load", B), S.ready()
+    }
     
     S.fn.ready = function (e) {
         return F.then(e)["catch"](function (e) {
