@@ -1778,7 +1778,19 @@
         return e.type = (null !== e.getAttribute("type")) + "/" + e.type, e
     }
     
-   
+    function He(e) {
+        return "true/" === (e.type || "").slice(0, 5) ? e.type = e.type.slice(5) : e.removeAttribute("type"), e
+    }
+    
+    function Oe(e, t) {
+        var n, r, i, o, a, s;
+        if (1 === t.nodeType) {
+            if (Y.hasData(e) && (s = Y.get(e).events))
+                for (i in Y.remove(t, "handle events"), s)
+                    for (n = 0, r = s[i].length; n < r; n++) S.event.add(t, i, s[i][n]);
+            Q.hasData(e) && (o = Q.access(e), a = S.extend({}, o), Q.set(t, a))
+        }
+    }
     
     function Pe(n, r, i, o) {
         r = g(r);
@@ -1820,17 +1832,7 @@
                 else Oe(e, c);
             return 0 < (a = ve(c, "script")).length && ye(a, !f && ve(e, "script")), c
         },
-        cleanData: function (e) {
-            for (var t, n, r, i = S.event.special, o = 0; void 0 !== (n = e[o]); o++)
-                if (V(n)) {
-                    if (t = n[Y.expando]) {
-                        if (t.events)
-                            for (r in t.events) i[r] ? S.event.remove(n, r) : S.removeEvent(n, r, t.handle);
-                        n[Y.expando] = void 0
-                    }
-                    n[Q.expando] && (n[Q.expando] = void 0)
-                }
-        }
+        
     }), S.fn.extend({
         detach: function (e) {
             return Re(this, e, !0)
