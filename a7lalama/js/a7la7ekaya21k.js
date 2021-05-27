@@ -177,6 +177,7 @@
     }), "function" == typeof Symbol && (S.fn[Symbol.iterator] = t[Symbol.iterator]), S.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "), function (e, t) {
         n["[object " + t + "]"] = t.toLowerCase()
     });
+    
     var d = function (n) {
         var e, d, b, o, i, h, f, g, w, u, l, T, C, a, E, v, s, c, y, S = "sizzle" + 1 * new Date,
             p = n.document,
@@ -285,9 +286,7 @@
                         return H.apply(n, f.querySelectorAll(c)), n
                     } catch (e) {
                         N(t, !0)
-                    } finally {
-                        s === S && e.removeAttribute("id")
-                    }
+                    } 
                 }
             }
             return g(t.replace($, "$1"), e, n, r)
