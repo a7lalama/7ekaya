@@ -2414,12 +2414,7 @@
                 }
             }
         },
-        removeAttr: function (e, t) {
-            var n, r = 0,
-                i = t && t.match(P);
-            if (i && 1 === e.nodeType)
-                while (n = i[r++]) e.removeAttribute(n)
-        }
+      
     }), pt = {
         set: function (e, t, n) {
             return !1 === t ? S.removeAttr(e, n) : e.setAttribute(n, n), n
