@@ -2394,11 +2394,7 @@
         attr: function (e, t) {
             return $(this, S.attr, e, t, 1 < arguments.length)
         },
-        removeAttr: function (e) {
-            return this.each(function () {
-                S.removeAttr(this, e)
-            })
-        }
+        
     }), S.extend({
         attr: function (e, t, n) {
             var r, i, o = e.nodeType;
