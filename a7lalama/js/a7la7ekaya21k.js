@@ -1093,12 +1093,7 @@
                         })
                     }(arguments), t && !i && c()), this
                 },
-                remove: function () {
-                    return S.each(arguments, function (e, t) {
-                        var n;
-                        while (-1 < (n = S.inArray(t, s, n))) s.splice(n, 1), n <= l && l--
-                    }), this
-                },
+
                 has: function (e) {
                     return e ? -1 < S.inArray(e, s) : 0 < s.length
                 },
@@ -1230,6 +1225,7 @@
     function B() {
         E.removeEventListener("DOMContentLoaded", B), C.removeEventListener("load", B), S.ready()
     }
+    
     S.fn.ready = function (e) {
         return F.then(e)["catch"](function (e) {
             S.readyException(e)
@@ -1484,7 +1480,25 @@
     ge.tbody = ge.tfoot = ge.colgroup = ge.caption = ge.thead, ge.th = ge.td, y.option || (ge.optgroup = ge.option = [1, "<select multiple='multiple'>", "</select>"]);
     var me = /<|&#?\w+;/;
     
-   
+      function xe(e, t, n, r, i) {
+        for (var o, a, s, u, l, c, f = t.createDocumentFragment(), p = [], d = 0, h = e.length; d < h; d++)
+            if ((o = e[d]) || 0 === o)
+                if ("object" === w(o)) S.merge(p, o.nodeType ? [o] : o);
+                else if (me.test(o)) {
+            a = a || f.appendChild(t.createElement("div")), s = (de.exec(o) || ["", ""])[1].toLowerCase(), u = ge[s] || ge._default, a.innerHTML = u[1] + S.htmlPrefilter(o) + u[2], c = u[0];
+            while (c--) a = a.lastChild;
+            S.merge(p, a.childNodes), (a = f.firstChild).textContent = ""
+        } else p.push(t.createTextNode(o));
+        f.textContent = "", d = 0;
+        while (o = p[d++])
+            if (r && -1 < S.inArray(o, r)) i && i.push(o);
+            else if (l = ie(o), a = ve(f.appendChild(o), "script"), l && ye(a), n) {
+            c = 0;
+            while (o = a[c++]) he.test(o.type || "") && n.push(o)
+        }
+        return f
+    }
+    
     var be = /^key/,
         we = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
         Te = /^([^.]*)(?:\.(.+)|)/;
