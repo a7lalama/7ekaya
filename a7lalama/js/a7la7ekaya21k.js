@@ -1484,24 +1484,7 @@
     ge.tbody = ge.tfoot = ge.colgroup = ge.caption = ge.thead, ge.th = ge.td, y.option || (ge.optgroup = ge.option = [1, "<select multiple='multiple'>", "</select>"]);
     var me = /<|&#?\w+;/;
     
-    function xe(e, t, n, r, i) {
-        for (var o, a, s, u, l, c, f = t.createDocumentFragment(), p = [], d = 0, h = e.length; d < h; d++)
-            if ((o = e[d]) || 0 === o)
-                if ("object" === w(o)) S.merge(p, o.nodeType ? [o] : o);
-                else if (me.test(o)) {
-            a = a || f.appendChild(t.createElement("div")), s = (de.exec(o) || ["", ""])[1].toLowerCase(), u = ge[s] || ge._default, a.innerHTML = u[1] + S.htmlPrefilter(o) + u[2], c = u[0];
-            while (c--) a = a.lastChild;
-            S.merge(p, a.childNodes), (a = f.firstChild).textContent = ""
-        } else p.push(t.createTextNode(o));
-        f.textContent = "", d = 0;
-        while (o = p[d++])
-            if (r && -1 < S.inArray(o, r)) i && i.push(o);
-            else if (l = ie(o), a = ve(f.appendChild(o), "script"), l && ye(a), n) {
-            c = 0;
-            while (o = a[c++]) he.test(o.type || "") && n.push(o)
-        }
-        return f
-    }
+   
     var be = /^key/,
         we = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
         Te = /^([^.]*)(?:\.(.+)|)/;
@@ -1571,7 +1554,20 @@
                 }, o), (p = u[d]) || ((p = u[d] = []).delegateCount = 0, f.setup && !1 !== f.setup.call(t, r, h, a) || t.addEventListener && t.addEventListener(d, a)), f.add && (f.add.call(t, c), c.handler.guid || (c.handler.guid = n.guid)), i ? p.splice(p.delegateCount++, 0, c) : p.push(c), S.event.global[d] = !0)
             }
         },
-       
+        remove: function (e, t, n, r, i) {
+            var o, a, s, u, l, c, f, p, d, h, g, v = Y.hasData(e) && Y.get(e);
+            if (v && (u = v.events)) {
+                l = (t = (t || "").match(P) || [""]).length;
+                while (l--)
+                    if (d = g = (s = Te.exec(t[l]) || [])[1], h = (s[2] || "").split(".").sort(), d) {
+                        f = S.event.special[d] || {}, p = u[d = (r ? f.delegateType : f.bindType) || d] || [], s = s[2] && new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)"), a = o = p.length;
+                        while (o--) c = p[o], !i && g !== c.origType || n && n.guid !== c.guid || s && !s.test(c.namespace) || r && r !== c.selector && ("**" !== r || !c.selector) || (p.splice(o, 1), c.selector && p.delegateCount--, f.remove && f.remove.call(e, c));
+                        a && !p.length && (f.teardown && !1 !== f.teardown.call(e, h, v.handle) || S.removeEvent(e, d, v.handle), delete u[d])
+                    } else
+                        for (d in u) S.event.remove(e, d + t[l], n, r, !0);
+                S.isEmptyObject(u) && Y.remove(e, "handle events")
+            }
+        },
         dispatch: function (e) {
             var t, n, r, i, o, a, s = new Array(arguments.length),
                 u = S.event.fix(e),
