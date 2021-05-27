@@ -1849,9 +1849,7 @@
         detach: function (e) {
             return Re(this, e, !0)
         },
-        remove: function (e) {
-            return Re(this, e)
-        },
+        
         text: function (e) {
             return $(this, function (e) {
                 return void 0 === e ? S.text(this) : this.empty().each(function () {
