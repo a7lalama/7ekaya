@@ -1661,7 +1661,9 @@
                 }
             }
         }
-    }, S.Event = function (e, t) {
+    }, S.removeEvent = function (e, t, n) {
+        e.removeEventListener && e.removeEventListener(t, n)
+    },S.Event = function (e, t) {
         if (!(this instanceof S.Event)) return new S.Event(e, t);
         e && e.type ? (this.originalEvent = e, this.type = e.type, this.isDefaultPrevented = e.defaultPrevented || void 0 === e.defaultPrevented && !1 === e.returnValue ? Ce : Ee, this.target = e.target && 3 === e.target.nodeType ? e.target.parentNode : e.target, this.currentTarget = e.currentTarget, this.relatedTarget = e.relatedTarget) : this.type = e, t && S.extend(this, t), this.timeStamp = e && e.timeStamp || Date.now(), this[S.expando] = !0
     }, S.Event.prototype = {
@@ -1776,19 +1778,7 @@
         return e.type = (null !== e.getAttribute("type")) + "/" + e.type, e
     }
     
-    function He(e) {
-        return "true/" === (e.type || "").slice(0, 5) ? e.type = e.type.slice(5) : e.removeAttribute("type"), e
-    }
-    
-    function Oe(e, t) {
-        var n, r, i, o, a, s;
-        if (1 === t.nodeType) {
-            if (Y.hasData(e) && (s = Y.get(e).events))
-                for (i in Y.remove(t, "handle events"), s)
-                    for (n = 0, r = s[i].length; n < r; n++) S.event.add(t, i, s[i][n]);
-            Q.hasData(e) && (o = Q.access(e), a = S.extend({}, o), Q.set(t, a))
-        }
-    }
+   
     
     function Pe(n, r, i, o) {
         r = g(r);
