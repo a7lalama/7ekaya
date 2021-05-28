@@ -2406,8 +2406,7 @@
             return n || (i = dt[o], dt[o] = r, r = null != a(e, t, n) ? o : null, dt[o] = i), r
         }
     });
-    var ht = /^(?:input|select|textarea|button)$/i,
-        gt = /^(?:a|area)$/i;
+    var gt = /^(?:a|area)$/i;
     
     function vt(e) {
         return (e.match(P) || []).join(" ")
