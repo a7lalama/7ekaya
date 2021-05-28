@@ -2362,7 +2362,24 @@
             return $(this, S.attr, e, t, 1 < arguments.length)
         },
         
+    }), S.extend({
+        attr: function (e, t, n) {
+            var r, i, o = e.nodeType;
+            if (3 !== o && 8 !== o && 2 !== o) return "undefined" == typeof e.getAttribute ? S.prop(e, t, n) : (1 === o && S.isXMLDoc(e) || (i = S.attrHooks[t.toLowerCase()] || (S.expr.match.bool.test(t) ? pt : void 0)), void 0 !== n ? null === n ? void S.removeAttr(e, t) : i && "set" in i && void 0 !== (r = i.set(e, n, t)) ? r : (e.setAttribute(t, n + ""), n) : i && "get" in i && null !== (r = i.get(e, t)) ? r : null == (r = S.find.attr(e, t)) ? void 0 : r)
+        },
+        attrHooks: {
+            type: {
+                set: function (e, t) {
+                    if (!y.radioValue && "radio" === t && A(e, "input")) {
+                        var n = e.value;
+                        return e.setAttribute("type", t), n && (e.value = n), t
+                    }
+                }
+            }
+        },
+      
     });
+    
     var gt = /^(?:a|area)$/i;
     
     function vt(e) {
@@ -2379,11 +2396,6 @@
     S.fn.extend({
         prop: function (e, t) {
             return $(this, S.prop, e, t, 1 < arguments.length)
-        },
-        removeProp: function (e) {
-            return this.each(function () {
-                delete this[S.propFix[e] || e]
-            })
         }
     }), S.extend({
         prop: function (e, t, n) {
