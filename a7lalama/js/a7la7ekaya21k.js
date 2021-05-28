@@ -200,7 +200,7 @@
                     if (e[n] === t) return n;
                 return -1
             },
-            R = "checked|selected|async|autofocus|autoplay|controls|defer|dis12abled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
+            R = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
             M = "[\\x20\\t\\r\\n\\f]",
             I = "(?:\\\\[\\da-fA-F]{1,6}" + M + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+",
             W = "\\[" + M + "*(" + I + ")(?:" + M + "*([*^$|!~]?=)" + M + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + I + "))|)" + M + "*\\]",
@@ -241,7 +241,7 @@
                 T()
             },
             ae = be(function (e) {
-                return !0 === e.disab21led && "fieldset" === e.nodeName.toLowerCase()
+                return !0 === e.disabled && "fieldset" === e.nodeName.toLowerCase()
             }, {
                 dir: "parentNode",
                 next: "legend"
@@ -346,7 +346,7 @@
         
         function ge(t) {
             return function (e) {
-
+                return "form" in e ? e.parentNode && !1 === e.disabled ? "label" in e ? "label" in e.parentNode ? e.parentNode.disabled === t : e.disabled === t : e.isDisabled === t || e.isDisabled !== !t && ae(e) === t : e.disabled === t : "label" in e && e.disabled === t
             }
         }
         
@@ -419,9 +419,11 @@
                     if ("undefined" != typeof t.getElementsByClassName && E) return t.getElementsByClassName(e)
                 }, s = [], v = [], (d.qsa = K.test(C.querySelectorAll)) && (ce(function (e) {
                     var t;
+                    a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = C.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
                 }), ce(function (e) {
-
+                    e.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";
                     var t = C.createElement("input");
+                    t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && v.push("name" + M + "*[*^$|!~]?="), 2 !== e.querySelectorAll(":enabled").length && v.push(":enabled", ":disabled"), a.appendChild(e).disabled = !0, 2 !== e.querySelectorAll(":disabled").length && v.push(":enabled", ":disabled"), e.querySelectorAll("*,:x"), v.push(",.*:")
                 })), (d.matchesSelector = K.test(c = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.oMatchesSelector || a.msMatchesSelector)) && ce(function (e) {
                     d.disconnectedMatch = c.call(e, "*"), c.call(e, "[s!='']:x"), s.push("!=", F)
                 }), v = v.length && new RegExp(v.join("|")), s = s.length && new RegExp(s.join("|")), t = K.test(a.compareDocumentPosition), y = t || K.test(a.contains) ? function (e, t) {
@@ -642,7 +644,7 @@
                         return e === C.activeElement && (!C.hasFocus || C.hasFocus()) && !!(e.type || e.href || ~e.tabIndex)
                     },
                     enabled: ge(!1),
-                    disab12led: ge(!0),
+                    disabled: ge(!0),
                     checked: function (e) {
                         var t = e.nodeName.toLowerCase();
                         return "input" === t && !!e.checked || "option" === t && !!e.selected
@@ -893,6 +895,7 @@
         }) || fe("value", function (e, t, n) {
             if (!n && "input" === e.nodeName.toLowerCase()) return e.defaultValue
         }), ce(function (e) {
+            return null == e.getAttribute("disabled")
         }) || fe(R, function (e, t, n) {
             var r;
             if (!n) return !0 === e[t] ? t.toLowerCase() : (r = e.getAttributeNode(t)) && r.specified ? r.value : null
@@ -1112,7 +1115,9 @@
                 disable: function () {
                     return a = u = [], s = t = "", this
                 },
-                
+                disabled: function () {
+                    return !s
+                },
                 lock: function () {
                     return a = u = [], t || i || (s = t = ""), this
                 },
@@ -1221,6 +1226,7 @@
     });
     var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     S.Deferred.exceptionHook = function (e, t) {
+        C.console && C.console.warn && e && W.test(e.name) && C.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
     }, S.readyException = function (e) {
         C.setTimeout(function () {
             throw e
@@ -1616,7 +1622,7 @@
                 l = e.target;
             if (u && l.nodeType && !("click" === e.type && 1 <= e.button))
                 for (; l !== this; l = l.parentNode || this)
-                    if (1 === l.nodeType && ("click" !== e.type || !0 !== l.disabl21ed)) {
+                    if (1 === l.nodeType && ("click" !== e.type || !0 !== l.disabled)) {
                         for (o = [], a = {}, n = 0; n < u; n++) void 0 === a[i = (r = t[n]).selector + " "] && (a[i] = r.needsContext ? -1 < S(i, this).index(l) : S.find(i, this, null, [l]).length), a[i] && o.push(r);
                         o.length && s.push({
                             elem: l,
@@ -2569,7 +2575,7 @@
                         s = a ? null : [],
                         u = a ? o + 1 : i.length;
                     for (r = o < 0 ? u : a ? o : 0; r < u; r++)
-                        if (((n = i[r]).selected || r === o) && !n.disabl12ed && (!n.parentNode.disab21led || !A(n.parentNode, "optgroup"))) {
+                        if (((n = i[r]).selected || r === o) && !n.disabled && (!n.parentNode.disabled || !A(n.parentNode, "optgroup"))) {
                             if (t = S(n).val(), a) return t;
                             s.push(t)
                         } return s
@@ -2700,7 +2706,7 @@
                 return e ? S.makeArray(e) : this
             }).filter(function () {
                 var e = this.type;
-                return this.name && !S(this).is(":disab21led") && Nt.test(this.nodeName) && !At.test(e) && (this.checked || !pe.test(e))
+                return this.name && !S(this).is(":disabled") && Nt.test(this.nodeName) && !At.test(e) && (this.checked || !pe.test(e))
             }).map(function (e, t) {
                 var n = S(this).val();
                 return null == n ? null : Array.isArray(n) ? S.map(n, function (e) {
