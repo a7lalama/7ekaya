@@ -2395,16 +2395,6 @@
             }
         },
       
-    }), pt = {
-        set: function (e, t, n) {
-            return !1 === t ? S.removeAttr(e, n) : e.setAttribute(n, n), n
-        }
-    }, S.each(S.expr.match.bool.source.match(/\w+/g), function (e, t) {
-        var a = dt[t] || S.find.attr;
-        dt[t] = function (e, t, n) {
-            var r, i, o = t.toLowerCase();
-            return n || (i = dt[o], dt[o] = r, r = null != a(e, t, n) ? o : null, dt[o] = i), r
-        }
     });
     var gt = /^(?:a|area)$/i;
     
