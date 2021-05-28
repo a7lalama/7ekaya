@@ -1211,7 +1211,9 @@
     };
     var F = S.Deferred();
      
-   
+    function B() {
+        E.removeEventListener("DOMContentLoaded", B), C.removeEventListener("load", B), S.ready()
+    }
     
     S.fn.ready = function (e) {
         return F.then(e)["catch"](function (e) {
