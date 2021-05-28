@@ -2250,7 +2250,7 @@
                         h.overflow = n.overflow[0], h.overflowX = n.overflow[1], h.overflowY = n.overflow[2]
                     })), u = !1, d) u || (v ? "hidden" in v && (g = v.hidden) : v = Y.access(e, "fxshow", {
                     display: l
-                }), o && (v.hidden = !g), g && le([e], !0), 
+                })
                                    ), 
         }],
         prefilter: function (e, t) {
