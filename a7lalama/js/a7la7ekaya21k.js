@@ -2629,7 +2629,7 @@
     };
     var St = /\[\]$/,
         kt = /\r?\n/g,
-        At = /^(?:submit|button|image|reset|file)$/i,
+        At = /^(?:submit|button|image|reset|file)$/i;
     
     function Dt(n, e, r, i) {
         var t;
