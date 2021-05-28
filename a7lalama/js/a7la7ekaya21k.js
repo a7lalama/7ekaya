@@ -1945,6 +1945,10 @@
             },
             scrollboxSize: function () {
                 return e(), i
+            },
+            reliableTrDimensions: function () {
+                var e, t, n, r;
+                return null == a && (e = E.createElement("table"), t = E.createElement("tr"), n = E.createElement("div"), e.style.cssText = "position:absolute;left:-11111px", t.style.height = "1px", n.style.height = "9px", re.appendChild(e).appendChild(t).appendChild(n), r = C.getComputedStyle(t), a = 3 < parseInt(r.height), re.removeChild(e)), a
             }
            
         }))
@@ -2246,9 +2250,8 @@
                         h.overflow = n.overflow[0], h.overflowX = n.overflow[1], h.overflowY = n.overflow[2]
                     })), u = !1, d) u || (v ? "hidden" in v && (g = v.hidden) : v = Y.access(e, "fxshow", {
                     display: l
-                }), o && (v.hidden = !g), g && le([e], !0), p.done(function () {
-                    for (r in g || le([e]), Y.remove(e, "fxshow"), d) S.style(e, r, d[r])
-                })), u = ct(g ? v[r] : 0, r, p), r in v || (v[r] = u.start, g && (u.end = u.start, u.start = 0))
+                }), o && (v.hidden = !g), g && le([e], !0), 
+                                   ), 
         }],
         prefilter: function (e, t) {
             t ? ft.prefilters.unshift(e) : ft.prefilters.push(e)
