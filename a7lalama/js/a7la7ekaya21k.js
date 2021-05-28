@@ -328,17 +328,14 @@
                 return "input" === e.nodeName.toLowerCase() && e.type === t
             }
         }
-        function he(n) {
+         function he(n) {
+            
+        }
+         function ge(t) {
             return function (e) {
-                var t = e.nodeName.toLowerCase();
-                return ("input" === t || "button" === t) && e.type === n
+                return "form" in e ? e.parentNode && !1 === e.disabled ? "label" in e ? "label" in e.parentNode ? e.parentNode.disabled === t : e.disabled === t : e.isDisabled === t || e.isDisabled !== !t && ae(e) === t : e.disabled === t : "label" in e && e.disabled === t
             }
         }
-        
-         function ge(t) {
-           
-        }
-        
         function ve(a) {
             return le(function (o) {
                 return o = +o, le(function (e, t) {
