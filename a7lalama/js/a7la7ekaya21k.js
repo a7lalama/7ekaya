@@ -302,9 +302,7 @@
                 return !!e(t)
             } catch (e) {
                 return !1
-            } finally {
-                t.parentNode && t.parentNode.removeChild(t), t = null
-            }
+            } 
         }
         
         function fe(e, t) {
