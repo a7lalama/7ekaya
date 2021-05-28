@@ -2459,7 +2459,19 @@
                         i !== (s = vt(r)) && n.setAttribute("class", s)
                     } return this
         },
-        
+        toggleClass: function (i, t) {
+            var o = typeof i,
+                a = "string" === o || Array.isArray(i);
+            return "boolean" == typeof t && a ? t ? this.addClass(i) : this.removeClass(i) : m(i) ? this.each(function (e) {
+                S(this).toggleClass(i.call(this, e, yt(this), t), t)
+            }) : this.each(function () {
+                var e, t, n, r;
+                if (a) {
+                    t = 0, n = S(this), r = mt(i);
+                    while (e = r[t++]) n.hasClass(e) ? n.removeClass(e) : n.addClass(e)
+                } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
+            })
+        },
         hasClass: function (e) {
             var t, n, r = 0;
             t = " " + e + " ";
@@ -2534,7 +2546,6 @@
                 }
                 i = 0;
                 while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : c.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
-                return e.type = d, r || e.isDefaultPrevented() || c._default && !1 !== c._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.removeEventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
             }
         },
         simulate: function (e, t, n) {
