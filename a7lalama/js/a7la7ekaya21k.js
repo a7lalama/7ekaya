@@ -1326,21 +1326,6 @@
             }, null, e, 1 < arguments.length, null, !0)
         },
        
-    }), S.extend({
-        queue: function (e, t, n) {
-            var r;
-            if (e) return t = (t || "fx") + "queue", r = Y.get(e, t), n && (!r || Array.isArray(n) ? r = Y.access(e, t, S.makeArray(n)) : r.push(n)), r || []
-        },
-        dequeue: function (e, t) {
-            t = t || "fx";
-            var n = S.queue(e, t),
-                r = n.length,
-                i = n.shift(),
-                o = S._queueHooks(e, t);
-            "inprogress" === i && (i = n.shift(), r--), i && ("fx" === t && n.unshift("inprogress"), delete o.stop, i.call(e, function () {
-                S.dequeue(e, t)
-            }, o)), !r && o && o.empty.fire()
-        }
     }), S.fn.extend({
         queue: function (t, n) {
             var e = 2;
