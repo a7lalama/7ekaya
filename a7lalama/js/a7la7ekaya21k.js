@@ -2939,7 +2939,7 @@
         getScript: function (e, t) {
             return S.get(e, void 0, t, "script")
         }
-    }), S.each(["get", "post"], function (e, i) {
+    }), S.each(["get"], function (e, i) {
         S[i] = function (e, t, n, r) {
             return m(t) && (r = r || n, n = t, t = void 0), S.ajax(S.extend({
                 url: e,
