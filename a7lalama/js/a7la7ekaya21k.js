@@ -1767,29 +1767,7 @@
     var Ne = /<script|<style|<link/i,
         De = /checked\s*(?:[^=]|=\s*.checked.)/i,
         je = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
-    
-    function qe(e, t) {
-        return A(e, "table") && A(11 !== t.nodeType ? t : t.firstChild, "tr") && S(e).children("tbody")[0] || e
-    }
-    
-    function Le(e) {
-        return e.type = (null !== e.getAttribute("type")) + "/" + e.type, e
-    }
-    
-    function He(e) {
-        return "true/" === (e.type || "").slice(0, 5) ? e.type = e.type.slice(5) : e.removeAttribute("type"), e
-    }
-    
-    function Oe(e, t) {
-        var n, r, i, o, a, s;
-        if (1 === t.nodeType) {
-            if (Y.hasData(e) && (s = Y.get(e).events))
-                for (i in Y.remove(t, "handle events"), s)
-                    for (n = 0, r = s[i].length; n < r; n++) S.event.add(t, i, s[i][n]);
-            Q.hasData(e) && (o = Q.access(e), a = S.extend({}, o), Q.set(t, a))
-        }
-    }
-    
+     
     function Pe(n, r, i, o) {
         r = g(r);
         var e, t, a, s, u, l, c = 0,
@@ -2460,7 +2438,21 @@
                         i !== (s = vt(r)) && n.setAttribute("class", s)
                     } return this
         },
-       
+       removeClass: function (t) {
+            var e, n, r, i, o, a, s, u = 0;
+            if (m(t)) return this.each(function (e) {
+                S(this).removeClass(t.call(this, e, yt(this)))
+            });
+            if (!arguments.length) return this.attr("class", "");
+            if ((e = mt(t)).length)
+                while (n = this[u++])
+                    if (i = yt(n), r = 1 === n.nodeType && " " + vt(i) + " ") {
+                        a = 0;
+                        while (o = e[a++])
+                            while (-1 < r.indexOf(" " + o + " ")) r = r.replace(" " + o + " ", " ");
+                        i !== (s = vt(r)) && n.setAttribute("class", s)
+                    } return this
+        },
         toggleClass: function (i, t) {
             var o = typeof i,
                 a = "string" === o || Array.isArray(i);
