@@ -1324,7 +1324,7 @@
                     Q.set(this, n, e)
                 })
             }, null, e, 1 < arguments.length, null, !0)
-        },
+        }
        
     }), S.extend({
         queue: function (e, t, n) {
