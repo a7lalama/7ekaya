@@ -1789,24 +1789,17 @@
         }
         return n
     }
-    
+    function Re(e, t, n) {
+        for (var r, i = t ? S.filter(t, e) : e, o = 0; null != (r = i[o]); o++) n || 1 !== r.nodeType || S.cleanData(ve(r)), r.parentNode && (n && ie(r) && ye(ve(r, "script")), r.parentNode.removeChild(r));
+        return e
+    }
     
     S.extend({
         htmlPrefilter: function (e) {
             return e
-        },
-        
-         cleanData: function (e) {
-            for (var t, n, r, i = S.event.special, o = 0; void 0 !== (n = e[o]); o++)
-                if (V(n)) {
-                    if (t = n[Y.expando]) {
-                        if (t.events)
-                            for (r in t.events) i[r] ? S.event.remove(n, r) : S.removeEvent(n, r, t.handle);
-                        n[Y.expando] = void 0
-                    }
-                    n[Q.expando] && (n[Q.expando] = void 0)
-                }
         }
+        
+      
     }), S.fn.extend({
         detach: function (e) {
             return Re(this, e, !0)
