@@ -1819,17 +1819,7 @@
         htmlPrefilter: function (e) {
             return e
         },
-        clone: function (e, t, n) {
-            var r, i, o, a, s, u, l, c = e.cloneNode(!0),
-                f = ie(e);
-            if (!(y.noCloneChecked || 1 !== e.nodeType && 11 !== e.nodeType || S.isXMLDoc(e)))
-                for (a = ve(c), r = 0, i = (o = ve(e)).length; r < i; r++) s = o[r], u = a[r], void 0, "input" === (l = u.nodeName.toLowerCase()) && pe.test(s.type) ? u.checked = s.checked : "input" !== l && "textarea" !== l || (u.defaultValue = s.defaultValue);
-            if (t)
-                if (n)
-                    for (o = o || ve(e), a = a || ve(c), r = 0, i = o.length; r < i; r++) Oe(o[r], a[r]);
-                else Oe(e, c);
-            return 0 < (a = ve(c, "script")).length && ye(a, !f && ve(e, "script")), c
-        },
+        
          cleanData: function (e) {
             for (var t, n, r, i = S.event.special, o = 0; void 0 !== (n = e[o]); o++)
                 if (V(n)) {
