@@ -329,7 +329,10 @@
             }
         }
          function he(n) {
-            
+            return function (e) {
+                var t = e.nodeName.toLowerCase();
+                return ("input" === t || "button" === t) && e.type === n
+            }
         }
          function ge(t) {
             return function (e) {
@@ -1338,11 +1341,6 @@
                     Q.set(this, n, e)
                 })
             }, null, e, 1 < arguments.length, null, !0)
-        },
-        removeData: function (e) {
-            return this.each(function () {
-                Q.remove(this, e)
-            })
         }
        
     }), S.extend({
