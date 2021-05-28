@@ -2579,6 +2579,11 @@
                     t = Y.access(e, r);
                 t || e.addEventListener(n, i, !0), Y.access(e, r, (t || 0) + 1)
             },
+            teardown: function () {
+                var e = this.ownerDocument || this.document || this,
+                    t = Y.access(e, r) - 1;
+                t ? Y.access(e, r, t) : (e.removeEventListener(n, i, !0), Y.remove(e, r))
+            }
            
         }
     });
@@ -2598,7 +2603,8 @@
         return t && !t.getElementsByTagName("parsererror").length || S.error("Invalid XML: " + e), t
     };
     var St = /\[\]$/,
-        kt = /\r?\n/g;
+        kt = /\r?\n/g,
+        At = /^(?:submit|button|image|reset|file)$/i;
     
     function Dt(n, e, r, i) {
         var t;
@@ -2651,7 +2657,6 @@
         qt = /#.*$/,
         Lt = /([?&])_=[^&]*/,
         Ht = /^(.*?):[ \t]*([^\r\n]*)$/gm,
-        Ot = /^(?:GET|HEAD)$/,
         Pt = /^\/\//,
         Rt = {},
         Mt = {},
