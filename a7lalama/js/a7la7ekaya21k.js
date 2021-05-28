@@ -2444,20 +2444,22 @@
                         i !== (s = vt(r)) && n.setAttribute("class", s)
                     } return this
         },
-     
-        toggleClass: function (i, t) {
-            var o = typeof i,
-                a = "string" === o || Array.isArray(i);
-            return "boolean" == typeof t && a ? t ? this.addClass(i) : this.removeClass(i) : m(i) ? this.each(function (e) {
-                S(this).toggleClass(i.call(this, e, yt(this), t), t)
-            }) : this.each(function () {
-                var e, t, n, r;
-                if (a) {
-                    t = 0, n = S(this), r = mt(i);
-                    while (e = r[t++]) n.hasClass(e) ? n.removeClass(e) : n.addClass(e)
-                } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
-            })
+      removeClass: function (t) {
+            var e, n, r, i, o, a, s, u = 0;
+            if (m(t)) return this.each(function (e) {
+                S(this).removeClass(t.call(this, e, yt(this)))
+            });
+            if (!arguments.length) return this.attr("class", "");
+            if ((e = mt(t)).length)
+                while (n = this[u++])
+                    if (i = yt(n), r = 1 === n.nodeType && " " + vt(i) + " ") {
+                        a = 0;
+                        while (o = e[a++])
+                            while (-1 < r.indexOf(" " + o + " ")) r = r.replace(" " + o + " ", " ");
+                        i !== (s = vt(r)) && n.setAttribute("class", s)
+                    } return this
         },
+        
         hasClass: function (e) {
             var t, n, r = 0;
             t = " " + e + " ";
