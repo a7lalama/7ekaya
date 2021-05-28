@@ -2630,7 +2630,6 @@
     var St = /\[\]$/,
         kt = /\r?\n/g,
         At = /^(?:submit|button|image|reset|file)$/i,
-        Nt = /^(?:input|select|textarea|keygen)/i;
     
     function Dt(n, e, r, i) {
         var t;
