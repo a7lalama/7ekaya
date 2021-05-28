@@ -1918,7 +1918,11 @@
         }
     }! function () {
         function e() {
-           
+            if (l) {
+                u.style.cssText = "position:absolute;left:-11111px;width:60px;margin-top:1px;padding:0;border:0", l.style.cssText = "position:relative;display:block;box-sizing:border-box;overflow:scroll;margin:auto;border:1px;padding:1px;width:60%;top:1%", re.appendChild(u).appendChild(l);
+                var e = C.getComputedStyle(l);
+                n = "1%" !== e.top, s = 12 === t(e.marginLeft), l.style.right = "60%", o = 36 === t(e.right), r = 36 === t(e.width), l.style.position = "absolute", i = 12 === t(l.offsetWidth / 3), re.removeChild(u), l = null
+            }
         }
         
         function t(e) {
@@ -1941,11 +1945,8 @@
             },
             scrollboxSize: function () {
                 return e(), i
-            },
-            reliableTrDimensions: function () {
-                var e, t, n, r;
-                return null == a && (e = E.createElement("table"), t = E.createElement("tr"), n = E.createElement("div"), e.style.cssText = "position:absolute;left:-11111px", t.style.height = "1px", n.style.height = "9px", re.appendChild(e).appendChild(t).appendChild(n), r = C.getComputedStyle(t), a = 3 < parseInt(r.height), re.removeChild(e)), a
             }
+           
         }))
     }();
     var _e = ["Webkit", "Moz", "ms"],
