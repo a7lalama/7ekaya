@@ -2545,7 +2545,8 @@
                     a === (n.ownerDocument || E) && p.push(a.defaultView || a.parentWindow || C)
                 }
                 i = 0;
-                while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : c.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
+              while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : c.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
+                return e.type = d, r || e.isDefaultPrevented() || c._default && !1 !== c._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.removeEventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
             }
         },
         simulate: function (e, t, n) {
@@ -2578,11 +2579,7 @@
                     t = Y.access(e, r);
                 t || e.addEventListener(n, i, !0), Y.access(e, r, (t || 0) + 1)
             },
-            teardown: function () {
-                var e = this.ownerDocument || this.document || this,
-                    t = Y.access(e, r) - 1;
-                t ? Y.access(e, r, t) : (e.removeEventListener(n, i, !0), Y.remove(e, r))
-            }
+           
         }
     });
     var Tt = C.location,
@@ -2601,8 +2598,7 @@
         return t && !t.getElementsByTagName("parsererror").length || S.error("Invalid XML: " + e), t
     };
     var St = /\[\]$/,
-        kt = /\r?\n/g,
-        At = /^(?:submit|button|image|reset|file)$/i;
+        kt = /\r?\n/g;
     
     function Dt(n, e, r, i) {
         var t;
