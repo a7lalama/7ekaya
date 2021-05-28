@@ -2396,6 +2396,11 @@
     S.fn.extend({
         prop: function (e, t) {
             return $(this, S.prop, e, t, 1 < arguments.length)
+        },
+        removeProp: function (e) {
+            return this.each(function () {
+                delete this[S.propFix[e] || e]
+            })
         }
     }), S.extend({
         prop: function (e, t, n) {
@@ -2439,21 +2444,7 @@
                         i !== (s = vt(r)) && n.setAttribute("class", s)
                     } return this
         },
-       removeClass: function (t) {
-            var e, n, r, i, o, a, s, u = 0;
-            if (m(t)) return this.each(function (e) {
-                S(this).removeClass(t.call(this, e, yt(this)))
-            });
-            if (!arguments.length) return this.attr("class", "");
-            if ((e = mt(t)).length)
-                while (n = this[u++])
-                    if (i = yt(n), r = 1 === n.nodeType && " " + vt(i) + " ") {
-                        a = 0;
-                        while (o = e[a++])
-                            while (-1 < r.indexOf(" " + o + " ")) r = r.replace(" " + o + " ", " ");
-                        i !== (s = vt(r)) && n.setAttribute("class", s)
-                    } return this
-        },
+     
         toggleClass: function (i, t) {
             var o = typeof i,
                 a = "string" === o || Array.isArray(i);
