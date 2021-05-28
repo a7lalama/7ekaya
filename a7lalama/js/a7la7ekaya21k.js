@@ -2462,9 +2462,7 @@
         },
         removeClass: function (t) {
             var e, n, r, i, o, a, s, u = 0;
-            if (m(t)) return this.each(function (e) {
-                S(this).removeClass(t.call(this, e, yt(this)))
-            });
+
             if (!arguments.length) return this.attr("class", "");
             if ((e = mt(t)).length)
                 while (n = this[u++])
