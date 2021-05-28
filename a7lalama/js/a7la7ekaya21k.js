@@ -1341,8 +1341,12 @@
                     Q.set(this, n, e)
                 })
             }, null, e, 1 < arguments.length, null, !0)
+        },
+        removeData: function (e) {
+            return this.each(function () {
+                Q.remove(this, e)
+            })
         }
-       
     }), S.extend({
         queue: function (e, t, n) {
             var r;
@@ -1357,15 +1361,9 @@
             "inprogress" === i && (i = n.shift(), r--), i && ("fx" === t && n.unshift("inprogress"), delete o.stop, i.call(e, function () {
                 S.dequeue(e, t)
             }, o)), !r && o && o.empty.fire()
-        },
-        _queueHooks: function (e, t) {
-            var n = t + "queueHooks";
-            return Y.get(e, n) || Y.access(e, n, {
-                empty: S.Callbacks("once memory").add(function () {
-                    Y.remove(e, [t + "queue", n])
-                })
-            })
         }
+        
+        
     }), S.fn.extend({
         queue: function (t, n) {
             var e = 2;
