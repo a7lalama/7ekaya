@@ -1276,7 +1276,15 @@
         },
         
         
-        
+        remove: function (e, t) {
+            var n, r = e[this.expando];
+            if (void 0 !== r) {
+                if (void 0 !== t) {
+                    n = (t = Array.isArray(t) ? t.map(X) : (t = X(t)) in r ? [t] : t.match(P) || []).length;
+                    while (n--) delete r[t[n]]
+                }(void 0 === t || S.isEmptyObject(r)) && (e.nodeType ? e[this.expando] = void 0 : delete e[this.expando])
+            }
+        },
       
         
         
@@ -1324,6 +1332,11 @@
                     Q.set(this, n, e)
                 })
             }, null, e, 1 < arguments.length, null, !0)
+        },
+        removeData: function (e) {
+            return this.each(function () {
+                Q.remove(this, e)
+            })
         }
        
     }), S.extend({
