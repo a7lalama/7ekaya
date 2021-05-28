@@ -296,16 +296,7 @@
             return e[S] = !0, e
         }
         
-        function ce(e) {
-            var t = C.createElement("fieldset");
-            try {
-                return !!e(t)
-            } catch (e) {
-                return !1
-            } finally {
-                t.parentNode && t.parentNode.removeChild(t), t = null
-            }
-        }
+     
         
         function fe(e, t) {
             var n = e.split("|"),
@@ -1220,9 +1211,7 @@
     };
     var F = S.Deferred();
      
-    function B() {
-        E.removeEventListener("DOMContentLoaded", B), C.removeEventListener("load", B), S.ready()
-    }
+   
     
     S.fn.ready = function (e) {
         return F.then(e)["catch"](function (e) {
@@ -1288,15 +1277,7 @@
         
         
         
-       remove: function (e, t) {
-            var n, r = e[this.expando];
-            if (void 0 !== r) {
-                if (void 0 !== t) {
-                    n = (t = Array.isArray(t) ? t.map(X) : (t = X(t)) in r ? [t] : t.match(P) || []).length;
-                    while (n--) delete r[t[n]]
-                }(void 0 === t || S.isEmptyObject(r)) && (e.nodeType ? e[this.expando] = void 0 : delete e[this.expando])
-            }
-        },
+      
         
         
         hasData: function (e) {
@@ -1344,11 +1325,7 @@
                 })
             }, null, e, 1 < arguments.length, null, !0)
         },
-        removeData: function (e) {
-            return this.each(function () {
-                Q.remove(this, e)
-            })
-        }
+       
     }), S.extend({
         queue: function (e, t, n) {
             var r;
@@ -1363,14 +1340,6 @@
             "inprogress" === i && (i = n.shift(), r--), i && ("fx" === t && n.unshift("inprogress"), delete o.stop, i.call(e, function () {
                 S.dequeue(e, t)
             }, o)), !r && o && o.empty.fire()
-        },
-        _queueHooks: function (e, t) {
-            var n = t + "queueHooks";
-            return Y.get(e, n) || Y.access(e, n, {
-                empty: S.Callbacks("once memory").add(function () {
-                    Y.remove(e, [t + "queue", n])
-                })
-            })
         }
     }), S.fn.extend({
         queue: function (t, n) {
@@ -1566,7 +1535,23 @@
             }
         },
        
-       
+        
+        remove: function (e, t, n, r, i) {
+            var o, a, s, u, l, c, f, p, d, h, g, v = Y.hasData(e) && Y.get(e);
+            if (v && (u = v.events)) {
+                l = (t = (t || "").match(P) || [""]).length;
+                while (l--)
+                    if (d = g = (s = Te.exec(t[l]) || [])[1], h = (s[2] || "").split(".").sort(), d) {
+                        f = S.event.special[d] || {}, p = u[d = (r ? f.delegateType : f.bindType) || d] || [], s = s[2] && new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)"), a = o = p.length;
+                        while (o--) c = p[o], !i && g !== c.origType || n && n.guid !== c.guid || s && !s.test(c.namespace) || r && r !== c.selector && ("**" !== r || !c.selector) || (p.splice(o, 1), c.selector && p.delegateCount--, f.remove && f.remove.call(e, c));
+                        a && !p.length && (f.teardown && !1 !== f.teardown.call(e, h, v.handle) || S.removeEvent(e, d, v.handle), delete u[d])
+                    } else
+                        for (d in u) S.event.remove(e, d + t[l], n, r, !0);
+                S.isEmptyObject(u) && Y.remove(e, "handle events")
+            }
+        },
+        
+        
         
         dispatch: function (e) {
             var t, n, r, i, o, a, s = new Array(arguments.length),
