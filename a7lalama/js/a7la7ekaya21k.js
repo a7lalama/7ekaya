@@ -2362,9 +2362,6 @@
             return $(this, S.attr, e, t, 1 < arguments.length)
         },
         
-    })
-      
-      
     });
     var gt = /^(?:a|area)$/i;
     
