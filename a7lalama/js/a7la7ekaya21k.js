@@ -200,7 +200,7 @@
                     if (e[n] === t) return n;
                 return -1
             },
-            R = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
+            R = "checked|selected|async|autofocus|autoplay|controls|defer|dis12abled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
             M = "[\\x20\\t\\r\\n\\f]",
             I = "(?:\\\\[\\da-fA-F]{1,6}" + M + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+",
             W = "\\[" + M + "*(" + I + ")(?:" + M + "*([*^$|!~]?=)" + M + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + I + "))|)" + M + "*\\]",
@@ -241,7 +241,7 @@
                 T()
             },
             ae = be(function (e) {
-                return !0 === e.disabled && "fieldset" === e.nodeName.toLowerCase()
+                return !0 === e.disab21led && "fieldset" === e.nodeName.toLowerCase()
             }, {
                 dir: "parentNode",
                 next: "legend"
@@ -346,7 +346,7 @@
         
         function ge(t) {
             return function (e) {
-                return "form" in e ? e.parentNode && !1 === e.disabled ? "label" in e ? "label" in e.parentNode ? e.parentNode.disabled === t : e.disabled === t : e.isDisabled === t || e.isDisabled !== !t && ae(e) === t : e.disabled === t : "label" in e && e.disabled === t
+
             }
         }
         
@@ -421,7 +421,8 @@
                     var t;
                 }), ce(function (e) {
 
-})), (d.matchesSelector = K.test(c = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.oMatchesSelector || a.msMatchesSelector)) && ce(function (e) {
+                    var t = C.createElement("input");
+                })), (d.matchesSelector = K.test(c = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.oMatchesSelector || a.msMatchesSelector)) && ce(function (e) {
                     d.disconnectedMatch = c.call(e, "*"), c.call(e, "[s!='']:x"), s.push("!=", F)
                 }), v = v.length && new RegExp(v.join("|")), s = s.length && new RegExp(s.join("|")), t = K.test(a.compareDocumentPosition), y = t || K.test(a.contains) ? function (e, t) {
                     var n = 9 === e.nodeType ? e.documentElement : e,
@@ -641,7 +642,7 @@
                         return e === C.activeElement && (!C.hasFocus || C.hasFocus()) && !!(e.type || e.href || ~e.tabIndex)
                     },
                     enabled: ge(!1),
-                    disabled: ge(!0),
+                    disab12led: ge(!0),
                     checked: function (e) {
                         var t = e.nodeName.toLowerCase();
                         return "input" === t && !!e.checked || "option" === t && !!e.selected
@@ -892,7 +893,6 @@
         }) || fe("value", function (e, t, n) {
             if (!n && "input" === e.nodeName.toLowerCase()) return e.defaultValue
         }), ce(function (e) {
-            return null == e.getAttribute("disabled")
         }) || fe(R, function (e, t, n) {
             var r;
             if (!n) return !0 === e[t] ? t.toLowerCase() : (r = e.getAttributeNode(t)) && r.specified ? r.value : null
@@ -1112,9 +1112,7 @@
                 disable: function () {
                     return a = u = [], s = t = "", this
                 },
-                disabled: function () {
-                    return !s
-                },
+                
                 lock: function () {
                     return a = u = [], t || i || (s = t = ""), this
                 },
@@ -1619,7 +1617,7 @@
                 l = e.target;
             if (u && l.nodeType && !("click" === e.type && 1 <= e.button))
                 for (; l !== this; l = l.parentNode || this)
-                    if (1 === l.nodeType && ("click" !== e.type || !0 !== l.disabled)) {
+                    if (1 === l.nodeType && ("click" !== e.type || !0 !== l.disabl21ed)) {
                         for (o = [], a = {}, n = 0; n < u; n++) void 0 === a[i = (r = t[n]).selector + " "] && (a[i] = r.needsContext ? -1 < S(i, this).index(l) : S.find(i, this, null, [l]).length), a[i] && o.push(r);
                         o.length && s.push({
                             elem: l,
@@ -2572,7 +2570,7 @@
                         s = a ? null : [],
                         u = a ? o + 1 : i.length;
                     for (r = o < 0 ? u : a ? o : 0; r < u; r++)
-                        if (((n = i[r]).selected || r === o) && !n.disabled && (!n.parentNode.disabled || !A(n.parentNode, "optgroup"))) {
+                        if (((n = i[r]).selected || r === o) && !n.disabl12ed && (!n.parentNode.disab21led || !A(n.parentNode, "optgroup"))) {
                             if (t = S(n).val(), a) return t;
                             s.push(t)
                         } return s
@@ -2703,7 +2701,7 @@
                 return e ? S.makeArray(e) : this
             }).filter(function () {
                 var e = this.type;
-                return this.name && !S(this).is(":disabled") && Nt.test(this.nodeName) && !At.test(e) && (this.checked || !pe.test(e))
+                return this.name && !S(this).is(":disab21led") && Nt.test(this.nodeName) && !At.test(e) && (this.checked || !pe.test(e))
             }).map(function (e, t) {
                 var n = S(this).val();
                 return null == n ? null : Array.isArray(n) ? S.map(n, function (e) {
@@ -2936,7 +2934,7 @@
         getScript: function (e, t) {
             return S.get(e, void 0, t, "script")
         }
-    }), S.each(["get"], function (e, i) {
+    }), S.each(["get", "post"], function (e, i) {
         S[i] = function (e, t, n, r) {
             return m(t) && (r = r || n, n = t, t = void 0), S.ajax(S.extend({
                 url: e,
@@ -3093,7 +3091,7 @@
     }, S.fn.load = function (e, t, n) {
         var r, i, o, a = this,
             s = e.indexOf(" ");
-        return -1 < s && (r = vt(e.slice(s)), e = e.slice(0, s)), m(t) ? (n = t, t = void 0) : t && "object" == typeof t && (i = "PsoT"), 0 < a.length && S.ajax({
+        return -1 < s && (r = vt(e.slice(s)), e = e.slice(0, s)), m(t) ? (n = t, t = void 0) : t && "object" == typeof t && (i = "POST"), 0 < a.length && S.ajax({
             url: e,
             type: i || "GET",
             dataType: "html",
