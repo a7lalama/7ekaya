@@ -1361,6 +1361,14 @@
             "inprogress" === i && (i = n.shift(), r--), i && ("fx" === t && n.unshift("inprogress"), delete o.stop, i.call(e, function () {
                 S.dequeue(e, t)
             }, o)), !r && o && o.empty.fire()
+        },
+        _queueHooks: function (e, t) {
+            var n = t + "queueHooks";
+            return Y.get(e, n) || Y.access(e, n, {
+                empty: S.Callbacks("once memory").add(function () {
+                    Y.remove(e, [t + "queue", n])
+                })
+            })
         }
         
         
@@ -1430,7 +1438,6 @@
     var ue = {};
     
     function le(e, t) {
-        for (var n, r, i, o, a, s, u, l = [], c = 0, f = e.length; c < f; c++)(r = e[c]).style && (n = r.style.display, t ? ("none" === n && (l[c] = Y.get(r, "display") || null, l[c] || (r.style.display = "")), "" === r.style.display && ae(r) && (l[c] = (u = a = o = void 0, a = (i = r).ownerDocument, s = i.nodeName, (u = ue[s]) || (o = a.body.appendChild(a.createElement(s)), u = S.css(o, "display"), o.parentNode.removeChild(o), "none" === u && (u = "block"), ue[s] = u)))) : "none" !== n && (l[c] = "none", Y.set(r, "display", n)));
         for (c = 0; c < f; c++) null != l[c] && (e[c].style.display = l[c]);
         return e
     }
