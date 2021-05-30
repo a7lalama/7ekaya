@@ -200,7 +200,29 @@
                     if (e[n] === t) return n;
                 return -1
             },
-           
+            R = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
+            M = "[\\x20\\t\\r\\n\\f]",
+            I = "(?:\\\\[\\da-fA-F]{1,6}" + M + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+",
+            W = "\\[" + M + "*(" + I + ")(?:" + M + "*([*^$|!~]?=)" + M + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + I + "))|)" + M + "*\\]",
+            F = ":(" + I + ")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|" + W + ")*)|.*)\\)|)",
+            B = new RegExp(M + "+", "g"),
+            $ = new RegExp("^" + M + "+|((?:^|[^\\\\])(?:\\\\.)*)" + M + "+$", "g"),
+            _ = new RegExp("^" + M + "*," + M + "*"),
+            z = new RegExp("^" + M + "*([>+~]|" + M + ")" + M + "*"),
+            U = new RegExp(M + "|>"),
+            X = new RegExp(F),
+            V = new RegExp("^" + I + "$"),
+            G = {
+                ID: new RegExp("^#(" + I + ")"),
+                CLASS: new RegExp("^\\.(" + I + ")"),
+                TAG: new RegExp("^(" + I + "|[*])"),
+                ATTR: new RegExp("^" + W),
+                PSEUDO: new RegExp("^" + F),
+                CHILD: new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + M + "*(even|odd|(([+-]|)(\\d*)n|)" + M + "*(?:([+-]|)" + M + "*(\\d+)|))" + M + "*\\)|)", "i"),
+                bool: new RegExp("^(?:" + R + ")$", "i"),
+                needsContext: new RegExp("^" + M + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + M + "*((?:-\\d)?\\d*)" + M + "*\\)|)(?=[^-]|$)", "i")
+            },
+        
             J = /^h\d$/i,
             K = /^[^{]+\{\s*\[native \w/,
             Z = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
