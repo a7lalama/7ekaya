@@ -4,7 +4,7 @@
         if (!e.document) throw new Error("jQuery requires a window with a document");
         return t(e)
     } : t(e)
-},
+}
     function w(e) {
         return null == e ? e + "" : "object" == typeof e || "function" == typeof e ? n[o.call(e)] || "object" : typeof e
     }
