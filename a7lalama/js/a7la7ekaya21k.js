@@ -200,19 +200,7 @@
                     if (e[n] === t) return n;
                 return -1
             },
-            
-            G = {
-                ID: new RegExp("^#(" + I + ")"),
-                CLASS: new RegExp("^\\.(" + I + ")"),
-                TAG: new RegExp("^(" + I + "|[*])"),
-                ATTR: new RegExp("^" + W),
-                PSEUDO: new RegExp("^" + F),
-                CHILD: new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + M + "*(even|odd|(([+-]|)(\\d*)n|)" + M + "*(?:([+-]|)" + M + "*(\\d+)|))" + M + "*\\)|)", "i"),
-                bool: new RegExp("^(?:" + R + ")$", "i"),
-                needsContext: new RegExp("^" + M + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + M + "*((?:-\\d)?\\d*)" + M + "*\\)|)(?=[^-]|$)", "i")
-            },
-            Y = /HTML$/i,
-            Q = /^(?:input|select|textarea|button)$/i,
+           
             J = /^h\d$/i,
             K = /^[^{]+\{\s*\[native \w/,
             Z = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
