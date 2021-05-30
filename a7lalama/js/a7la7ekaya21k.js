@@ -4,7 +4,45 @@
         if (!e.document) throw new Error("jQuery requires a window with a document");
         return t(e)
     } : t(e)
-}
+}("undefined" != typeof window ? window : this, function (C, e) {
+    "use strict";
+    var t = [],
+        r = Object.getPrototypeOf,
+        s = t.slice,
+        g = t.flat ? function (e) {
+            return t.flat.call(e)
+        } : function (e) {
+            return t.concat.apply([], e)
+        },
+        u = t.push,
+        i = t.indexOf,
+        n = {},
+        o = n.toString,
+        v = n.hasOwnProperty,
+        a = v.toString,
+        l = a.call(Object),
+        y = {},
+        m = function (e) {
+            return "function" == typeof e && "number" != typeof e.nodeType
+        },
+        x = function (e) {
+            return null != e && e === e.window
+        },
+        E = C.document,
+        c = {
+            type: !0,
+            src: !0,
+            nonce: !0,
+            noModule: !0
+        };
+    
+    function b(e, t, n) {
+        var r, i, o = (n = n || E).createElement("script");
+        if (o.text = e, t)
+            for (r in c)(i = t[r] || t.getAttribute && t.getAttribute(r)) && o.setAttribute(r, i);
+        n.head.appendChild(o).parentNode.removeChild(o)
+    }
+    
     function w(e) {
         return null == e ? e + "" : "object" == typeof e || "function" == typeof e ? n[o.call(e)] || "object" : typeof e
     }
@@ -162,18 +200,7 @@
                     if (e[n] === t) return n;
                 return -1
             },
-            R = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
-            M = "[\\x20\\t\\r\\n\\f]",
-            I = "(?:\\\\[\\da-fA-F]{1,6}" + M + "?|\\\\[^\\r\\n\\f]|[\\w-]|[^\0-\\x7f])+",
-            W = "\\[" + M + "*(" + I + ")(?:" + M + "*([*^$|!~]?=)" + M + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + I + "))|)" + M + "*\\]",
-            F = ":(" + I + ")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|" + W + ")*)|.*)\\)|)",
-            B = new RegExp(M + "+", "g"),
-            $ = new RegExp("^" + M + "+|((?:^|[^\\\\])(?:\\\\.)*)" + M + "+$", "g"),
-            _ = new RegExp("^" + M + "*," + M + "*"),
-            z = new RegExp("^" + M + "*([>+~]|" + M + ")" + M + "*"),
-            U = new RegExp(M + "|>"),
-            X = new RegExp(F),
-            V = new RegExp("^" + I + "$"),
+            
             G = {
                 ID: new RegExp("^#(" + I + ")"),
                 CLASS: new RegExp("^\\.(" + I + ")"),
