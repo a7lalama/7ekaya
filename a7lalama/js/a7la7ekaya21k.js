@@ -1,4 +1,9 @@
-/*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */ ! ("undefined" != typeof window ? window : this, function (C, e) {
+/*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */ ! function (e, t) {
+    "use strict";
+    "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function (e) {
+        return t(e)
+    } : t(e)
+}("undefined" != typeof window ? window : this, function (C, e) {
     "use strict";
     var t = [],
         r = Object.getPrototypeOf,
@@ -171,8 +176,6 @@
     }), "function" == typeof Symbol && (S.fn[Symbol.iterator] = t[Symbol.iterator]), S.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "), function (e, t) {
         n["[object " + t + "]"] = t.toLowerCase()
     });
-    
-    
     var d = function (n) {
         var e, d, b, o, i, h, f, g, w, u, l, T, C, a, E, v, s, c, y, S = "sizzle" + 1 * new Date,
             p = n.document,
