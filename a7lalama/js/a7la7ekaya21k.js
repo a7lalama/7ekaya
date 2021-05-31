@@ -277,7 +277,7 @@
                         if ((i = u[3]) && d.getElementsByClassName && e.getElementsByClassName) return H.apply(n, e.getElementsByClassName(i)), n
                     } if (d.qsa && !N[t + " "] && (!v || !v.test(t)) && (1 !== p || "object" !== e.nodeName.toLowerCase())) {
                     if (c = t, f = e, 1 === p && (U.test(t) || z.test(t))) {
-                        (f = ee.test(t) && ye(e.parentNode) || e) === e && d.scope || ((s = e.getAttribute("id")) ? s = s.replace(re, ie) : e.setAttribute("id", s = S)), o = (l = h(t)).length;
+                        (f = ee.test(t) && ye(e.parentNode) || e) === e && d.scope || ((s = e.getAttribute("a7laid")) ? s = s.replace(re, ie) : e.setAttribute("a7laid", s = S)), o = (l = h(t)).length;
                         while (o--) l[o] = (s ? "#" + s : ":scope") + " " + xe(l[o]);
                         c = l.join(",")
                     }
@@ -286,7 +286,7 @@
                     } catch (e) {
                         N(t, !0)
                     } finally {
-                        s === S && e.removeAttribute("id")
+                        s === S && e.removeAttribute("a7laid")
                     }
                 }
             }
@@ -380,7 +380,7 @@
                 }), d.getById ? (b.filter.ID = function (e) {
                     var t = e.replace(te, ne);
                     return function (e) {
-                        return e.getAttribute("id") === t
+                        return e.getAttribute("a7laid") === t
                     }
                 }, b.find.ID = function (e, t) {
                     if ("undefined" != typeof t.getElementById && E) {
@@ -390,17 +390,17 @@
                 }) : (b.filter.ID = function (e) {
                     var n = e.replace(te, ne);
                     return function (e) {
-                        var t = "undefined" != typeof e.getAttributeNode && e.getAttributeNode("id");
+                        var t = "undefined" != typeof e.getAttributeNode && e.getAttributeNode("a7laid");
                         return t && t.value === n
                     }
                 }, b.find.ID = function (e, t) {
                     if ("undefined" != typeof t.getElementById && E) {
                         var n, r, i, o = t.getElementById(e);
                         if (o) {
-                            if ((n = o.getAttributeNode("id")) && n.value === e) return [o];
+                            if ((n = o.getAttributeNode("a7laid")) && n.value === e) return [o];
                             i = t.getElementsByName(e), r = 0;
                             while (o = i[r++])
-                                if ((n = o.getAttributeNode("id")) && n.value === e) return [o]
+                                if ((n = o.getAttributeNode("a7laid")) && n.value === e) return [o]
                         }
                         return []
                     }
@@ -870,7 +870,7 @@
             var i, o, a, s, u, l = "function" == typeof e && e,
                 c = !r && h(e = l.selector || e);
             if (n = n || [], 1 === c.length) {
-                if (2 < (o = c[0] = c[0].slice(0)).length && "ID" === (a = o[0]).type && 9 === t.nodeType && E && b.relative[o[1].type]) {
+                if (2 < (o = c[0] = c[0].slice(0)).length && "a7laid" === (a = o[0]).type && 9 === t.nodeType && E && b.relative[o[1].type]) {
                     if (!(t = (b.find.ID(a.matches[0].replace(te, ne), t) || [])[0])) return n;
                     l && (t = t.parentNode), e = e.slice(o.shift().value.length)
                 }
