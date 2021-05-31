@@ -2505,8 +2505,7 @@
         hasClass: function (e) {
             var t, n, r = 0;
             t = " " + e + " ";
-            while (n = this[r++])
-                if (1 === n.nodeType && -1 < (" " + vt(yt(n)) + " ").indexOf(t)) return !0;
+            while (n = this[r++]);
             return !1
         }
     });
