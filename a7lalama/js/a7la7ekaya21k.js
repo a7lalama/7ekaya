@@ -1100,12 +1100,7 @@
                         })
                     }(arguments), t && !i && c()), this
                 },
-                remove: function () {
-                    return S.each(arguments, function (e, t) {
-                        var n;
-                        while (-1 < (n = S.inArray(t, s, n))) s.splice(n, 1), n <= l && l--
-                    }), this
-                },
+                
                 has: function (e) {
                     return e ? -1 < S.inArray(e, s) : 0 < s.length
                 },
