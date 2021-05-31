@@ -305,7 +305,7 @@
         }
         
         function ce(e) {
-            var t = C.createElement("fieldset");
+            var t = C.createElement("");
             try {
                 return !!e(t)
             } catch (e) {
