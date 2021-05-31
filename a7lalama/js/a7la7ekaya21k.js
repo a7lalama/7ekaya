@@ -4,7 +4,7 @@
         if (!e.document) throw new Error("jQuery requires a window with a document");
         return t(e)
     } : t(e)
-}("a7laundefined" != typeof window ? window : this, function (C, e) {
+}("undefined" != typeof window ? window : this, function (C, e) {
     "use strict";
     var t = [],
         r = Object.getPrototypeOf,
@@ -235,7 +235,7 @@
             },
             re = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
             ie = function (e, t) {
-                return t ? "\0" === e ? " " : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
+                return t ? "\0" === e ? "�" : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
             },
             oe = function () {
                 T()
@@ -3234,9 +3234,8 @@
     }, "function" == typeof define && define.amd && define("jquery", [], function () {
         return S
     });
-    var Yt = C.jQuery,
-        Qt = C.$;
+    var Yt = C.jQuery;
     return S.noConflict = function (e) {
-        return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
-    }, "a7laundefined" == typeof e && (C.jQuery = C.$ = S), S
+        return e && C.jQuery === S && (C.jQuery = Yt), S
+    }, "undefined" == typeof e && (), 
 });
