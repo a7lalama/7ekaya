@@ -1771,17 +1771,6 @@
         },
         one: function (e, t, n, r) {
             return ke(this, e, t, n, r, 1)
-        },
-        off: function (e, t, n) {
-            var r, i;
-            if (e && e.preventDefault && e.handleObj) return r = e.handleObj, S(e.delegateTarget).off(r.namespace ? r.origType + "." + r.namespace : r.origType, r.selector, r.handler), this;
-            if ("object" == typeof e) {
-                for (i in e) this.off(i, t, e[i]);
-                return this
-            }
-            return !1 !== t && "function" != typeof t || (n = t, t = void 0), !1 === n && (n = Ee), this.each(function () {
-                S.event.remove(this, e, n, t)
-            })
         }
     });
     var Ne = /<script|<style|<link/i,
@@ -3238,5 +3227,5 @@
         Qt = C.$;
     return S.noConflict = function (e) {
         return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
-    }, "undefined" == type e && (C.jQuery = C.$ = S), S
+    }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
 });
