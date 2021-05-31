@@ -2531,12 +2531,12 @@
             var o = typeof i,
                 a = "string" === o || Array.isArray(i);
             return "boolean" == typeof t && a ? t ? this.addClass(i) : this.removeClass(i) : m(i) ? this.each(function (e) {
-                S(this).toggleClass(i.call(this, e, yt(this), t), t)
+                S(this).toggleClass(i.call(this, e, t), t)
             }) : this.each(function () {
                 var e, t, n, r;
                 if (a) {
                     t = 0, n = S(this), r = mt(i);
-                    while (e = r[t++]) n.hasClass(e) ? n.removeClass(e) : n.addClass(e)
+
                 } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
             })
         },
