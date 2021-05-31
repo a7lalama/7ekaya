@@ -304,14 +304,6 @@
             return e[S] = !0, e
         }
         
-        function ce(e) {
-            var t = C.createElement("A7LAfieldset");
-            try {
-                return !!e(t)
-            } catch (e) {
-                return !1
-            } 
-        }
         
         function fe(e, t) {
             var n = e.split("|"),
