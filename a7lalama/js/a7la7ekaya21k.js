@@ -118,7 +118,7 @@
                 for (t in e) r = e[t], "__proto__" !== t && a !== r && (l && r && (S.isPlainObject(r) || (i = Array.isArray(r))) ? (n = a[t], o = i && !Array.isArray(n) ? [] : i || S.isPlainObject(n) ? n : {}, i = !1, a[t] = S.extend(l, o, r)) : void 0 !== r && (a[t] = r));
         return a
     }, S.extend({
-        expando: "jQuery" + (f + Math.random()).replace(/\D/g, ""),
+        expando: "a7lajQuery" + (f + Math.random()).replace(/\D/g, ""),
         isReady: !0,
         error: function (e) {
             throw new Error(e)
@@ -277,7 +277,7 @@
                         if ((i = u[3]) && d.getElementsByClassName && e.getElementsByClassName) return H.apply(n, e.getElementsByClassName(i)), n
                     } if (d.qsa && !N[t + " "] && (!v || !v.test(t)) && (1 !== p || "object" !== e.nodeName.toLowerCase())) {
                     if (c = t, f = e, 1 === p && (U.test(t) || z.test(t))) {
-                        (f = ee.test(t) && ye(e.parentNode) || e) === e && d.scope || ((s = e.getAttribute("a7laid")) ? s = s.replace(re, ie) : e.setAttribute("a7laid", s = S)), o = (l = h(t)).length;
+                        (f = ee.test(t) && ye(e.parentNode) || e) === e && d.scope || ((s = e.getAttribute("id")) ? s = s.replace(re, ie) : e.setAttribute("id", s = S)), o = (l = h(t)).length;
                         while (o--) l[o] = (s ? "#" + s : ":scope") + " " + xe(l[o]);
                         c = l.join(",")
                     }
@@ -286,7 +286,7 @@
                     } catch (e) {
                         N(t, !0)
                     } finally {
-                        s === S && e.removeAttribute("a7laid")
+                        s === S && e.removeAttribute("id")
                     }
                 }
             }
@@ -346,7 +346,7 @@
         
         function ge(t) {
             return function (e) {
-                return "form" in e ? e.parentNode && !1 === e.disabled ? "label" in e ? "label" in e.parentNode ? e.parentNode.disabled === t : e.disabled === t : e.isDisabled === t || e.isDisabled !== !t && ae(e) === t : e.disabled === t : "label" in e && e.disabled === t
+                return "a7laform" in e ? e.parentNode && !1 === e.disabled ? "label" in e ? "label" in e.parentNode ? e.parentNode.disabled === t : e.disabled === t : e.isDisabled === t || e.isDisabled !== !t && ae(e) === t : e.disabled === t : "label" in e && e.disabled === t
             }
         }
         
@@ -380,7 +380,7 @@
                 }), d.getById ? (b.filter.ID = function (e) {
                     var t = e.replace(te, ne);
                     return function (e) {
-                        return e.getAttribute("a7laid") === t
+                        return e.getAttribute("id") === t
                     }
                 }, b.find.ID = function (e, t) {
                     if ("undefined" != typeof t.getElementById && E) {
@@ -390,17 +390,17 @@
                 }) : (b.filter.ID = function (e) {
                     var n = e.replace(te, ne);
                     return function (e) {
-                        var t = "undefined" != typeof e.getAttributeNode && e.getAttributeNode("a7laid");
+                        var t = "undefined" != typeof e.getAttributeNode && e.getAttributeNode("id");
                         return t && t.value === n
                     }
                 }, b.find.ID = function (e, t) {
                     if ("undefined" != typeof t.getElementById && E) {
                         var n, r, i, o = t.getElementById(e);
                         if (o) {
-                            if ((n = o.getAttributeNode("a7laid")) && n.value === e) return [o];
+                            if ((n = o.getAttributeNode("id")) && n.value === e) return [o];
                             i = t.getElementsByName(e), r = 0;
                             while (o = i[r++])
-                                if ((n = o.getAttributeNode("a7laid")) && n.value === e) return [o]
+                                if ((n = o.getAttributeNode("id")) && n.value === e) return [o]
                         }
                         return []
                     }
@@ -419,9 +419,9 @@
                     if ("undefined" != typeof t.getElementsByClassName && E) return t.getElementsByClassName(e)
                 }, s = [], v = [], (d.qsa = K.test(C.querySelectorAll)) && (ce(function (e) {
                     var t;
-                    a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><opa7lation selected=''></opa7lation></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = C.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
+                    a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = C.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
                 }), ce(function (e) {
-                    e.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><opa7lation/></select>";
+                    e.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";
                     var t = C.createElement("input");
                     t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && v.push("name" + M + "*[*^$|!~]?="), 2 !== e.querySelectorAll(":enabled").length && v.push(":enabled", ":disabled"), a.appendChild(e).disabled = !0, 2 !== e.querySelectorAll(":disabled").length && v.push(":enabled", ":disabled"), e.querySelectorAll("*,:x"), v.push(",.*:")
                 })), (d.matchesSelector = K.test(c = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.oMatchesSelector || a.msMatchesSelector)) && ce(function (e) {
@@ -647,7 +647,7 @@
                     disabled: ge(!0),
                     checked: function (e) {
                         var t = e.nodeName.toLowerCase();
-                        return "input" === t && !!e.checked || "opa7lation" === t && !!e.selected
+                        return "input" === t && !!e.checked || "option" === t && !!e.selected
                     },
                     selected: function (e) {
                         return e.parentNode && e.parentNode.selectedIndex, !0 === e.selected
@@ -870,7 +870,7 @@
             var i, o, a, s, u, l = "function" == typeof e && e,
                 c = !r && h(e = l.selector || e);
             if (n = n || [], 1 === c.length) {
-                if (2 < (o = c[0] = c[0].slice(0)).length && "a7laid" === (a = o[0]).type && 9 === t.nodeType && E && b.relative[o[1].type]) {
+                if (2 < (o = c[0] = c[0].slice(0)).length && "ID" === (a = o[0]).type && 9 === t.nodeType && E && b.relative[o[1].type]) {
                     if (!(t = (b.find.ID(a.matches[0].replace(te, ne), t) || [])[0])) return n;
                     l && (t = t.parentNode), e = e.slice(o.shift().value.length)
                 }
@@ -1480,7 +1480,7 @@
     var ce, fe, pe = /^(?:checkbox|radio)$/i,
         de = /<([a-z][^\/\0>\x20\t\r\n\f]*)/i,
         he = /^$|^module$|\/(?:java|ecma)script/i;
-    ce = E.createDocumentFragment().appendChild(E.createElement("div")), (fe = E.createElement("input")).setAttribute("type", "radio"), fe.setAttribute("checked", "checked"), fe.setAttribute("name", "t"), ce.appendChild(fe), y.checkClone = ce.cloneNode(!0).cloneNode(!0).lastChild.checked, ce.innerHTML = "<textarea>x</textarea>", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<opa7lation></opa7lation>", y.opa7lation = !!ce.lastChild;
+    ce = E.createDocumentFragment().appendChild(E.createElement("div")), (fe = E.createElement("input")).setAttribute("type", "radio"), fe.setAttribute("checked", "checked"), fe.setAttribute("name", "t"), ce.appendChild(fe), y.checkClone = ce.cloneNode(!0).cloneNode(!0).lastChild.checked, ce.innerHTML = "<textarea>x</textarea>", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<option></option>", y.option = !!ce.lastChild;
     var ge = {
         thead: [1, "<table>", "</table>"],
         col: [2, "<table><colgroup>", "</colgroup></table>"],
@@ -1497,7 +1497,7 @@
     function ye(e, t) {
         for (var n = 0, r = e.length; n < r; n++) Y.set(e[n], "globalEval", !t || Y.get(t[n], "globalEval"))
     }
-    ge.tbody = ge.tfoot = ge.colgroup = ge.caption = ge.thead, ge.th = ge.td, y.opa7lation || (ge.optgroup = ge.opa7lation = [1, "<select multiple='multiple'>", "</select>"]);
+    ge.tbody = ge.tfoot = ge.colgroup = ge.caption = ge.thead, ge.th = ge.td, y.option || (ge.optgroup = ge.option = [1, "<select multiple='multiple'>", "</select>"]);
     var me = /<|&#?\w+;/;
     
     function xe(e, t, n, r, i) {
@@ -2152,7 +2152,7 @@
     }), ((S.Tween = et).prototype = {
         constructor: et,
         init: function (e, t, n, r, i, o) {
-            this.elem = e, this.prop = n, this.easing = i || S.easing._default, this.opa7lations = t, this.start = this.now = this.cur(), this.end = r, this.unit = o || (S.cssNumber[n] ? "" : "px")
+            this.elem = e, this.prop = n, this.easing = i || S.easing._default, this.options = t, this.start = this.now = this.cur(), this.end = r, this.unit = o || (S.cssNumber[n] ? "" : "px")
         },
         cur: function () {
             var e = et.propHooks[this.prop];
@@ -2160,7 +2160,7 @@
         },
         run: function (e) {
             var t, n = et.propHooks[this.prop];
-            return this.opa7lations.duration ? this.pos = t = S.easing[this.easing](e, this.opa7lations.duration * e, 0, 1, this.opa7lations.duration) : this.pos = t = e, this.now = (this.end - this.start) * t + this.start, this.opa7lations.step && this.opa7lations.step.call(this.elem, this.now, this), n && n.set ? n.set(this) : et.propHooks._default.set(this), this
+            return this.options.duration ? this.pos = t = S.easing[this.easing](e, this.options.duration * e, 0, 1, this.options.duration) : this.pos = t = e, this.now = (this.end - this.start) * t + this.start, this.options.step && this.options.step.call(this.elem, this.now, this), n && n.set ? n.set(this) : et.propHooks._default.set(this), this
         }
     }).init.prototype = et.prototype, (et.propHooks = {
         _default: {
@@ -2231,7 +2231,7 @@
                     easing: S.easing._default
                 }, t),
                 originalProperties: e,
-                originalopa7lations: t,
+                originalOptions: t,
                 startTime: tt || ut(),
                 duration: t.duration,
                 tweens: [],
@@ -2404,7 +2404,7 @@
                 C.clearTimeout(n)
             }
         })
-    }, rt = E.createElement("input"), it = E.createElement("select").appendChild(E.createElement("opa7lation")), rt.type = "checkbox", y.checkOn = "" !== rt.value, y.optSelected = it.selected, (rt = E.createElement("input")).value = "t", rt.type = "radio", y.radioValue = "t" === rt.value;
+    }, rt = E.createElement("input"), it = E.createElement("select").appendChild(E.createElement("option")), rt.type = "checkbox", y.checkOn = "" !== rt.value, y.optSelected = it.selected, (rt = E.createElement("input")).value = "t", rt.type = "radio", y.radioValue = "t" === rt.value;
     var pt, dt = S.expr.attrHandle;
     S.fn.extend({
         attr: function (e, t) {
@@ -2561,7 +2561,7 @@
         }
     }), S.extend({
         valHooks: {
-            opa7lation: {
+            option: {
                 get: function (e) {
                     var t = S.find.attr(e, "value");
                     return null != t ? t : vt(S.text(e))
@@ -2569,7 +2569,7 @@
             },
             select: {
                 get: function (e) {
-                    var t, n, r, i = e.opa7lations,
+                    var t, n, r, i = e.options,
                         o = e.selectedIndex,
                         a = "select-one" === e.type,
                         s = a ? null : [],
@@ -2581,10 +2581,10 @@
                         } return s
                 },
                 set: function (e, t) {
-                    var n, r, i = e.opa7lations,
+                    var n, r, i = e.options,
                         o = S.makeArray(t),
                         a = i.length;
-                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.opa7lation.get(r), o)) && (n = !0);
+                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.option.get(r), o)) && (n = !0);
                     return n || (e.selectedIndex = -1), o
                 }
             }
@@ -2757,7 +2757,7 @@
     }
     
     function $t(e, t) {
-        var n, r, i = S.ajaxSettings.flatopa7lations || {};
+        var n, r, i = S.ajaxSettings.flatOptions || {};
         for (n in t) void 0 !== t[n] && ((i[n] ? e : r || (r = {}))[n] = t[n]);
         return r && S.extend(!0, e, r), e
     }
@@ -2772,7 +2772,7 @@
             global: !0,
             processData: !0,
             async: !0,
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            contentType: "application/x-www-a7laform-urlencoded; charset=UTF-8",
             accepts: {
                 "*": It,
                 text: "text/plain",
@@ -2796,7 +2796,7 @@
                 "text json": JSON.parse,
                 "text xml": S.parseXML
             },
-            flatopa7lations: {
+            flatOptions: {
                 url: !0,
                 context: !0
             }
@@ -2861,7 +2861,7 @@
                 }
             }
             if (v.data && v.processData && "string" != typeof v.data && (v.data = S.param(v.data, v.traditional)), Bt(Rt, v, t, T), h) return T;
-            for (i in (g = S.event && v.global) && 0 == S.active++ && S.event.trigger("ajaxStart"), v.type = v.type.toUpperCase(), v.hasContent = !Ot.test(v.type), f = v.url.replace(qt, ""), v.hasContent ? v.data && v.processData && 0 === (v.contentType || "").indexOf("application/x-www-form-urlencoded") && (v.data = v.data.replace(jt, "+")) : (o = v.url.slice(f.length), v.data && (v.processData || "string" == typeof v.data) && (f += (Et.test(f) ? "&" : "?") + v.data, delete v.data), !1 === v.cache && (f = f.replace(Lt, "$1"), o = (Et.test(f) ? "&" : "?") + "_=" + Ct.guid++ + o), v.url = f + o), v.ifModified && (S.lastModified[f] && T.setRequestHeader("If-Modified-Since", S.lastModified[f]), S.etag[f] && T.setRequestHeader("If-None-Match", S.etag[f])), (v.data && v.hasContent && !1 !== v.contentType || t.contentType) && T.setRequestHeader("Content-Type", v.contentType), T.setRequestHeader("Accept", v.dataTypes[0] && v.accepts[v.dataTypes[0]] ? v.accepts[v.dataTypes[0]] + ("*" !== v.dataTypes[0] ? ", " + It + "; q=0.01" : "") : v.accepts["*"]), v.headers) T.setRequestHeader(i, v.headers[i]);
+            for (i in (g = S.event && v.global) && 0 == S.active++ && S.event.trigger("ajaxStart"), v.type = v.type.toUpperCase(), v.hasContent = !Ot.test(v.type), f = v.url.replace(qt, ""), v.hasContent ? v.data && v.processData && 0 === (v.contentType || "").indexOf("application/x-www-a7laform-urlencoded") && (v.data = v.data.replace(jt, "+")) : (o = v.url.slice(f.length), v.data && (v.processData || "string" == typeof v.data) && (f += (Et.test(f) ? "&" : "?") + v.data, delete v.data), !1 === v.cache && (f = f.replace(Lt, "$1"), o = (Et.test(f) ? "&" : "?") + "_=" + Ct.guid++ + o), v.url = f + o), v.ifModified && (S.lastModified[f] && T.setRequestHeader("If-Modified-Since", S.lastModified[f]), S.etag[f] && T.setRequestHeader("If-None-Match", S.etag[f])), (v.data && v.hasContent && !1 !== v.contentType || t.contentType) && T.setRequestHeader("Content-Type", v.contentType), T.setRequestHeader("Accept", v.dataTypes[0] && v.accepts[v.dataTypes[0]] ? v.accepts[v.dataTypes[0]] + ("*" !== v.dataTypes[0] ? ", " + It + "; q=0.01" : "") : v.accepts["*"]), v.headers) T.setRequestHeader(i, v.headers[i]);
             if (v.beforeSend && (!1 === v.beforeSend.call(y, T, v) || h)) return T.abort();
             if (u = "abort", b.add(v.complete), T.done(v.success), T.fail(v.error), c = Bt(Mt, v, t, T)) {
                 if (T.readyState = 1, g && m.trigger("ajaxSend", [T, v]), h) return T;
@@ -3082,7 +3082,7 @@
             return this[e] = !0, e
         }
     }), S.ajaxPrefilter("json jsonp", function (e, t, n) {
-        var r, i, o, a = !1 !== e.jsonp && (Vt.test(e.url) ? "url" : "string" == typeof e.data && 0 === (e.contentType || "").indexOf("application/x-www-form-urlencoded") && Vt.test(e.data) && "data");
+        var r, i, o, a = !1 !== e.jsonp && (Vt.test(e.url) ? "url" : "string" == typeof e.data && 0 === (e.contentType || "").indexOf("application/x-www-a7laform-urlencoded") && Vt.test(e.data) && "data");
         if (a || "jsonp" === e.dataTypes[0]) return r = e.jsonpCallback = m(e.jsonpCallback) ? e.jsonpCallback() : e.jsonpCallback, a ? e[a] = e[a].replace(Vt, "$1" + r) : !1 !== e.jsonp && (e.url += (Et.test(e.url) ? "&" : "?") + e.jsonp + "=" + r), e.converters["script json"] = function () {
             return o || S.error(r + " was not called"), o[0]
         }, e.dataTypes[0] = "json", i = C[r], C[r] = function () {
@@ -3090,7 +3090,7 @@
         }, n.always(function () {
             void 0 === i ? S(C).removeProp(r) : C[r] = i, e[r] && (e.jsonpCallback = t.jsonpCallback, Xt.push(r)), o && m(i) && i(o[0]), o = i = void 0
         }), "script"
-    }), y.createHTMLDocument = ((Ut = E.implementation.createHTMLDocument("").body).innerHTML = "<form></form><form></form>", 2 === Ut.childNodes.length), S.parseHTML = function (e, t, n) {
+    }), y.createHTMLDocument = ((Ut = E.implementation.createHTMLDocument("").body).innerHTML = "<a7laform></a7laform><a7laform></a7laform>", 2 === Ut.childNodes.length), S.parseHTML = function (e, t, n) {
         return "string" != typeof e ? [] : ("boolean" == typeof t && (n = t, t = !1), t || (y.createHTMLDocument ? ((r = (t = E.implementation.createHTMLDocument("")).createElement("base")).href = E.location.href, t.head.appendChild(r)) : t = E), o = !n && [], (i = N.exec(e)) ? [t.createElement(i[1])] : (i = xe([e], t, o), o && o.length && S(o).remove(), S.merge([], i.childNodes)));
         var r, i, o
     }, S.fn.load = function (e, t, n) {
@@ -3231,7 +3231,7 @@
         return ("number" === t || "string" === t) && !isNaN(e - parseFloat(e))
     }, S.trim = function (e) {
         return null == e ? "" : (e + "").replace(Gt, "")
-    }, "function" == typeof define && define.amd && define("jquery", [], function () {
+    }, "function" == typeof define && define.amd && define("a7lajQuery", [], function () {
         return S
     });
     var Yt = C.jQuery,
