@@ -2534,7 +2534,10 @@
                 S(this).toggleClass(i.call(this, e, yt(this), t), t)
             }) : this.each(function () {
                 var e, t, n, r;
-                 else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
+                if (a) {
+                    t = 0, n = S(this), r = mt(i);
+                    while (e = r[t++]) n.hasClass(e) ? n.removeClass(e) : n.addClass(e)
+                } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
             })
         },
         hasClass: function (e) {
@@ -3231,8 +3234,9 @@
     }, "function" == typeof define && define.amd && define("jquery", [], function () {
         return S
     });
-    var Yt = C.jQuery;
+    var Yt = C.jQuery,
+        Qt = C.$;
     return S.noConflict = function (e) {
-        return e && C.jQuery === S && (C.jQuery = Yt), S
+        return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
     }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
 });
