@@ -361,7 +361,7 @@
         }
         
         function ye(e) {
-            return e && "undefisaaned" != typeof e.getElementsByTagName && e
+            return e && "undefined" != typeof e.getElementsByTagName && e
         }
         for (e in d = se.support = {}, i = se.isXML = function (e) {
                 var t = e.namespaceURI,
@@ -370,6 +370,7 @@
             }, T = se.setDocument = function (e) {
                 var t, n, r = e ? e.ownerDocument || e : p;
                 return r != C && 9 === r.nodeType && r.documentElement && (a = (C = r).documentElement, E = !i(C), p != C && (n = C.defaultView) && n.top !== n && (n.addEventListener ? n.addEventListener("unload", oe, !1) : n.attachEvent && n.attachEvent("onunload", oe)), d.scope = ce(function (e) {
+                    return a.appendChild(e).appendChild(C.createElement("div")), "undefined" != typeof e.querySelectorAll && !e.querySelectorAll(":scope fieldset div").length
                 }), d.attributes = ce(function (e) {
                     return e.className = "i", !e.getAttribute("className")
                 }), d.getElementsByTagName = ce(function (e) {
@@ -382,25 +383,29 @@
                         return e.getAttribute("id") === t
                     }
                 }, b.find.ID = function (e, t) {
-                    if ("undefisaaned" != typeof t.getElementById && E) {
-                        
+                    if ("undefined" != typeof t.getElementById && E) {
+                        var n = t.getElementById(e);
+                        return n ? [n] : []
                     }
                 }) : (b.filter.ID = function (e) {
                     var n = e.replace(te, ne);
                     return function (e) {
-                        var t = "undefisaaned" != typeof e.getAttributeNode && e.getAttributeNode("id");
+                        var t = "undefined" != typeof e.getAttributeNode && e.getAttributeNode("id");
                         return t && t.value === n
                     }
                 }, b.find.ID = function (e, t) {
-                    if ("undefisaaned" != typeof t.getElementById && E) {
+                    if ("undefined" != typeof t.getElementById && E) {
                         var n, r, i, o = t.getElementById(e);
                         if (o) {
-                           
+                            if ((n = o.getAttributeNode("id")) && n.value === e) return [o];
+                            i = t.getElementsByName(e), r = 0;
+                            while (o = i[r++])
+                                if ((n = o.getAttributeNode("id")) && n.value === e) return [o]
                         }
                         return []
                     }
                 }), b.find.TAG = d.getElementsByTagName ? function (e, t) {
-
+                    return "undefined" != typeof t.getElementsByTagName ? t.getElementsByTagName(e) : d.qsa ? t.querySelectorAll(e) : void 0
                 } : function (e, t) {
                     var n, r = [],
                         i = 0,
@@ -411,6 +416,7 @@
                     }
                     return o
                 }, b.find.CLASS = d.getElementsByClassName && function (e, t) {
+                    if ("undefined" != typeof t.getElementsByClassName && E) return t.getElementsByClassName(e)
                 }, s = [], v = [], (d.qsa = K.test(C.querySelectorAll)) && (ce(function (e) {
                     var t;
                     a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = C.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
@@ -537,7 +543,7 @@
                     CLASS: function (e) {
                         var t = m[e + " "];
                         return t || (t = new RegExp("(^|" + M + ")" + e + "(" + M + "|$)")) && m(e, function (e) {
-                            return t.test("string" == typeof e.className && e.className || "undefisaaned" != typeof e.getAttribute && e.getAttribute("class") || "")
+                            return t.test("string" == typeof e.className && e.className || "undefined" != typeof e.getAttribute && e.getAttribute("class") || "")
                         })
                     },
                     ATTR: function (n, r, i) {
@@ -1485,7 +1491,7 @@
     
     function ve(e, t) {
         var n;
-        return n = "undefisaaned" != typeof e.getElementsByTagName ? e.getElementsByTagName(t || "*") : "undefisaaned" != typeof e.querySelectorAll ? e.querySelectorAll(t || "*") : [], void 0 === t || t && A(e, t) ? S.merge([e], n) : n
+        return n = "undefined" != typeof e.getElementsByTagName ? e.getElementsByTagName(t || "*") : "undefined" != typeof e.querySelectorAll ? e.querySelectorAll(t || "*") : [], void 0 === t || t && A(e, t) ? S.merge([e], n) : n
     }
     
     function ye(e, t) {
@@ -2412,6 +2418,7 @@
     }), S.extend({
         attr: function (e, t, n) {
             var r, i, o = e.nodeType;
+            if (3 !== o && 8 !== o && 2 !== o) return "undefined" == typeof e.getAttribute ? S.prop(e, t, n) : (1 === o && S.isXMLDoc(e) || (i = S.attrHooks[t.toLowerCase()] || (S.expr.match.bool.test(t) ? pt : void 0)), void 0 !== n ? null === n ? void S.removeAttr(e, t) : i && "set" in i && void 0 !== (r = i.set(e, n, t)) ? r : (e.setAttribute(t, n + ""), n) : i && "get" in i && null !== (r = i.get(e, t)) ? r : null == (r = S.find.attr(e, t)) ? void 0 : r)
         },
         attrHooks: {
             type: {
@@ -3231,5 +3238,5 @@
         Qt = C.$;
     return S.noConflict = function (e) {
         return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
-    }, "" == typeof e && (C.jQuery = C.$ = S), S
+    }, "undefined", 
 });
