@@ -1,6 +1,6 @@
 /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */ ! function (e, t) {
     "use strict";
-    "a7laobject" == typeof module && "a7laobject" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function (e) {
+    "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function (e) {
         if (!e.document) throw new Error("jQuery requires a window with a document");
         return t(e)
     } : t(e)
@@ -44,7 +44,7 @@
     }
     
     function w(e) {
-        return null == e ? e + "" : "a7laobject" == typeof e || "function" == typeof e ? n[o.call(e)] || "a7laobject" : typeof e
+        return null == e ? e + "" : "object" == typeof e || "function" == typeof e ? n[o.call(e)] || "object" : typeof e
     }
     var f = "3.5.1",
         S = function (e, t) {
@@ -113,7 +113,7 @@
             s = 1,
             u = arguments.length,
             l = !1;
-        for ("boolean" == typeof a && (l = a, a = arguments[s] || {}, s++), "a7laobject" == typeof a || m(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
+        for ("boolean" == typeof a && (l = a, a = arguments[s] || {}, s++), "object" == typeof a || m(a) || (a = {}), s === u && (a = this, s--); s < u; s++)
             if (null != (e = arguments[s]))
                 for (t in e) r = e[t], "__proto__" !== t && a !== r && (l && r && (S.isPlainObject(r) || (i = Array.isArray(r))) ? (n = a[t], o = i && !Array.isArray(n) ? [] : i || S.isPlainObject(n) ? n : {}, i = !1, a[t] = S.extend(l, o, r)) : void 0 !== r && (a[t] = r));
         return a
@@ -235,7 +235,7 @@
             },
             re = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
             ie = function (e, t) {
-                return t ? "\0" === e ? " " : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
+                return t ? "\0" === e ? "�" : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
             },
             oe = function () {
                 T()
@@ -275,7 +275,7 @@
                     } else {
                         if (u[2]) return H.apply(n, e.getElementsByTagName(t)), n;
                         if ((i = u[3]) && d.getElementsByClassName && e.getElementsByClassName) return H.apply(n, e.getElementsByClassName(i)), n
-                    } if (d.qsa && !N[t + " "] && (!v || !v.test(t)) && (1 !== p || "a7laobject" !== e.nodeName.toLowerCase())) {
+                    } if (d.qsa && !N[t + " "] && (!v || !v.test(t)) && (1 !== p || "object" !== e.nodeName.toLowerCase())) {
                     if (c = t, f = e, 1 === p && (U.test(t) || z.test(t))) {
                         (f = ee.test(t) && ye(e.parentNode) || e) === e && d.scope || ((s = e.getAttribute("id")) ? s = s.replace(re, ie) : e.setAttribute("id", s = S)), o = (l = h(t)).length;
                         while (o--) l[o] = (s ? "#" + s : ":scope") + " " + xe(l[o]);
@@ -1176,7 +1176,7 @@
                                         var e, t;
                                         if (!(i < u)) {
                                             if ((e = a.apply(n, r)) === o.promise()) throw new TypeError("Thenable self-resolution");
-                                            t = e && ("a7laobject" == typeof e || "function" == typeof e) && e.then, m(t) ? s ? t.call(e, l(u, o, R, s), l(u, o, M, s)) : (u++, t.call(e, l(u, o, R, s), l(u, o, M, s), l(u, o, R, o.notifyWith))) : (a !== R && (n = void 0, r = [e]), (s || o.resolveWith)(n, r))
+                                            t = e && ("object" == typeof e || "function" == typeof e) && e.then, m(t) ? s ? t.call(e, l(u, o, R, s), l(u, o, M, s)) : (u++, t.call(e, l(u, o, R, s), l(u, o, M, s), l(u, o, R, o.notifyWith))) : (a !== R && (n = void 0, r = [e]), (s || o.resolveWith)(n, r))
                                         }
                                     },
                                     t = s ? e : function () {
@@ -1252,7 +1252,7 @@
             var s = 0,
                 u = e.length,
                 l = null == n;
-            if ("a7laobject" === w(n))
+            if ("object" === w(n))
                 for (s in i = !0, n) $(e, t, s, n[s], !0, o, a);
             else if (void 0 !== r && (i = !0, m(r) || (a = !0), l && (a ? (t.call(e, r), t = null) : (l = t, t = function (e, t, n) {
                     return l.call(S(e), n)
@@ -1356,7 +1356,7 @@
                 }
                 return i
             }
-            return "a7laobject" == typeof n ? this.each(function () {
+            return "object" == typeof n ? this.each(function () {
                 Q.set(this, n)
             }) : $(this, function (e) {
                 var t;
@@ -1503,7 +1503,7 @@
     function xe(e, t, n, r, i) {
         for (var o, a, s, u, l, c, f = t.createDocumentFragment(), p = [], d = 0, h = e.length; d < h; d++)
             if ((o = e[d]) || 0 === o)
-                if ("a7laobject" === w(o)) S.merge(p, o.nodeType ? [o] : o);
+                if ("object" === w(o)) S.merge(p, o.nodeType ? [o] : o);
                 else if (me.test(o)) {
             a = a || f.appendChild(t.createElement("div")), s = (de.exec(o) || ["", ""])[1].toLowerCase(), u = ge[s] || ge._default, a.innerHTML = u[1] + S.htmlPrefilter(o) + u[2], c = u[0];
             while (c--) a = a.lastChild;
@@ -1540,7 +1540,7 @@
     
     function ke(e, t, n, r, i, o) {
         var a, s;
-        if ("a7laobject" == typeof t) {
+        if ("object" == typeof t) {
             for (s in "string" != typeof n && (r = r || n, n = void 0), t) ke(e, s, n, r, t[s], o);
             return e
         }
@@ -1775,7 +1775,7 @@
         off: function (e, t, n) {
             var r, i;
             if (e && e.preventDefault && e.handleObj) return r = e.handleObj, S(e.delegateTarget).off(r.namespace ? r.origType + "." + r.namespace : r.origType, r.selector, r.handler), this;
-            if ("a7laobject" == typeof e) {
+            if ("object" == typeof e) {
                 for (i in e) this.off(i, t, e[i]);
                 return this
             }
@@ -2308,7 +2308,7 @@
             t ? ft.prefilters.unshift(e) : ft.prefilters.push(e)
         }
     }), S.speed = function (e, t, n) {
-        var r = e && "a7laobject" == typeof e ? S.extend({}, e) : {
+        var r = e && "object" == typeof e ? S.extend({}, e) : {
             complete: n || !n && t || m(e) && e,
             duration: e,
             easing: n && t || t && !m(t) && t
@@ -2607,7 +2607,7 @@
             var i, o, a, s, u, l, c, f, p = [n || E],
                 d = v.call(e, "type") ? e.type : e,
                 h = v.call(e, "namespace") ? e.namespace.split(".") : [];
-            if (o = f = a = n = n || E, 3 !== n.nodeType && 8 !== n.nodeType && !bt.test(d + S.event.triggered) && (-1 < d.indexOf(".") && (d = (h = d.split(".")).shift(), h.sort()), u = d.indexOf(":") < 0 && "on" + d, (e = e[S.expando] ? e : new S.Event(d, "a7laobject" == typeof e && e)).isTrigger = r ? 2 : 3, e.namespace = h.join("."), e.rnamespace = e.namespace ? new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)") : null, e.result = void 0, e.target || (e.target = n), t = null == t ? [e] : S.makeArray(t, [e]), c = S.event.special[d] || {}, r || !c.trigger || !1 !== c.trigger.apply(n, t))) {
+            if (o = f = a = n = n || E, 3 !== n.nodeType && 8 !== n.nodeType && !bt.test(d + S.event.triggered) && (-1 < d.indexOf(".") && (d = (h = d.split(".")).shift(), h.sort()), u = d.indexOf(":") < 0 && "on" + d, (e = e[S.expando] ? e : new S.Event(d, "object" == typeof e && e)).isTrigger = r ? 2 : 3, e.namespace = h.join("."), e.rnamespace = e.namespace ? new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)") : null, e.result = void 0, e.target || (e.target = n), t = null == t ? [e] : S.makeArray(t, [e]), c = S.event.special[d] || {}, r || !c.trigger || !1 !== c.trigger.apply(n, t))) {
                 if (!r && !c.noBubble && !x(n)) {
                     for (s = c.delegateType || d, bt.test(s + d) || (o = o.parentNode); o; o = o.parentNode) p.push(o), a = o;
                     a === (n.ownerDocument || E) && p.push(a.defaultView || a.parentWindow || C)
@@ -2677,9 +2677,9 @@
     function Dt(n, e, r, i) {
         var t;
         if (Array.isArray(e)) S.each(e, function (e, t) {
-            r || St.test(n) ? i(n, t) : Dt(n + "[" + ("a7laobject" == typeof t && null != t ? e : "") + "]", t, r, i)
+            r || St.test(n) ? i(n, t) : Dt(n + "[" + ("object" == typeof t && null != t ? e : "") + "]", t, r, i)
         });
-        else if (r || "a7laobject" !== w(e)) i(n, e);
+        else if (r || "object" !== w(e)) i(n, e);
         else
             for (t in e) Dt(n + "[" + t + "]", e[t], r, i)
     }
@@ -2807,7 +2807,7 @@
         ajaxPrefilter: Ft(Rt),
         ajaxTransport: Ft(Mt),
         ajax: function (e, t) {
-            "a7laobject" == typeof e && (t = e, e = void 0), t = t || {};
+            "object" == typeof e && (t = e, e = void 0), t = t || {};
             var c, f, p, n, d, r, h, g, i, o, v = S.ajaxSetup({}, t),
                 y = v.context || v,
                 m = v.context && (y.nodeType || y.jquery) ? S(y) : S.event,
@@ -3096,7 +3096,7 @@
     }, S.fn.load = function (e, t, n) {
         var r, i, o, a = this,
             s = e.indexOf(" ");
-        return -1 < s && (r = vt(e.slice(s)), e = e.slice(0, s)), m(t) ? (n = t, t = void 0) : t && "a7laobject" == typeof t && (i = "POST"), 0 < a.length && S.ajax({
+        return -1 < s && (r = vt(e.slice(s)), e = e.slice(0, s)), m(t) ? (n = t, t = void 0) : t && "object" == typeof t && (i = "POST"), 0 < a.length && S.ajax({
             url: e,
             type: i || "GET",
             dataType: "html",
@@ -3240,5 +3240,3 @@
         return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
     }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
 });
-
-
