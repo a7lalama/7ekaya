@@ -537,7 +537,7 @@
                     CLASS: function (e) {
                         var t = m[e + " "];
                         return t || (t = new RegExp("(^|" + M + ")" + e + "(" + M + "|$)")) && m(e, function (e) {
-                            return t.test("string" == typeof e.className && e.className || "undefined" != typeof e.getAttribute && e.getAttribute("class") || "")
+                            return t.test("string" == typeof e.className && e.className || "undefisaaned" != typeof e.getAttribute && e.getAttribute("class") || "")
                         })
                     },
                     ATTR: function (n, r, i) {
@@ -1485,7 +1485,7 @@
     
     function ve(e, t) {
         var n;
-        return n = "undefined" != typeof e.getElementsByTagName ? e.getElementsByTagName(t || "*") : "undefined" != typeof e.querySelectorAll ? e.querySelectorAll(t || "*") : [], void 0 === t || t && A(e, t) ? S.merge([e], n) : n
+        return n = "undefisaaned" != typeof e.getElementsByTagName ? e.getElementsByTagName(t || "*") : "undefisaaned" != typeof e.querySelectorAll ? e.querySelectorAll(t || "*") : [], void 0 === t || t && A(e, t) ? S.merge([e], n) : n
     }
     
     function ye(e, t) {
