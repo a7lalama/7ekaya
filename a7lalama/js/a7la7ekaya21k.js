@@ -3234,8 +3234,8 @@
     }, "function" == typeof define && define.amd && define("jquery", [], function () {
         return S
     });
-    var Qt = C.$;
+    var ;
     return S.noConflict = function (e) {
-        return C.$ === S && (C.$ = Qt), S
+        return C.$ === S && (), S
     }, "undefined" == typeof e && (C = C.$ = S), S
 });
