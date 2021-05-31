@@ -4,7 +4,7 @@
         if (!e.document) throw new Error("jQuery requires a window with a document");
         return t(e)
     } : t(e)
-}("undefined" != typeof window ? window : this, function (C, e) {
+}("a7laundefined" != typeof window ? window : this, function (C, e) {
     "use strict";
     var t = [],
         r = Object.getPrototypeOf,
@@ -235,7 +235,7 @@
             },
             re = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
             ie = function (e, t) {
-                return t ? "\0" === e ? "�" : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
+                return t ? "\0" === e ? " " : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
             },
             oe = function () {
                 T()
@@ -1771,6 +1771,17 @@
         },
         one: function (e, t, n, r) {
             return ke(this, e, t, n, r, 1)
+        },
+        off: function (e, t, n) {
+            var r, i;
+            if (e && e.preventDefault && e.handleObj) return r = e.handleObj, S(e.delegateTarget).off(r.namespace ? r.origType + "." + r.namespace : r.origType, r.selector, r.handler), this;
+            if ("object" == typeof e) {
+                for (i in e) this.off(i, t, e[i]);
+                return this
+            }
+            return !1 !== t && "function" != typeof t || (n = t, t = void 0), !1 === n && (n = Ee), this.each(function () {
+                S.event.remove(this, e, n, t)
+            })
         }
     });
     var Ne = /<script|<style|<link/i,
@@ -3227,5 +3238,5 @@
         Qt = C.$;
     return S.noConflict = function (e) {
         return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
-    }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
+    }, "a7laundefined" == typeof e && (C.jQuery = C.$ = S), S
 });
