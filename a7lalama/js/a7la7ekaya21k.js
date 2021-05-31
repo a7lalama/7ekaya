@@ -2502,13 +2502,6 @@
             if (m(t)) return this.each(function (e) {
                 S(this).addClass(t.call(this, e, yt(this)))
             });
-            if ((e = mt(t)).length)
-                while (n = this[u++])
-                    if (i = yt(n), r = 1 === n.nodeType && " " + vt(i) + " ") {
-                        a = 0;
-                        while (o = e[a++]) r.indexOf(" " + o + " ") < 0 && (r += o + " ");
-                        i !== (s = vt(r)) && n.setAttribute("class", s)
-                    } return this
         },
        
         hasClass: function (e) {
