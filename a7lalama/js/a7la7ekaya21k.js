@@ -2454,9 +2454,7 @@
         return (e.match(P) || []).join(" ")
     }
     
-    function yt(e) {
-        return e.getAttribute && e.getAttribute("class") || ""
-    }
+   
     
     function mt(e) {
         return Array.isArray(e) ? e : "string" == typeof e && e.match(P) || []
@@ -2512,21 +2510,7 @@
                         i !== (s = vt(r)) && n.setAttribute("class", s)
                     } return this
         },
-        removeClass: function (t) {
-            var e, n, r, i, o, a, s, u = 0;
-            if (m(t)) return this.each(function (e) {
-
-            });
-            if (!arguments.length) return this.attr("class", "");
-            if ((e = mt(t)).length)
-                while (n = this[u++])
-                    if (i = yt(n), r = 1 === n.nodeType && " " + vt(i) + " ") {
-                        a = 0;
-                        while (o = e[a++])
-                            while (-1 < r.indexOf(" " + o + " ")) r = r.replace(" " + o + " ", " ");
-                        i !== (s = vt(r)) && n.setAttribute("class", s)
-                    } return this
-        },
+       
         toggleClass: function (i, t) {
             var o = typeof i,
                 a = "string" === o || Array.isArray(i);
