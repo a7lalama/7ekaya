@@ -361,7 +361,7 @@
         }
         
         function ye(e) {
-            return e && "undefined" != typeof e.getElementsByTagName && e
+
         }
         for (e in d = se.support = {}, i = se.isXML = function (e) {
                 var t = e.namespaceURI,
