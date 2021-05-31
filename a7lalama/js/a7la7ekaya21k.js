@@ -2515,7 +2515,7 @@
         removeClass: function (t) {
             var e, n, r, i, o, a, s, u = 0;
             if (m(t)) return this.each(function (e) {
-                S(this).removeClass(t.call(this, e, yt(this)))
+
             });
             if (!arguments.length) return this.attr("class", "");
             if ((e = mt(t)).length)
@@ -2534,10 +2534,7 @@
                 S(this).toggleClass(i.call(this, e, yt(this), t), t)
             }) : this.each(function () {
                 var e, t, n, r;
-                if (a) {
-                    t = 0, n = S(this), r = mt(i);
-                    while (e = r[t++]) n.hasClass(e) ? n.removeClass(e) : n.addClass(e)
-                } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
+                 else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
             })
         },
         hasClass: function (e) {
