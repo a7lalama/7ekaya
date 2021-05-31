@@ -1,6 +1,6 @@
 /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */ ! function (e, t) {
-    "use strict";
-    "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function (e) {
+    "usaae straaict";
+    "objaaect" == typeof module && "objaaect" == typeof module.exports ? module.exports = e.doc111ument ? t(e, !0) : function (e) {
         return t(e)
     } : t(e)
 }("undefined" != typeof window ? window : this, function (C, e) {
