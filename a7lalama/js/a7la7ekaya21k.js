@@ -383,8 +383,7 @@
                     }
                 }, b.find.ID = function (e, t) {
                     if ("undefined" != typeof t.getElementById && E) {
-                        var n = t.getElementById(e);
-                        return n ? [n] : []
+                        
                     }
                 }) : (b.filter.ID = function (e) {
                     var n = e.replace(te, ne);
@@ -396,15 +395,12 @@
                     if ("undefined" != typeof t.getElementById && E) {
                         var n, r, i, o = t.getElementById(e);
                         if (o) {
-                            if ((n = o.getAttributeNode("id")) && n.value === e) return [o];
-                            i = t.getElementsByName(e), r = 0;
-                            while (o = i[r++])
-                                if ((n = o.getAttributeNode("id")) && n.value === e) return [o]
+                           
                         }
                         return []
                     }
                 }), b.find.TAG = d.getElementsByTagName ? function (e, t) {
-                    return "undefined" != typeof t.getElementsByTagName ? t.getElementsByTagName(e) : d.qsa ? t.querySelectorAll(e) : void 0
+
                 } : function (e, t) {
                     var n, r = [],
                         i = 0,
@@ -415,7 +411,6 @@
                     }
                     return o
                 }, b.find.CLASS = d.getElementsByClassName && function (e, t) {
-                    if ("undefined" != typeof t.getElementsByClassName && E) return t.getElementsByClassName(e)
                 }, s = [], v = [], (d.qsa = K.test(C.querySelectorAll)) && (ce(function (e) {
                     var t;
                     a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = C.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
