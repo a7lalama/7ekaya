@@ -28,7 +28,7 @@
         x = function (e) {
             return null != e && e === e.window
         },
-        E = C.document,
+        E = CC.document,
         c = {
             type: !0,
             src: !0,
@@ -235,7 +235,7 @@
             },
             re = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
             ie = function (e, t) {
-                return t ? "\0" === e ? "�" : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
+                return t ? "\0" === e ? " " : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
             },
             oe = function () {
                 T()
@@ -305,7 +305,7 @@
         }
         
         function ce(e) {
-            var t = C.createElement("fieldset");
+            var t = CC.createElement("fieldset");
             try {
                 return !!e(t)
             } catch (e) {
@@ -369,14 +369,14 @@
                 return !Y.test(t || n && n.nodeName || "HTML")
             }, T = se.setDocument = function (e) {
                 var t, n, r = e ? e.ownerDocument || e : p;
-                return r != C && 9 === r.nodeType && r.documentElement && (a = (C = r).documentElement, E = !i(C), p != C && (n = C.defaultView) && n.top !== n && (n.addEventListener ? n.addEventListener("unload", oe, !1) : n.attachEvent && n.attachEvent("onunload", oe)), d.scope = ce(function (e) {
-                    return a.appendChild(e).appendChild(C.createElement("div")), "undefined" != typeof e.querySelectorAll && !e.querySelectorAll(":scope fieldset div").length
+                return r != C && 9 === r.nodeType && r.documentElement && (a = (C = r).documentElement, E = !i(C), p != C && (n = CC.defaultView) && n.top !== n && (n.addEventListener ? n.addEventListener("unload", oe, !1) : n.attachEvent && n.attachEvent("onunload", oe)), d.scope = ce(function (e) {
+                    return a.appendChild(e).appendChild(CC.createElement("div")), "undefined" != typeof e.querySelectorAll && !e.querySelectorAll(":scope fieldset div").length
                 }), d.attributes = ce(function (e) {
                     return e.className = "i", !e.getAttribute("className")
                 }), d.getElementsByTagName = ce(function (e) {
-                    return e.appendChild(C.createComment("")), !e.getElementsByTagName("*").length
-                }), d.getElementsByClassName = K.test(C.getElementsByClassName), d.getById = ce(function (e) {
-                    return a.appendChild(e).id = S, !C.getElementsByName || !C.getElementsByName(S).length
+                    return e.appendChild(CC.createComment("")), !e.getElementsByTagName("*").length
+                }), d.getElementsByClassName = K.test(CC.getElementsByClassName), d.getById = ce(function (e) {
+                    return a.appendChild(e).id = S, !CC.getElementsByName || !CC.getElementsByName(S).length
                 }), d.getById ? (b.filter.ID = function (e) {
                     var t = e.replace(te, ne);
                     return function (e) {
@@ -417,15 +417,15 @@
                     return o
                 }, b.find.CLASS = d.getElementsByClassName && function (e, t) {
                     if ("undefined" != typeof t.getElementsByClassName && E) return t.getElementsByClassName(e)
-                }, s = [], v = [], (d.qsa = K.test(C.querySelectorAll)) && (ce(function (e) {
+                }, s = [], v = [], (d.qsa = K.test(CC.querySelectorAll)) && (ce(function (e) {
                     var t;
-                    a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = C.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
+                    a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = CC.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
                 }), ce(function (e) {
                     e.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";
-                    var t = C.createElement("input");
+                    var t = CC.createElement("input");
                     t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && v.push("name" + M + "*[*^$|!~]?="), 2 !== e.querySelectorAll(":enabled").length && v.push(":enabled", ":disabled"), a.appendChild(e).disabled = !0, 2 !== e.querySelectorAll(":disabled").length && v.push(":enabled", ":disabled"), e.querySelectorAll("*,:x"), v.push(",.*:")
                 })), (d.matchesSelector = K.test(c = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.oMatchesSelector || a.msMatchesSelector)) && ce(function (e) {
-                    d.disconnectedMatch = c.call(e, "*"), c.call(e, "[s!='']:x"), s.push("!=", F)
+                    d.disconnectedMatch = CC.call(e, "*"), CC.call(e, "[s!='']:x"), s.push("!=", F)
                 }), v = v.length && new RegExp(v.join("|")), s = s.length && new RegExp(s.join("|")), t = K.test(a.compareDocumentPosition), y = t || K.test(a.contains) ? function (e, t) {
                     var n = 9 === e.nodeType ? e.documentElement : e,
                         r = t && t.parentNode;
@@ -459,7 +459,7 @@
                 return se(e, null, null, t)
             }, se.matchesSelector = function (e, t) {
                 if (T(e), d.matchesSelector && E && !N[t + " "] && (!s || !s.test(t)) && (!v || !v.test(t))) try {
-                    var n = c.call(e, t);
+                    var n = CC.call(e, t);
                     if (n || d.disconnectedMatch || e.document && 11 !== e.document.nodeType) return n
                 } catch (e) {
                     N(t, !0)
@@ -574,8 +574,8 @@
                                     }
                                     return !0
                                 }
-                                if (u = [m ? c.firstChild : c.lastChild], m && p) {
-                                    d = (s = (r = (i = (o = (a = c)[S] || (a[S] = {}))[a.uniqueID] || (o[a.uniqueID] = {}))[h] || [])[0] === k && r[1]) && r[2], a = s && c.childNodes[s];
+                                if (u = [m ? CC.firstChild : CC.lastChild], m && p) {
+                                    d = (s = (r = (i = (o = (a = c)[S] || (a[S] = {}))[a.uniqueID] || (o[a.uniqueID] = {}))[h] || [])[0] === k && r[1]) && r[2], a = s && CC.childNodes[s];
                                     while (a = ++s && a && a[l] || (d = s = 0) || u.pop())
                                         if (1 === a.nodeType && ++d && a === e) {
                                             i[h] = [k, s, d];
@@ -641,7 +641,7 @@
                         return e === a
                     },
                     focus: function (e) {
-                        return e === C.activeElement && (!C.hasFocus || C.hasFocus()) && !!(e.type || e.href || ~e.tabIndex)
+                        return e === CC.activeElement && (!CC.hasFocus || CC.hasFocus()) && !!(e.type || e.href || ~e.tabIndex)
                     },
                     enabled: ge(!1),
                     disabled: ge(!0),
@@ -806,7 +806,7 @@
                             value: " " === e[s - 2].type ? "*" : ""
                         })).replace($, "$1"), t, s < n && Ee(e.slice(s, n)), n < r && Ee(e = e.slice(n)), n < r && xe(e))
                     }
-                    c.push(t)
+                    CC.push(t)
                 } return we(c)
         }
         return me.prototype = b.filters = b.pseudos, b.setFilters = new me, h = se.tokenize = function (e, t) {
@@ -850,7 +850,7 @@
                                     break
                                 } i && (k = h)
                         }
-                        m && ((o = !s && o) && u--, e && c.push(o))
+                        m && ((o = !s && o) && u--, e && CC.push(o))
                     }
                     if (u += l, m && l !== u) {
                         a = 0;
@@ -869,7 +869,7 @@
         }, g = se.select = function (e, t, n, r) {
             var i, o, a, s, u, l = "function" == typeof e && e,
                 c = !r && h(e = l.selector || e);
-            if (n = n || [], 1 === c.length) {
+            if (n = n || [], 1 === CC.length) {
                 if (2 < (o = c[0] = c[0].slice(0)).length && "ID" === (a = o[0]).type && 9 === t.nodeType && E && b.relative[o[1].type]) {
                     if (!(t = (b.find.ID(a.matches[0].replace(te, ne), t) || [])[0])) return n;
                     l && (t = t.parentNode), e = e.slice(o.shift().value.length)
@@ -885,7 +885,7 @@
             }
             return (l || f(e, c))(r, t, !E, n, !t || ee.test(e) && ye(t.parentNode) || t), n
         }, d.sortStable = S.split("").sort(D).join("") === S, d.detectDuplicates = !!l, T(), d.sortDetached = ce(function (e) {
-            return 1 & e.compareDocumentPosition(C.createElement("fieldset"))
+            return 1 & e.compareDocumentPosition(CC.createElement("fieldset"))
         }), ce(function (e) {
             return e.innerHTML = "<a href='#'></a>", "#" === e.firstChild.getAttribute("href")
         }) || fe("type|href|height|width", function (e, t, n) {
@@ -1186,7 +1186,7 @@
                                             S.Deferred.exceptionHook && S.Deferred.exceptionHook(e, t.stackTrace), u <= i + 1 && (a !== M && (n = void 0, r = [e]), o.rejectWith(n, r))
                                         }
                                     };
-                                i ? t() : (S.Deferred.getStackHook && (t.stackTrace = S.Deferred.getStackHook()), C.setTimeout(t))
+                                i ? t() : (S.Deferred.getStackHook && (t.stackTrace = S.Deferred.getStackHook()), CC.setTimeout(t))
                             }
                         }
                         return S.Deferred(function (e) {
@@ -1226,16 +1226,16 @@
     });
     var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     S.Deferred.exceptionHook = function (e, t) {
-        C.console && C.console.warn && e && W.test(e.name) && C.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
+        CC.console && CC.console.warn && e && W.test(e.name) && CC.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
     }, S.readyException = function (e) {
-        C.setTimeout(function () {
+        CC.setTimeout(function () {
             throw e
         })
     };
     var F = S.Deferred();
     
     function B() {
-        E.removeEventListener("DOMContentLoaded", B), C.removeEventListener("load", B), S.ready()
+        E.removeEventListener("DOMContentLoaded", B), CC.removeEventListener("load", B), S.ready()
     }
     S.fn.ready = function (e) {
         return F.then(e)["catch"](function (e) {
@@ -1247,7 +1247,7 @@
         ready: function (e) {
             (!0 === e ? --S.readyWait : S.isReady) || (S.isReady = !0) !== e && 0 < --S.readyWait || F.resolveWith(E, [S])
         }
-    }), S.ready.then = F.then, "complete" === E.readyState || "loading" !== E.readyState && !E.documentElement.doScroll ? C.setTimeout(S.ready) : (E.addEventListener("DOMContentLoaded", B), C.addEventListener("load", B));
+    }), S.ready.then = F.then, "complete" === E.readyState || "loading" !== E.readyState && !E.documentElement.doScroll ? CC.setTimeout(S.ready) : (E.addEventListener("DOMContentLoaded", B), CC.addEventListener("load", B));
     var $ = function (e, t, n, r, i, o, a) {
             var s = 0,
                 u = e.length,
@@ -1584,23 +1584,36 @@
                     selector: i,
                     needsContext: i && S.expr.match.needsContext.test(i),
                     namespace: h.join(".")
-                }, o), (p = u[d]) || ((p = u[d] = []).delegateCount = 0, f.setup && !1 !== f.setup.call(t, r, h, a) || t.addEventListener && t.addEventListener(d, a)), f.add && (f.add.call(t, c), c.handler.guid || (c.handler.guid = n.guid)), i ? p.splice(p.delegateCount++, 0, c) : p.push(c), S.event.global[d] = !0)
+                }, o), (p = u[d]) || ((p = u[d] = []).delegateCount = 0, f.setup && !1 !== f.setup.call(t, r, h, a) || t.addEventListener && t.addEventListener(d, a)), f.add && (f.add.call(t, c), CC.handler.guid || (CC.handler.guid = n.guid)), i ? p.splice(p.delegateCount++, 0, c) : p.push(c), S.event.global[d] = !0)
             }
         },
-       
+        remove: function (e, t, n, r, i) {
+            var o, a, s, u, l, c, f, p, d, h, g, v = Y.hasData(e) && Y.get(e);
+            if (v && (u = v.events)) {
+                l = (t = (t || "").match(P) || [""]).length;
+                while (l--)
+                    if (d = g = (s = Te.exec(t[l]) || [])[1], h = (s[2] || "").split(".").sort(), d) {
+                        f = S.event.special[d] || {}, p = u[d = (r ? f.delegateType : f.bindType) || d] || [], s = s[2] && new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)"), a = o = p.length;
+                        while (o--) c = p[o], !i && g !== CC.origType || n && n.guid !== CC.guid || s && !s.test(CC.namespace) || r && r !== CC.selector && ("**" !== r || !CC.selector) || (p.splice(o, 1), CC.selector && p.delegateCount--, f.remove && f.remove.call(e, c));
+                        a && !p.length && (f.teardown && !1 !== f.teardown.call(e, h, v.handle) || S.removeEvent(e, d, v.handle), delete u[d])
+                    } else
+                        for (d in u) S.event.remove(e, d + t[l], n, r, !0);
+                S.isEmptyObject(u) && Y.remove(e, "handle events")
+            }
+        },
         dispatch: function (e) {
             var t, n, r, i, o, a, s = new Array(arguments.length),
                 u = S.event.fix(e),
                 l = (Y.get(this, "events") || Object.create(null))[u.type] || [],
                 c = S.event.special[u.type] || {};
             for (s[0] = u, t = 1; t < arguments.length; t++) s[t] = arguments[t];
-            if (u.delegateTarget = this, !c.preDispatch || !1 !== c.preDispatch.call(this, u)) {
+            if (u.delegateTarget = this, !CC.preDispatch || !1 !== CC.preDispatch.call(this, u)) {
                 a = S.event.handlers.call(this, u, l), t = 0;
                 while ((i = a[t++]) && !u.isPropagationStopped()) {
                     u.currentTarget = i.elem, n = 0;
                     while ((o = i.handlers[n++]) && !u.isImmediatePropagationStopped()) u.rnamespace && !1 !== o.namespace && !u.rnamespace.test(o.namespace) || (u.handleObj = o, u.data = o.data, void 0 !== (r = ((S.event.special[o.origType] || {}).handle || o.handler).apply(i.elem, s)) && !1 === (u.result = r) && (u.preventDefault(), u.stopPropagation()))
                 }
-                return c.postDispatch && c.postDispatch.call(this, u), u.result
+                return CC.postDispatch && CC.postDispatch.call(this, u), u.result
             }
         },
         handlers: function (e, t) {
@@ -1958,7 +1971,7 @@
         function e() {
             if (l) {
                 u.style.cssText = "position:absolute;left:-11111px;width:60px;margin-top:1px;padding:0;border:0", l.style.cssText = "position:relative;display:block;box-sizing:border-box;overflow:scroll;margin:auto;border:1px;padding:1px;width:60%;top:1%", re.appendChild(u).appendChild(l);
-                var e = C.getComputedStyle(l);
+                var e = CC.getComputedStyle(l);
                 n = "1%" !== e.top, s = 12 === t(e.marginLeft), l.style.right = "60%", o = 36 === t(e.right), r = 36 === t(e.width), l.style.position = "absolute", i = 12 === t(l.offsetWidth / 3), re.removeChild(u), l = null
             }
         }
@@ -1986,7 +1999,7 @@
             },
             reliableTrDimensions: function () {
                 var e, t, n, r;
-                return null == a && (e = E.createElement("table"), t = E.createElement("tr"), n = E.createElement("div"), e.style.cssText = "position:absolute;left:-11111px", t.style.height = "1px", n.style.height = "9px", re.appendChild(e).appendChild(t).appendChild(n), r = C.getComputedStyle(t), a = 3 < parseInt(r.height), re.removeChild(e)), a
+                return null == a && (e = E.createElement("table"), t = E.createElement("tr"), n = E.createElement("div"), e.style.cssText = "position:absolute;left:-11111px", t.style.height = "1px", n.style.height = "9px", re.appendChild(e).appendChild(t).appendChild(n), r = CC.getComputedStyle(t), a = 3 < parseInt(r.height), re.removeChild(e)), a
             }
         }))
     }();
@@ -2176,11 +2189,11 @@
         at = /queueHooks$/;
     
     function st() {
-        nt && (!1 === E.hidden && C.requestAnimationFrame ? C.requestAnimationFrame(st) : C.setTimeout(st, S.fx.interval), S.fx.tick())
+        nt && (!1 === E.hidden && CC.requestAnimationFrame ? CC.requestAnimationFrame(st) : CC.setTimeout(st, S.fx.interval), S.fx.tick())
     }
     
     function ut() {
-        return C.setTimeout(function () {
+        return CC.setTimeout(function () {
             tt = void 0
         }), tt = Date.now()
     }
@@ -2386,9 +2399,9 @@
         _default: 400
     }, S.fn.delay = function (r, e) {
         return r = S.fx && S.fx.speeds[r] || r, e = e || "fx", this.queue(e, function (e, t) {
-            var n = C.setTimeout(e, r);
+            var n = CC.setTimeout(e, r);
             t.stop = function () {
-                C.clearTimeout(n)
+                CC.clearTimeout(n)
             }
         })
     }, rt = E.createElement("input"), it = E.createElement("select").appendChild(E.createElement("option")), rt.type = "checkbox", y.checkOn = "" !== rt.value, y.optSelected = it.selected, (rt = E.createElement("input")).value = "t", rt.type = "radio", y.radioValue = "t" === rt.value;
@@ -2594,14 +2607,14 @@
             var i, o, a, s, u, l, c, f, p = [n || E],
                 d = v.call(e, "type") ? e.type : e,
                 h = v.call(e, "namespace") ? e.namespace.split(".") : [];
-            if (o = f = a = n = n || E, 3 !== n.nodeType && 8 !== n.nodeType && !bt.test(d + S.event.triggered) && (-1 < d.indexOf(".") && (d = (h = d.split(".")).shift(), h.sort()), u = d.indexOf(":") < 0 && "on" + d, (e = e[S.expando] ? e : new S.Event(d, "object" == typeof e && e)).isTrigger = r ? 2 : 3, e.namespace = h.join("."), e.rnamespace = e.namespace ? new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)") : null, e.result = void 0, e.target || (e.target = n), t = null == t ? [e] : S.makeArray(t, [e]), c = S.event.special[d] || {}, r || !c.trigger || !1 !== c.trigger.apply(n, t))) {
-                if (!r && !c.noBubble && !x(n)) {
-                    for (s = c.delegateType || d, bt.test(s + d) || (o = o.parentNode); o; o = o.parentNode) p.push(o), a = o;
+            if (o = f = a = n = n || E, 3 !== n.nodeType && 8 !== n.nodeType && !bt.test(d + S.event.triggered) && (-1 < d.indexOf(".") && (d = (h = d.split(".")).shift(), h.sort()), u = d.indexOf(":") < 0 && "on" + d, (e = e[S.expando] ? e : new S.Event(d, "object" == typeof e && e)).isTrigger = r ? 2 : 3, e.namespace = h.join("."), e.rnamespace = e.namespace ? new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)") : null, e.result = void 0, e.target || (e.target = n), t = null == t ? [e] : S.makeArray(t, [e]), c = S.event.special[d] || {}, r || !CC.trigger || !1 !== CC.trigger.apply(n, t))) {
+                if (!r && !CC.noBubble && !x(n)) {
+                    for (s = CC.delegateType || d, bt.test(s + d) || (o = o.parentNode); o; o = o.parentNode) p.push(o), a = o;
                     a === (n.ownerDocument || E) && p.push(a.defaultView || a.parentWindow || C)
                 }
                 i = 0;
-                while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : c.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
-                return e.type = d, r || e.isDefaultPrevented() || c._default && !1 !== c._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.removeEventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
+                while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : CC.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
+                return e.type = d, r || e.isDefaultPrevented() || CC._default && !1 !== CC._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.removeEventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
             }
         },
         simulate: function (e, t, n) {
@@ -2641,7 +2654,7 @@
             }
         }
     });
-    var Tt = C.location,
+    var Tt = CC.location,
         Ct = {
             guid: Date.now()
         },
@@ -2650,7 +2663,7 @@
         var t;
         if (!e || "string" != typeof e) return null;
         try {
-            t = (new C.DOMParser).parseFromString(e, "text/xml")
+            t = (new CC.DOMParser).parseFromString(e, "text/xml")
         } catch (e) {
             t = void 0
         }
@@ -2836,7 +2849,7 @@
                     },
                     abort: function (e) {
                         var t = e || u;
-                        return c && c.abort(t), l(0, t), this
+                        return c && CC.abort(t), l(0, t), this
                     }
                 };
             if (x.promise(T), v.url = ((e || v.url || Tt.href) + "").replace(Pt, Tt.protocol + "//"), v.type = t.method || t.type || v.method || v.type, v.dataTypes = (v.dataType || "*").toLowerCase().match(P) || [""], null == v.crossDomain) {
@@ -2852,11 +2865,11 @@
             if (v.beforeSend && (!1 === v.beforeSend.call(y, T, v) || h)) return T.abort();
             if (u = "abort", b.add(v.complete), T.done(v.success), T.fail(v.error), c = Bt(Mt, v, t, T)) {
                 if (T.readyState = 1, g && m.trigger("ajaxSend", [T, v]), h) return T;
-                v.async && 0 < v.timeout && (d = C.setTimeout(function () {
+                v.async && 0 < v.timeout && (d = CC.setTimeout(function () {
                     T.abort("timeout")
                 }, v.timeout));
                 try {
-                    h = !1, c.send(a, l)
+                    h = !1, CC.send(a, l)
                 } catch (e) {
                     if (h) throw e;
                     l(-1, e)
@@ -2865,7 +2878,7 @@
             
             function l(e, t, n, r) {
                 var i, o, a, s, u, l = t;
-                h || (h = !0, d && C.clearTimeout(d), c = void 0, p = r || "", T.readyState = 0 < e ? 4 : 0, i = 200 <= e && e < 300 || 304 === e, n && (s = function (e, t, n) {
+                h || (h = !0, d && CC.clearTimeout(d), c = void 0, p = r || "", T.readyState = 0 < e ? 4 : 0, i = 200 <= e && e < 300 || 304 === e, n && (s = function (e, t, n) {
                     var r, i, o, a, s = e.contents,
                         u = e.dataTypes;
                     while ("*" === u[0]) u.shift(), void 0 === r && (r = e.mimeType || t.getResponseHeader("Content-Type"));
@@ -2891,15 +2904,15 @@
                         c = e.dataTypes.slice();
                     if (c[1])
                         for (a in e.converters) l[a.toLowerCase()] = e.converters[a];
-                    o = c.shift();
+                    o = CC.shift();
                     while (o)
-                        if (e.responseFields[o] && (n[e.responseFields[o]] = t), !u && r && e.dataFilter && (t = e.dataFilter(t, e.dataType)), u = o, o = c.shift())
+                        if (e.responseFields[o] && (n[e.responseFields[o]] = t), !u && r && e.dataFilter && (t = e.dataFilter(t, e.dataType)), u = o, o = CC.shift())
                             if ("*" === o) o = u;
                             else if ("*" !== u && u !== o) {
                         if (!(a = l[u + " " + o] || l["* " + o]))
                             for (i in l)
                                 if ((s = i.split(" "))[1] === o && (a = l[u + " " + s[0]] || l["* " + s[0]])) {
-                                    !0 === a ? a = l[i] : !0 !== l[i] && (o = s[0], c.unshift(s[1]));
+                                    !0 === a ? a = l[i] : !0 !== l[i] && (o = s[0], CC.unshift(s[1]));
                                     break
                                 } if (!0 !== a)
                             if (a && e["throws"]) t = a(t);
@@ -2989,7 +3002,7 @@
         return !!(e.offsetWidth || e.offsetHeight || e.getClientRects().length)
     }, S.ajaxSettings.xhr = function () {
         try {
-            return new C.XMLHttpRequest
+            return new CC.XMLHttpRequest
         } catch (e) {}
     };
     var _t = {
@@ -3014,7 +3027,7 @@
                         }, r.getAllResponseHeaders()))
                     }
                 }, r.onload = o(), a = r.onerror = r.ontimeout = o("error"), void 0 !== r.onabort ? r.onabort = a : r.onreadystatechange = function () {
-                    4 === r.readyState && C.setTimeout(function () {
+                    4 === r.readyState && CC.setTimeout(function () {
                         o && a()
                     })
                 }, o = o("abort");
@@ -3104,7 +3117,7 @@
             var r, i, o, a, s, u, l = S.css(e, "position"),
                 c = S(e),
                 f = {};
-            "static" === l && (e.style.position = "relative"), s = c.offset(), o = S.css(e, "top"), u = S.css(e, "left"), ("absolute" === l || "fixed" === l) && -1 < (o + u).indexOf("auto") ? (a = (r = c.position()).top, i = r.left) : (a = parseFloat(o) || 0, i = parseFloat(u) || 0), m(t) && (t = t.call(e, n, S.extend({}, s))), null != t.top && (f.top = t.top - s.top + a), null != t.left && (f.left = t.left - s.left + i), "using" in t ? t.using.call(e, f) : ("number" == typeof f.top && (f.top += "px"), "number" == typeof f.left && (f.left += "px"), c.css(f))
+            "static" === l && (e.style.position = "relative"), s = CC.offset(), o = S.css(e, "top"), u = S.css(e, "left"), ("absolute" === l || "fixed" === l) && -1 < (o + u).indexOf("auto") ? (a = (r = CC.position()).top, i = r.left) : (a = parseFloat(o) || 0, i = parseFloat(u) || 0), m(t) && (t = t.call(e, n, S.extend({}, s))), null != t.top && (f.top = t.top - s.top + a), null != t.left && (f.left = t.left - s.left + i), "using" in t ? t.using.call(e, f) : ("number" == typeof f.top && (f.top += "px"), "number" == typeof f.left && (f.left += "px"), CC.css(f))
         }
     }, S.fn.extend({
         offset: function (t) {
@@ -3221,8 +3234,9 @@
     }, "function" == typeof define && define.amd && define("jquery", [], function () {
         return S
     });
-    var Yt = C.jQuery;
+    var Yt = CC.jQuery,
+        Qt = CC.$;
     return S.noConflict = function (e) {
-        return e && C.jQuery === S && (C.jQuery = Yt), S
-    }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
+        return CC.$ === S && (CC.$ = Qt), e && CC.jQuery === S && (CC.jQuery = Yt), S
+    }, "undefined" == typeof e && (CC.jQuery = CC.$ = S), S
 });
