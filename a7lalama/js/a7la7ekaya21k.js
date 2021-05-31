@@ -177,11 +177,9 @@
     }), "function" == typeof Symbol && (S.fn[Symbol.iterator] = t[Symbol.iterator]), S.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "), function (e, t) {
         n["[object " + t + "]"] = t.toLowerCase()
     });
-
-    
-
-var d = function (n) {
+    var d = function (n) {
         var e, d, b, o, i, h, f, g, w, u, l, T, C, a, E, v, s, c, y, S = "sizzle" + 1 * new Date,
+            p = n.document,
             k = 0,
             r = 0,
             m = ue(),
@@ -1226,13 +1224,7 @@ var d = function (n) {
             return o.promise()
         }
     });
-    
-    
-    
-    
-    
-  
-   var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
+    var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     S.Deferred.exceptionHook = function (e, t) {
         C.console && C.console.warn && e && W.test(e.name) && C.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
     }, S.readyException = function (e) {
@@ -1430,8 +1422,7 @@ var d = function (n) {
             while (a--)(n = Y.get(o[a], e + "queueHooks")) && n.empty && (r++, n.empty.add(s));
             return s(), i.promise(t)
         }
-    });  
-
+    });
     var ee = /[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,
         te = new RegExp("^(?:([+-])=|)(" + ee + ")([a-z%]*)$", "i"),
         ne = ["Top", "Right", "Bottom", "Left"],
@@ -2729,9 +2720,7 @@ var d = function (n) {
                 }
             }).get()
         }
-    });    
-    
-  
+    });
     var jt = /%20/g,
         qt = /#.*$/,
         Lt = /([?&])_=[^&]*/,
@@ -3229,12 +3218,7 @@ var d = function (n) {
             return 0 < arguments.length ? this.on(n, null, e, t) : this.trigger(n)
         }
     });
-
-    
-    
-    
-    
-  var Gt = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+    var Gt = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
     S.proxy = function (e, t) {
         var n, r, i;
         if ("string" == typeof t && (n = e[t], t = e, e = n), m(e)) return r = s.call(arguments, 2), (i = function () {
