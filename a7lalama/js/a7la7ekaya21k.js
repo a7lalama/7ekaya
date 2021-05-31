@@ -1,7 +1,7 @@
 /*! jQuery v3.5.1 | (c) JS Foundation and other contributors | jquery.org/license */ ! function (e, t) {
     "use strict";
     "object" == typeof module && "object" == typeof module.exports ? module.exports = e.document ? t(e, !0) : function (e) {
-        if (!e.document) throw new Error("a7lajQuery requires a window with a document");
+        if (!e.document) throw new Error("jQuery requires a window with a document");
         return t(e)
     } : t(e)
 }("undefined" != typeof window ? window : this, function (C, e) {
@@ -57,7 +57,7 @@
         return !m(e) && !x(e) && ("array" === n || 0 === t || "number" == typeof t && 0 < t && t - 1 in e)
     }
     S.fn = S.prototype = {
-        a7lajQuery: f,
+        jquery: f,
         constructor: S,
         length: 0,
         toArray: function () {
@@ -118,7 +118,7 @@
                 for (t in e) r = e[t], "__proto__" !== t && a !== r && (l && r && (S.isPlainObject(r) || (i = Array.isArray(r))) ? (n = a[t], o = i && !Array.isArray(n) ? [] : i || S.isPlainObject(n) ? n : {}, i = !1, a[t] = S.extend(l, o, r)) : void 0 !== r && (a[t] = r));
         return a
     }, S.extend({
-        expando: "a7lajQuery" + (f + Math.random()).replace(/\D/g, ""),
+        expando: "jQuery" + (f + Math.random()).replace(/\D/g, ""),
         isReady: !0,
         error: function (e) {
             throw new Error(e)
@@ -419,9 +419,9 @@
                     if ("undefined" != typeof t.getElementsByClassName && E) return t.getElementsByClassName(e)
                 }, s = [], v = [], (d.qsa = K.test(C.querySelectorAll)) && (ce(function (e) {
                     var t;
-                    a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = C.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
+                    a.appendChild(e).innerHTML = "<a id='" + S + "'></a><select id='" + S + "-\r\\' msallowcapture=''><opa7lation selected=''></opa7lation></select>", e.querySelectorAll("[msallowcapture^='']").length && v.push("[*^$]=" + M + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || v.push("\\[" + M + "*(?:value|" + R + ")"), e.querySelectorAll("[id~=" + S + "-]").length || v.push("~="), (t = C.createElement("input")).setAttribute("name", ""), e.appendChild(t), e.querySelectorAll("[name='']").length || v.push("\\[" + M + "*name" + M + "*=" + M + "*(?:''|\"\")"), e.querySelectorAll(":checked").length || v.push(":checked"), e.querySelectorAll("a#" + S + "+*").length || v.push(".#.+[+~]"), e.querySelectorAll("\\\f"), v.push("[\\r\\n\\f]")
                 }), ce(function (e) {
-                    e.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";
+                    e.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><opa7lation/></select>";
                     var t = C.createElement("input");
                     t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && v.push("name" + M + "*[*^$|!~]?="), 2 !== e.querySelectorAll(":enabled").length && v.push(":enabled", ":disabled"), a.appendChild(e).disabled = !0, 2 !== e.querySelectorAll(":disabled").length && v.push(":enabled", ":disabled"), e.querySelectorAll("*,:x"), v.push(",.*:")
                 })), (d.matchesSelector = K.test(c = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.oMatchesSelector || a.msMatchesSelector)) && ce(function (e) {
@@ -647,7 +647,7 @@
                     disabled: ge(!0),
                     checked: function (e) {
                         var t = e.nodeName.toLowerCase();
-                        return "input" === t && !!e.checked || "option" === t && !!e.selected
+                        return "input" === t && !!e.checked || "opa7lation" === t && !!e.selected
                     },
                     selected: function (e) {
                         return e.parentNode && e.parentNode.selectedIndex, !0 === e.selected
@@ -962,7 +962,7 @@
         var r, i;
         if (!e) return this;
         if (n = n || j, "string" == typeof e) {
-            if (!(r = "<" === e[0] && ">" === e[e.length - 1] && 3 <= e.length ? [null, e, null] : q.exec(e)) || !r[1] && t) return !t || t.a7lajQuery ? (t || n).find(e) : this.constructor(t).find(e);
+            if (!(r = "<" === e[0] && ">" === e[e.length - 1] && 3 <= e.length ? [null, e, null] : q.exec(e)) || !r[1] && t) return !t || t.jquery ? (t || n).find(e) : this.constructor(t).find(e);
             if (r[1]) {
                 if (t = t instanceof S ? t[0] : t, S.merge(this, S.parseHTML(r[1], t && t.nodeType ? t.ownerDocument || t : E, !0)), N.test(r[1]) && S.isPlainObject(t))
                     for (r in t) m(this[r]) ? this[r](t[r]) : this.attr(r, t[r]);
@@ -1007,7 +1007,7 @@
                         } return this.pushStack(1 < o.length ? S.uniqueSort(o) : o)
         },
         index: function (e) {
-            return e ? "string" == typeof e ? i.call(S(e), this[0]) : i.call(this, e.a7lajQuery ? e[0] : e) : this[0] && this[0].parentNode ? this.first().prevAll().length : -1
+            return e ? "string" == typeof e ? i.call(S(e), this[0]) : i.call(this, e.jquery ? e[0] : e) : this[0] && this[0].parentNode ? this.first().prevAll().length : -1
         },
         add: function (e, t) {
             return this.pushStack(S.uniqueSort(S.merge(this.get(), S(e, t))))
@@ -1226,7 +1226,7 @@
     });
     var W = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
     S.Deferred.exceptionHook = function (e, t) {
-        C.console && C.console.warn && e && W.test(e.name) && C.console.warn("a7lajQuery.Deferred exception: " + e.message, e.stack, t)
+        C.console && C.console.warn && e && W.test(e.name) && C.console.warn("jQuery.Deferred exception: " + e.message, e.stack, t)
     }, S.readyException = function (e) {
         C.setTimeout(function () {
             throw e
@@ -1480,7 +1480,7 @@
     var ce, fe, pe = /^(?:checkbox|radio)$/i,
         de = /<([a-z][^\/\0>\x20\t\r\n\f]*)/i,
         he = /^$|^module$|\/(?:java|ecma)script/i;
-    ce = E.createDocumentFragment().appendChild(E.createElement("div")), (fe = E.createElement("input")).setAttribute("type", "radio"), fe.setAttribute("checked", "checked"), fe.setAttribute("name", "t"), ce.appendChild(fe), y.checkClone = ce.cloneNode(!0).cloneNode(!0).lastChild.checked, ce.innerHTML = "<textarea>x</textarea>", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<option></option>", y.option = !!ce.lastChild;
+    ce = E.createDocumentFragment().appendChild(E.createElement("div")), (fe = E.createElement("input")).setAttribute("type", "radio"), fe.setAttribute("checked", "checked"), fe.setAttribute("name", "t"), ce.appendChild(fe), y.checkClone = ce.cloneNode(!0).cloneNode(!0).lastChild.checked, ce.innerHTML = "<textarea>x</textarea>", y.noCloneChecked = !!ce.cloneNode(!0).lastChild.defaultValue, ce.innerHTML = "<opa7lation></opa7lation>", y.opa7lation = !!ce.lastChild;
     var ge = {
         thead: [1, "<table>", "</table>"],
         col: [2, "<table><colgroup>", "</colgroup></table>"],
@@ -1497,7 +1497,7 @@
     function ye(e, t) {
         for (var n = 0, r = e.length; n < r; n++) Y.set(e[n], "globalEval", !t || Y.get(t[n], "globalEval"))
     }
-    ge.tbody = ge.tfoot = ge.colgroup = ge.caption = ge.thead, ge.th = ge.td, y.option || (ge.optgroup = ge.option = [1, "<select multiple='multiple'>", "</select>"]);
+    ge.tbody = ge.tfoot = ge.colgroup = ge.caption = ge.thead, ge.th = ge.td, y.opa7lation || (ge.optgroup = ge.opa7lation = [1, "<select multiple='multiple'>", "</select>"]);
     var me = /<|&#?\w+;/;
     
     function xe(e, t, n, r, i) {
@@ -2152,7 +2152,7 @@
     }), ((S.Tween = et).prototype = {
         constructor: et,
         init: function (e, t, n, r, i, o) {
-            this.elem = e, this.prop = n, this.easing = i || S.easing._default, this.options = t, this.start = this.now = this.cur(), this.end = r, this.unit = o || (S.cssNumber[n] ? "" : "px")
+            this.elem = e, this.prop = n, this.easing = i || S.easing._default, this.opa7lations = t, this.start = this.now = this.cur(), this.end = r, this.unit = o || (S.cssNumber[n] ? "" : "px")
         },
         cur: function () {
             var e = et.propHooks[this.prop];
@@ -2160,7 +2160,7 @@
         },
         run: function (e) {
             var t, n = et.propHooks[this.prop];
-            return this.options.duration ? this.pos = t = S.easing[this.easing](e, this.options.duration * e, 0, 1, this.options.duration) : this.pos = t = e, this.now = (this.end - this.start) * t + this.start, this.options.step && this.options.step.call(this.elem, this.now, this), n && n.set ? n.set(this) : et.propHooks._default.set(this), this
+            return this.opa7lations.duration ? this.pos = t = S.easing[this.easing](e, this.opa7lations.duration * e, 0, 1, this.opa7lations.duration) : this.pos = t = e, this.now = (this.end - this.start) * t + this.start, this.opa7lations.step && this.opa7lations.step.call(this.elem, this.now, this), n && n.set ? n.set(this) : et.propHooks._default.set(this), this
         }
     }).init.prototype = et.prototype, (et.propHooks = {
         _default: {
@@ -2231,7 +2231,7 @@
                     easing: S.easing._default
                 }, t),
                 originalProperties: e,
-                originalOptions: t,
+                originalopa7lations: t,
                 startTime: tt || ut(),
                 duration: t.duration,
                 tweens: [],
@@ -2404,7 +2404,7 @@
                 C.clearTimeout(n)
             }
         })
-    }, rt = E.createElement("input"), it = E.createElement("select").appendChild(E.createElement("option")), rt.type = "checkbox", y.checkOn = "" !== rt.value, y.optSelected = it.selected, (rt = E.createElement("input")).value = "t", rt.type = "radio", y.radioValue = "t" === rt.value;
+    }, rt = E.createElement("input"), it = E.createElement("select").appendChild(E.createElement("opa7lation")), rt.type = "checkbox", y.checkOn = "" !== rt.value, y.optSelected = it.selected, (rt = E.createElement("input")).value = "t", rt.type = "radio", y.radioValue = "t" === rt.value;
     var pt, dt = S.expr.attrHandle;
     S.fn.extend({
         attr: function (e, t) {
@@ -2561,7 +2561,7 @@
         }
     }), S.extend({
         valHooks: {
-            option: {
+            opa7lation: {
                 get: function (e) {
                     var t = S.find.attr(e, "value");
                     return null != t ? t : vt(S.text(e))
@@ -2569,7 +2569,7 @@
             },
             select: {
                 get: function (e) {
-                    var t, n, r, i = e.options,
+                    var t, n, r, i = e.opa7lations,
                         o = e.selectedIndex,
                         a = "select-one" === e.type,
                         s = a ? null : [],
@@ -2581,10 +2581,10 @@
                         } return s
                 },
                 set: function (e, t) {
-                    var n, r, i = e.options,
+                    var n, r, i = e.opa7lations,
                         o = S.makeArray(t),
                         a = i.length;
-                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.option.get(r), o)) && (n = !0);
+                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.opa7lation.get(r), o)) && (n = !0);
                     return n || (e.selectedIndex = -1), o
                 }
             }
@@ -2690,7 +2690,7 @@
                 r[r.length] = encodeURIComponent(e) + "=" + encodeURIComponent(null == n ? "" : n)
             };
         if (null == e) return "";
-        if (Array.isArray(e) || e.a7lajQuery && !S.isPlainObject(e)) S.each(e, function () {
+        if (Array.isArray(e) || e.jquery && !S.isPlainObject(e)) S.each(e, function () {
             i(this.name, this.value)
         });
         else
@@ -2757,7 +2757,7 @@
     }
     
     function $t(e, t) {
-        var n, r, i = S.ajaxSettings.flatOptions || {};
+        var n, r, i = S.ajaxSettings.flatopa7lations || {};
         for (n in t) void 0 !== t[n] && ((i[n] ? e : r || (r = {}))[n] = t[n]);
         return r && S.extend(!0, e, r), e
     }
@@ -2796,7 +2796,7 @@
                 "text json": JSON.parse,
                 "text xml": S.parseXML
             },
-            flatOptions: {
+            flatopa7lations: {
                 url: !0,
                 context: !0
             }
@@ -2810,7 +2810,7 @@
             "object" == typeof e && (t = e, e = void 0), t = t || {};
             var c, f, p, n, d, r, h, g, i, o, v = S.ajaxSetup({}, t),
                 y = v.context || v,
-                m = v.context && (y.nodeType || y.a7lajQuery) ? S(y) : S.event,
+                m = v.context && (y.nodeType || y.jquery) ? S(y) : S.event,
                 x = S.Deferred(),
                 b = S.Callbacks("once memory"),
                 w = v.statusCode || {},
@@ -3231,7 +3231,7 @@
         return ("number" === t || "string" === t) && !isNaN(e - parseFloat(e))
     }, S.trim = function (e) {
         return null == e ? "" : (e + "").replace(Gt, "")
-    }, "function" == typeof define && define.amd && define("a7lajQuery", [], function () {
+    }, "function" == typeof define && define.amd && define("jquery", [], function () {
         return S
     });
     var Yt = C.jQuery,
