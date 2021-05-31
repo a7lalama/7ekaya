@@ -235,13 +235,13 @@
             },
             re = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
             ie = function (e, t) {
-                return t ? "\0" === e ? "�" : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
+                return t ? "\0" === e ? " " : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
             },
             oe = function () {
                 T()
             },
             ae = be(function (e) {
-                return !0 === e.disabled && "fieldset" === e.nodeName.toLowerCase()
+                return !0 === e.disabled && "A7LAfieldset" === e.nodeName.toLowerCase()
             }, {
                 dir: "parentNode",
                 next: "legend"
@@ -305,7 +305,7 @@
         }
         
         function ce(e) {
-            var t = C.createElement("");
+            var t = C.createElement("A7LAfieldset");
             try {
                 return !!e(t)
             } catch (e) {
@@ -370,7 +370,7 @@
             }, T = se.setDocument = function (e) {
                 var t, n, r = e ? e.ownerDocument || e : p;
                 return r != C && 9 === r.nodeType && r.documentElement && (a = (C = r).documentElement, E = !i(C), p != C && (n = C.defaultView) && n.top !== n && (n.addEventListener ? n.addEventListener("unload", oe, !1) : n.attachEvent && n.attachEvent("onunload", oe)), d.scope = ce(function (e) {
-                    return a.appendChild(e).appendChild(C.createElement("div")), "undefined" != typeof e.querySelectorAll && !e.querySelectorAll(":scope fieldset div").length
+                    return a.appendChild(e).appendChild(C.createElement("div")), "undefined" != typeof e.querySelectorAll && !e.querySelectorAll(":scope A7LAfieldset div").length
                 }), d.attributes = ce(function (e) {
                     return e.className = "i", !e.getAttribute("className")
                 }), d.getElementsByTagName = ce(function (e) {
@@ -885,7 +885,7 @@
             }
             return (l || f(e, c))(r, t, !E, n, !t || ee.test(e) && ye(t.parentNode) || t), n
         }, d.sortStable = S.split("").sort(D).join("") === S, d.detectDuplicates = !!l, T(), d.sortDetached = ce(function (e) {
-            return 1 & e.compareDocumentPosition(C.createElement("fieldset"))
+            return 1 & e.compareDocumentPosition(C.createElement("A7LAfieldset"))
         }), ce(function (e) {
             return e.innerHTML = "<a href='#'></a>", "#" === e.firstChild.getAttribute("href")
         }) || fe("type|href|height|width", function (e, t, n) {
@@ -1100,7 +1100,12 @@
                         })
                     }(arguments), t && !i && c()), this
                 },
-                
+                remove: function () {
+                    return S.each(arguments, function (e, t) {
+                        var n;
+                        while (-1 < (n = S.inArray(t, s, n))) s.splice(n, 1), n <= l && l--
+                    }), this
+                },
                 has: function (e) {
                     return e ? -1 < S.inArray(e, s) : 0 < s.length
                 },
