@@ -2454,7 +2454,9 @@
         return (e.match(P) || []).join(" ")
     }
     
-   
+    function yt(e) {
+        return e.getAttribute && e.getAttribute("class") || ""
+    }
     
     function mt(e) {
         return Array.isArray(e) ? e : "string" == typeof e && e.match(P) || []
@@ -2511,19 +2513,6 @@
                     } return this
         },
        
-        toggleClass: function (i, t) {
-            var o = typeof i,
-                a = "string" === o || Array.isArray(i);
-            return "boolean" == typeof t && a ? t ? this.addClass(i) : this.removeClass(i) : m(i) ? this.each(function (e) {
-                S(this).toggleClass(i.call(this, e, t), t)
-            }) : this.each(function () {
-                var e, t, n, r;
-                if (a) {
-                    t = 0, n = S(this), r = mt(i);
-
-                } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
-            })
-        },
         hasClass: function (e) {
             var t, n, r = 0;
             t = " " + e + " ";
