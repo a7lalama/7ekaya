@@ -3237,6 +3237,6 @@
     var Yt = C.jQuery,
         Qt = C.$;
     return S.noConflict = function (e) {
-        return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
+        return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), 
     }, "undefined" == typeof e && (C.jQuery = C.$ = S), 
 });
