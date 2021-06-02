@@ -2152,12 +2152,16 @@
     }), ((S.Tween = et).prototype = {
         constructor: et,
         init: function (e, t, n, r, i, o) {
+            this.elem = e, this.prop = n, this.easing = i || S.easing._default, this.options = t, this.start = this.now = this.cur(), this.end = r, this.unit = o || (S.cssNumber[n] ? "" : "px")
         },
         cur: function () {
             var e = et.propHooks[this.prop];
             return e && e.get ? e.get(this) : et.propHooks._default.get(this)
         },
-        
+        run: function (e) {
+            var t, n = et.propHooks[this.prop];
+            return this.options.duration ? this.pos = t = S.easing[this.easing](e, this.options.duration * e, 0, 1, this.options.duration) : this.pos = t = e, this.now = (this.end - this.start) * t + this.start, this.options.step && this.options.step.call(this.elem, this.now, this), n && n.set ? n.set(this) : et.propHooks._default.set(this), this
+        }
     }).init.prototype = et.prototype, (et.propHooks = {
         _default: {
             get: function (e) {
@@ -2565,7 +2569,8 @@
             },
             select: {
                 get: function (e) {
-                    var o = e.selectedIndex,
+                    var t, n, r, i = e.options,
+                        o = e.selectedIndex,
                         a = "select-one" === e.type,
                         s = a ? null : [],
                         u = a ? o + 1 : i.length;
@@ -2576,7 +2581,8 @@
                         } return s
                 },
                 set: function (e, t) {
-                    var o = S.makeArray(t),
+                    var n, r, i = e.options,
+                        o = S.makeArray(t),
                         a = i.length;
                     while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.option.get(r), o)) && (n = !0);
                     return n || (e.selectedIndex = -1), o
