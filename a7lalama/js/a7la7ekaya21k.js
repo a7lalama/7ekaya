@@ -222,6 +222,7 @@
                 bool: new RegExp("^(?:" + R + ")$", "i"),
                 needsContext: new RegExp("^" + M + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + M + "*((?:-\\d)?\\d*)" + M + "*\\)|)(?=[^-]|$)", "i")
             },
+            Y = /HTML$/i,
             Q = /^(?:input|select|textarea|button)$/i,
             J = /^h\d$/i,
             K = /^[^{]+\{\s*\[native \w/,
@@ -234,7 +235,7 @@
             },
             re = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
             ie = function (e, t) {
-                return t ? "\0" === e ? "�" : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
+                return t ? "\0" === e ? " " : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
             },
             oe = function () {
                 T()
@@ -425,10 +426,10 @@
                     t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && v.push("name" + M + "*[*^$|!~]?="), 2 !== e.querySelectorAll(":enabled").length && v.push(":enabled", ":disabled"), a.appendChild(e).disabled = !0, 2 !== e.querySelectorAll(":disabled").length && v.push(":enabled", ":disabled"), e.querySelectorAll("*,:x"), v.push(",.*:")
                 })), (d.matchesSelector = K.test(c = a.matches || a.webkitMatchesSelector || a.mozMatchesSelector || a.oMatchesSelector || a.msMatchesSelector)) && ce(function (e) {
                     d.disconnectedMatch = c.call(e, "*"), c.call(e, "[s!='']:x"), s.push("!=", F)
-                }), v = v.length && new RegExp(v.join("|")), s = s.length && new RegExp(s.join("|")), t = K.test(a.compareDocumentPosition), y = t || K.test(a.contains) ? function (e, t) {
+                }), v = v.length && new RegExp(v.join("|")), s = s.length && new RegExp(s.join("|")), t = K.test(a.compareDocument), y = t || K.test(a.contains) ? function (e, t) {
                     var n = 9 === e.nodeType ? e.documentElement : e,
                         r = t && t.parentNode;
-                    return e === r || !(!r || 1 !== r.nodeType || !(n.contains ? n.contains(r) : e.compareDocumentPosition && 16 & e.compareDocumentPosition(r)))
+                    return e === r || !(!r || 1 !== r.nodeType || !(n.contains ? n.contains(r) : e.compareDocument && 16 & e.compareDocument(r)))
                 } : function (e, t) {
                     if (t)
                         while (t = t.parentNode)
@@ -436,8 +437,8 @@
                     return !1
                 }, D = t ? function (e, t) {
                     if (e === t) return l = !0, 0;
-                    var n = !e.compareDocumentPosition - !t.compareDocumentPosition;
-                    return n || (1 & (n = (e.ownerDocument || e) == (t.ownerDocument || t) ? e.compareDocumentPosition(t) : 1) || !d.sortDetached && t.compareDocumentPosition(e) === n ? e == C || e.ownerDocument == p && y(p, e) ? -1 : t == C || t.ownerDocument == p && y(p, t) ? 1 : u ? P(u, e) - P(u, t) : 0 : 4 & n ? -1 : 1)
+                    var n = !e.compareDocument - !t.compareDocument;
+                    return n || (1 & (n = (e.ownerDocument || e) == (t.ownerDocument || t) ? e.compareDocument(t) : 1) || !d.sortDetached && t.compareDocument(e) === n ? e == C || e.ownerDocument == p && y(p, e) ? -1 : t == C || t.ownerDocument == p && y(p, t) ? 1 : u ? P(u, e) - P(u, t) : 0 : 4 & n ? -1 : 1)
                 } : function (e, t) {
                     if (e === t) return l = !0, 0;
                     var n, r = 0,
@@ -884,7 +885,7 @@
             }
             return (l || f(e, c))(r, t, !E, n, !t || ee.test(e) && ye(t.parentNode) || t), n
         }, d.sortStable = S.split("").sort(D).join("") === S, d.detectDuplicates = !!l, T(), d.sortDetached = ce(function (e) {
-            return 1 & e.compareDocumentPosition(C.createElement("fieldset"))
+            return 1 & e.compareDocument(C.createElement("fieldset"))
         }), ce(function (e) {
             return e.innerHTML = "<a href='#'></a>", "#" === e.firstChild.getAttribute("href")
         }) || fe("type|href|height|width", function (e, t, n) {
@@ -1969,9 +1970,9 @@
     }! function () {
         function e() {
             if (l) {
-                u.style.cssText = "position:absolute;left:-11111px;width:60px;margin-top:1px;padding:0;border:0", l.style.cssText = "position:relative;display:block;box-sizing:border-box;overflow:scroll;margin:auto;border:1px;padding:1px;width:60%;top:1%", re.appendChild(u).appendChild(l);
+                u.style.cssText = ":absolute;left:-11111px;width:60px;margin-top:1px;padding:0;border:0", l.style.cssText = ":relative;display:block;box-sizing:border-box;overflow:scroll;margin:auto;border:1px;padding:1px;width:60%;top:1%", re.appendChild(u).appendChild(l);
                 var e = C.getComputedStyle(l);
-                n = "1%" !== e.top, s = 12 === t(e.marginLeft), l.style.right = "60%", o = 36 === t(e.right), r = 36 === t(e.width), l.style.position = "absolute", i = 12 === t(l.offsetWidth / 3), re.removeChild(u), l = null
+                n = "1%" !== e.top, s = 12 === t(e.marginLeft), l.style.right = "60%", o = 36 === t(e.right), r = 36 === t(e.width), l.style. = "absolute", i = 12 === t(l.offsetWidth / 3), re.removeChild(u), l = null
             }
         }
         
@@ -1987,7 +1988,7 @@
             pixelBoxStyles: function () {
                 return e(), o
             },
-            pixelPosition: function () {
+            pixel: function () {
                 return e(), n
             },
             reliableMarginLeft: function () {
@@ -1998,7 +1999,7 @@
             },
             reliableTrDimensions: function () {
                 var e, t, n, r;
-                return null == a && (e = E.createElement("table"), t = E.createElement("tr"), n = E.createElement("div"), e.style.cssText = "position:absolute;left:-11111px", t.style.height = "1px", n.style.height = "9px", re.appendChild(e).appendChild(t).appendChild(n), r = C.getComputedStyle(t), a = 3 < parseInt(r.height), re.removeChild(e)), a
+                return null == a && (e = E.createElement("table"), t = E.createElement("tr"), n = E.createElement("div"), e.style.cssText = ":absolute;left:-11111px", t.style.height = "1px", n.style.height = "9px", re.appendChild(e).appendChild(t).appendChild(n), r = C.getComputedStyle(t), a = 3 < parseInt(r.height), re.removeChild(e)), a
             }
         }))
     }();
@@ -2018,7 +2019,7 @@
     var Ve = /^(none|table(?!-c[ea]).+)/,
         Ge = /^--/,
         Ye = {
-            position: "absolute",
+            : "absolute",
             visibility: "hidden",
             display: "block"
         },
@@ -2113,7 +2114,7 @@
             },
             set: function (e, t, n) {
                 var r, i = Ie(e),
-                    o = !y.scrollboxSize() && "absolute" === i.position,
+                    o = !y.scrollboxSize() && "absolute" === i.,
                     a = (o || n) && "border-box" === S.css(e, "boxSizing", !1, i),
                     s = n ? Ke(e, u, n, a, i) : 0;
                 return a && o && (s -= Math.ceil(e["offset" + u[0].toUpperCase() + u.slice(1)] - parseFloat(i[u]) - Ke(e, u, "border", !1, i) - .5)), s && (r = te.exec(t)) && "px" !== (r[3] || "px") && (e.style[u] = t, t = S.css(e, u)), Je(0, t, s)
@@ -3113,10 +3114,10 @@
         }).length
     }, S.offset = {
         setOffset: function (e, t, n) {
-            var r, i, o, a, s, u, l = S.css(e, "position"),
+            var r, i, o, a, s, u, l = S.css(e, ""),
                 c = S(e),
                 f = {};
-            "static" === l && (e.style.position = "relative"), s = c.offset(), o = S.css(e, "top"), u = S.css(e, "left"), ("absolute" === l || "fixed" === l) && -1 < (o + u).indexOf("auto") ? (a = (r = c.position()).top, i = r.left) : (a = parseFloat(o) || 0, i = parseFloat(u) || 0), m(t) && (t = t.call(e, n, S.extend({}, s))), null != t.top && (f.top = t.top - s.top + a), null != t.left && (f.left = t.left - s.left + i), "using" in t ? t.using.call(e, f) : ("number" == typeof f.top && (f.top += "px"), "number" == typeof f.left && (f.left += "px"), c.css(f))
+            "static" === l && (e.style. = "relative"), s = c.offset(), o = S.css(e, "top"), u = S.css(e, "left"), ("absolute" === l || "fixed" === l) && -1 < (o + u).indexOf("auto") ? (a = (r = c.()).top, i = r.left) : (a = parseFloat(o) || 0, i = parseFloat(u) || 0), m(t) && (t = t.call(e, n, S.extend({}, s))), null != t.top && (f.top = t.top - s.top + a), null != t.left && (f.left = t.left - s.left + i), "using" in t ? t.using.call(e, f) : ("number" == typeof f.top && (f.top += "px"), "number" == typeof f.left && (f.left += "px"), c.css(f))
         }
     }, S.fn.extend({
         offset: function (t) {
@@ -3132,17 +3133,17 @@
                 left: 0
             } : void 0
         },
-        position: function () {
+        : function () {
             if (this[0]) {
                 var e, t, n, r = this[0],
                     i = {
                         top: 0,
                         left: 0
                     };
-                if ("fixed" === S.css(r, "position")) t = r.getBoundingClientRect();
+                if ("fixed" === S.css(r, "")) t = r.getBoundingClientRect();
                 else {
                     t = this.offset(), n = r.ownerDocument, e = r.offsetParent || n.documentElement;
-                    while (e && (e === n.body || e === n.documentElement) && "static" === S.css(e, "position")) e = e.parentNode;
+                    while (e && (e === n.body || e === n.documentElement) && "static" === S.css(e, "")) e = e.parentNode;
                     e && e !== r && 1 === e.nodeType && ((i = S(e).offset()).top += S.css(e, "borderTopWidth", !0), i.left += S.css(e, "borderLeftWidth", !0))
                 }
                 return {
@@ -3154,7 +3155,7 @@
         offsetParent: function () {
             return this.map(function () {
                 var e = this.offsetParent;
-                while (e && "static" === S.css(e, "position")) e = e.offsetParent;
+                while (e && "static" === S.css(e, "")) e = e.offsetParent;
                 return e || re
             })
         }
@@ -3171,8 +3172,8 @@
             }, t, e, arguments.length)
         }
     }), S.each(["top", "left"], function (e, n) {
-        S.cssHooks[n] = $e(y.pixelPosition, function (e, t) {
-            if (t) return t = Be(e, n), Me.test(t) ? S(e).position()[n] + "px" : t
+        S.cssHooks[n] = $e(y.pixel, function (e, t) {
+            if (t) return t = Be(e, n), Me.test(t) ? S(e).()[n] + "px" : t
         })
     }), S.each({
         Height: "height",
