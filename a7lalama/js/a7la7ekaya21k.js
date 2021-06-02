@@ -1285,13 +1285,7 @@
                 configurable: !0
             }))), t
         },
-        set: function (e, t, n) {
-            var r, i = this.cache(e);
-            if ("string" == typeof t) i[X(t)] = n;
-            else
-                for (r in t) i[X(r)] = t[r];
-            return i
-        },
+        
         get: function (e, t) {
             return void 0 === t ? this.cache(e) : e[this.expando] && e[this.expando][X(t)]
         },
@@ -1642,14 +1636,7 @@
                 } : function () {
                     if (this.originalEvent) return this.originalEvent[t]
                 },
-                set: function (e) {
-                    Object.defineProperty(this, t, {
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0,
-                        value: e
-                    })
-                }
+                
             })
         },
         fix: function (e) {
@@ -2112,13 +2099,7 @@
                     return Ze(e, u, n)
                 })
             },
-            set: function (e, t, n) {
-                var r, i = Ie(e),
-                    o = !y.scrollboxSize() && "absolute" === i.position,
-                    a = (o || n) && "border-box" === S.css(e, "boxSizing", !1, i),
-                    s = n ? Ke(e, u, n, a, i) : 0;
-                return a && o && (s -= Math.ceil(e["offset" + u[0].toUpperCase() + u.slice(1)] - parseFloat(i[u]) - Ke(e, u, "border", !1, i) - .5)), s && (r = te.exec(t)) && "px" !== (r[3] || "px") && (e.style[u] = t, t = S.css(e, u)), Je(0, t, s)
-            }
+          
         }
     }), S.cssHooks.marginLeft = $e(y.reliableMarginLeft, function (e, t) {
         if (t) return (parseFloat(Be(e, "marginLeft")) || e.getBoundingClientRect().left - We(e, {
@@ -2168,14 +2149,10 @@
                 var t;
                 return 1 !== e.elem.nodeType || null != e.elem[e.prop] && null == e.elem.style[e.prop] ? e.elem[e.prop] : (t = S.css(e.elem, e.prop, "")) && "auto" !== t ? t : 0
             },
-            set: function (e) {
-                S.fx.step[e.prop] ? S.fx.step[e.prop](e) : 1 !== e.elem.nodeType || !S.cssHooks[e.prop] && null == e.elem.style[Xe(e.prop)] ? e.elem[e.prop] = e.now : S.style(e.elem, e.prop, e.now + e.unit)
-            }
+           
         }
     }).scrollTop = et.propHooks.scrollLeft = {
-        set: function (e) {
-            e.elem.nodeType && e.elem.parentNode && (e.elem[e.prop] = e.now)
-        }
+        
     }, S.easing = {
         linear: function (e) {
             return e
@@ -2420,27 +2397,14 @@
             var r, i, o = e.nodeType;
             if (3 !== o && 8 !== o && 2 !== o) return "undefined" == typeof e.getAttribute ? S.prop(e, t, n) : (1 === o && S.isXMLDoc(e) || (i = S.attrHooks[t.toLowerCase()] || (S.expr.match.bool.test(t) ? pt : void 0)), void 0 !== n ? null === n ? void S.removeAttr(e, t) : i && "set" in i && void 0 !== (r = i.set(e, n, t)) ? r : (e.setAttribute(t, n + ""), n) : i && "get" in i && null !== (r = i.get(e, t)) ? r : null == (r = S.find.attr(e, t)) ? void 0 : r)
         },
-        attrHooks: {
-            type: {
-                set: function (e, t) {
-                    if (!y.radioValue && "radio" === t && A(e, "input")) {
-                        var n = e.value;
-                        return e.setAttribute("type", t), n && (e.value = n), t
-                    }
-                }
-            }
-        },
+       
         removeAttr: function (e, t) {
             var n, r = 0,
                 i = t && t.match(P);
             if (i && 1 === e.nodeType)
                 while (n = i[r++]) e.removeAttribute(n)
         }
-    }), pt = {
-        set: function (e, t, n) {
-            return !1 === t ? S.removeAttr(e, n) : e.setAttribute(n, n), n
-        }
-    }, S.each(S.expr.match.bool.source.match(/\w+/g), function (e, t) {
+    }), S.each(S.expr.match.bool.source.match(/\w+/g), function (e, t) {
         var a = dt[t] || S.find.attr;
         dt[t] = function (e, t, n) {
             var r, i, o = t.toLowerCase();
@@ -2492,10 +2456,7 @@
             var t = e.parentNode;
             return t && t.parentNode && t.parentNode.selectedIndex, null
         },
-        set: function (e) {
-            var t = e.parentNode;
-            t && (t.selectedIndex, t.parentNode && t.parentNode.selectedIndex)
-        }
+       
     }), S.each(["tabIndex", "readOnly", "maxLength", "cellSpacing", "cellPadding", "rowSpan", "colSpan", "useMap", "frameBorder", "contentEditable"], function () {
         S.propFix[this.toLowerCase()] = this
     }), S.fn.extend({
@@ -2580,20 +2541,12 @@
                             s.push(t)
                         } return s
                 },
-                set: function (e, t) {
-                    var n, r, i = e.options,
-                        o = S.makeArray(t),
-                        a = i.length;
-                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.option.get(r), o)) && (n = !0);
-                    return n || (e.selectedIndex = -1), o
-                }
+              
             }
         }
     }), S.each(["radio", "checkbox"], function () {
         S.valHooks[this] = {
-            set: function (e, t) {
-                if (Array.isArray(t)) return e.checked = -1 < S.inArray(S(e).val(), t)
-            }
+            
         }, y.checkOn || (S.valHooks[this].get = function (e) {
             return null === e.getAttribute("value") ? "on" : e.value
         })
