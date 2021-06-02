@@ -23,7 +23,7 @@
         l = a.call(Object),
         y = {},
         m = function (e) {
-            return "function" == typeof e && "number" != typeof e.nodeType
+            return "function" == typeof e && "" != typeof e.nodeType
         },
         x = function (e) {
             return null != e && e === e.window
@@ -54,7 +54,7 @@
     function p(e) {
         var t = !!e && "length" in e && e.length,
             n = w(e);
-        return !m(e) && !x(e) && ("array" === n || 0 === t || "number" == typeof t && 0 < t && t - 1 in e)
+        return !m(e) && !x(e) && ("array" === n || 0 === t || "" == typeof t && 0 < t && t - 1 in e)
     }
     S.fn = S.prototype = {
         jquery: f,
@@ -174,7 +174,7 @@
         },
         guid: 1,
         support: y
-    }), "function" == typeof Symbol && (S.fn[Symbol.iterator] = t[Symbol.iterator]), S.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "), function (e, t) {
+    }), "function" == typeof Symbol && (S.fn[Symbol.iterator] = t[Symbol.iterator]), S.each("Boolean  String Function Array Date RegExp Object Error Symbol".split(" "), function (e, t) {
         n["[object " + t + "]"] = t.toLowerCase()
     });
     var d = function (n) {
@@ -235,7 +235,7 @@
             },
             re = /([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,
             ie = function (e, t) {
-                return t ? "\0" === e ? "�" : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
+                return t ? "\0" === e ? " " : e.slice(0, -1) + "\\" + e.charCodeAt(e.length - 1).toString(16) + " " : "\\" + e
             },
             oe = function () {
                 T()
@@ -1285,7 +1285,13 @@
                 configurable: !0
             }))), t
         },
-        
+        set: function (e, t, n) {
+            var r, i = this.cache(e);
+            if ("string" == typeof t) i[X(t)] = n;
+            else
+                for (r in t) i[X(r)] = t[r];
+            return i
+        },
         get: function (e, t) {
             return void 0 === t ? this.cache(e) : e[this.expando] && e[this.expando][X(t)]
         },
@@ -1442,8 +1448,8 @@
                 return S.css(e, t, "")
             },
             u = s(),
-            l = n && n[3] || (S.cssNumber[t] ? "" : "px"),
-            c = e.nodeType && (S.cssNumber[t] || "px" !== l && +u) && te.exec(S.css(e, t));
+            l = n && n[3] || (S.css[t] ? "" : "px"),
+            c = e.nodeType && (S.css[t] || "px" !== l && +u) && te.exec(S.css(e, t));
         if (c && c[3] !== l) {
             u /= 2, l = l || c[3], c = +u || 1;
             while (a--) S.style(e, t, c + l), (1 - o) * (1 - (o = s() / u || .5)) <= 0 && (a = 0), c /= o;
@@ -1636,7 +1642,14 @@
                 } : function () {
                     if (this.originalEvent) return this.originalEvent[t]
                 },
-                
+                set: function (e) {
+                    Object.defineProperty(this, t, {
+                        enumerable: !0,
+                        configurable: !0,
+                        writable: !0,
+                        value: e
+                    })
+                }
             })
         },
         fix: function (e) {
@@ -2056,7 +2069,7 @@
                 }
             }
         },
-        cssNumber: {
+        css: {
             animationIterationCount: !0,
             columnCount: !0,
             fillOpacity: !0,
@@ -2085,7 +2098,7 @@
                     u = Ge.test(t),
                     l = e.style;
                 if (u || (t = Xe(s)), a = S.cssHooks[t] || S.cssHooks[s], void 0 === n) return a && "get" in a && void 0 !== (i = a.get(e, !1, r)) ? i : l[t];
-                "string" === (o = typeof n) && (i = te.exec(n)) && i[1] && (n = se(e, t, i), o = "number"), null != n && n == n && ("number" !== o || u || (n += i && i[3] || (S.cssNumber[s] ? "" : "px")), y.clearCloneStyle || "" !== n || 0 !== t.indexOf("background") || (l[t] = "inherit"), a && "set" in a && void 0 === (n = a.set(e, n, r)) || (u ? l.setProperty(t, n) : l[t] = n))
+                "string" === (o = typeof n) && (i = te.exec(n)) && i[1] && (n = se(e, t, i), o = ""), null != n && n == n && ("" !== o || u || (n += i && i[3] || (S.css[s] ? "" : "px")), y.clearCloneStyle || "" !== n || 0 !== t.indexOf("background") || (l[t] = "inherit"), a && "set" in a && void 0 === (n = a.set(e, n, r)) || (u ? l.setProperty(t, n) : l[t] = n))
             }
         },
         css: function (e, t, n, r) {
@@ -2099,7 +2112,13 @@
                     return Ze(e, u, n)
                 })
             },
-          
+            set: function (e, t, n) {
+                var r, i = Ie(e),
+                    o = !y.scrollboxSize() && "absolute" === i.position,
+                    a = (o || n) && "border-box" === S.css(e, "boxSizing", !1, i),
+                    s = n ? Ke(e, u, n, a, i) : 0;
+                return a && o && (s -= Math.ceil(e["offset" + u[0].toUpperCase() + u.slice(1)] - parseFloat(i[u]) - Ke(e, u, "border", !1, i) - .5)), s && (r = te.exec(t)) && "px" !== (r[3] || "px") && (e.style[u] = t, t = S.css(e, u)), Je(0, t, s)
+            }
         }
     }), S.cssHooks.marginLeft = $e(y.reliableMarginLeft, function (e, t) {
         if (t) return (parseFloat(Be(e, "marginLeft")) || e.getBoundingClientRect().left - We(e, {
@@ -2133,7 +2152,7 @@
     }), ((S.Tween = et).prototype = {
         constructor: et,
         init: function (e, t, n, r, i, o) {
-            this.elem = e, this.prop = n, this.easing = i || S.easing._default, this.options = t, this.start = this.now = this.cur(), this.end = r, this.unit = o || (S.cssNumber[n] ? "" : "px")
+            this.elem = e, this.prop = n, this.easing = i || S.easing._default, this.options = t, this.start = this.now = this.cur(), this.end = r, this.unit = o || (S.css[n] ? "" : "px")
         },
         cur: function () {
             var e = et.propHooks[this.prop];
@@ -2149,10 +2168,14 @@
                 var t;
                 return 1 !== e.elem.nodeType || null != e.elem[e.prop] && null == e.elem.style[e.prop] ? e.elem[e.prop] : (t = S.css(e.elem, e.prop, "")) && "auto" !== t ? t : 0
             },
-           
+            set: function (e) {
+                S.fx.step[e.prop] ? S.fx.step[e.prop](e) : 1 !== e.elem.nodeType || !S.cssHooks[e.prop] && null == e.elem.style[Xe(e.prop)] ? e.elem[e.prop] = e.now : S.style(e.elem, e.prop, e.now + e.unit)
+            }
         }
     }).scrollTop = et.propHooks.scrollLeft = {
-        
+        set: function (e) {
+            e.elem.nodeType && e.elem.parentNode && (e.elem[e.prop] = e.now)
+        }
     }, S.easing = {
         linear: function (e) {
             return e
@@ -2290,7 +2313,7 @@
             duration: e,
             easing: n && t || t && !m(t) && t
         };
-        return S.fx.off ? r.duration = 0 : "number" != typeof r.duration && (r.duration in S.fx.speeds ? r.duration = S.fx.speeds[r.duration] : r.duration = S.fx.speeds._default), null != r.queue && !0 !== r.queue || (r.queue = "fx"), r.old = r.complete, r.complete = function () {
+        return S.fx.off ? r.duration = 0 : "" != typeof r.duration && (r.duration in S.fx.speeds ? r.duration = S.fx.speeds[r.duration] : r.duration = S.fx.speeds._default), null != r.queue && !0 !== r.queue || (r.queue = "fx"), r.old = r.complete, r.complete = function () {
             m(r.old) && r.old.call(this), r.queue && S.dequeue(this, r.queue)
         }, r
     }, S.fn.extend({
@@ -2397,14 +2420,27 @@
             var r, i, o = e.nodeType;
             if (3 !== o && 8 !== o && 2 !== o) return "undefined" == typeof e.getAttribute ? S.prop(e, t, n) : (1 === o && S.isXMLDoc(e) || (i = S.attrHooks[t.toLowerCase()] || (S.expr.match.bool.test(t) ? pt : void 0)), void 0 !== n ? null === n ? void S.removeAttr(e, t) : i && "set" in i && void 0 !== (r = i.set(e, n, t)) ? r : (e.setAttribute(t, n + ""), n) : i && "get" in i && null !== (r = i.get(e, t)) ? r : null == (r = S.find.attr(e, t)) ? void 0 : r)
         },
-       
+        attrHooks: {
+            type: {
+                set: function (e, t) {
+                    if (!y.radioValue && "radio" === t && A(e, "input")) {
+                        var n = e.value;
+                        return e.setAttribute("type", t), n && (e.value = n), t
+                    }
+                }
+            }
+        },
         removeAttr: function (e, t) {
             var n, r = 0,
                 i = t && t.match(P);
             if (i && 1 === e.nodeType)
                 while (n = i[r++]) e.removeAttribute(n)
         }
-    }), S.each(S.expr.match.bool.source.match(/\w+/g), function (e, t) {
+    }), pt = {
+        set: function (e, t, n) {
+            return !1 === t ? S.removeAttr(e, n) : e.setAttribute(n, n), n
+        }
+    }, S.each(S.expr.match.bool.source.match(/\w+/g), function (e, t) {
         var a = dt[t] || S.find.attr;
         dt[t] = function (e, t, n) {
             var r, i, o = t.toLowerCase();
@@ -2456,7 +2492,10 @@
             var t = e.parentNode;
             return t && t.parentNode && t.parentNode.selectedIndex, null
         },
-       
+        set: function (e) {
+            var t = e.parentNode;
+            t && (t.selectedIndex, t.parentNode && t.parentNode.selectedIndex)
+        }
     }), S.each(["tabIndex", "readOnly", "maxLength", "cellSpacing", "cellPadding", "rowSpan", "colSpan", "useMap", "frameBorder", "contentEditable"], function () {
         S.propFix[this.toLowerCase()] = this
     }), S.fn.extend({
@@ -2515,7 +2554,7 @@
             var r, e, i, t = this[0];
             return arguments.length ? (i = m(n), this.each(function (e) {
                 var t;
-                1 === this.nodeType && (null == (t = i ? n.call(this, e, S(this).val()) : n) ? t = "" : "number" == typeof t ? t += "" : Array.isArray(t) && (t = S.map(t, function (e) {
+                1 === this.nodeType && (null == (t = i ? n.call(this, e, S(this).val()) : n) ? t = "" : "" == typeof t ? t += "" : Array.isArray(t) && (t = S.map(t, function (e) {
                     return null == e ? "" : e + ""
                 })), (r = S.valHooks[this.type] || S.valHooks[this.nodeName.toLowerCase()]) && "set" in r && void 0 !== r.set(this, t, "value") || (this.value = t))
             })) : t ? (r = S.valHooks[t.type] || S.valHooks[t.nodeName.toLowerCase()]) && "get" in r && void 0 !== (e = r.get(t, "value")) ? e : "string" == typeof (e = t.value) ? e.replace(xt, "") : null == e ? "" : e : void 0
@@ -2541,12 +2580,20 @@
                             s.push(t)
                         } return s
                 },
-              
+                set: function (e, t) {
+                    var n, r, i = e.options,
+                        o = S.makeArray(t),
+                        a = i.length;
+                    while (a--)((r = i[a]).selected = -1 < S.inArray(S.valHooks.option.get(r), o)) && (n = !0);
+                    return n || (e.selectedIndex = -1), o
+                }
             }
         }
     }), S.each(["radio", "checkbox"], function () {
         S.valHooks[this] = {
-            
+            set: function (e, t) {
+                if (Array.isArray(t)) return e.checked = -1 < S.inArray(S(e).val(), t)
+            }
         }, y.checkOn || (S.valHooks[this].get = function (e) {
             return null === e.getAttribute("value") ? "on" : e.value
         })
@@ -2973,7 +3020,7 @@
                 for (n in i.mimeType && r.overrideMimeType && r.overrideMimeType(i.mimeType), i.crossDomain || e["X-Requested-With"] || (e["X-Requested-With"] = "XMLHttpRequest"), e) r.setRequestHeader(n, e[n]);
                 o = function (e) {
                     return function () {
-                        o && (o = a = r.onload = r.onerror = r.onabort = r.ontimeout = r.onreadystatechange = null, "abort" === e ? r.abort() : "error" === e ? "number" != typeof r.status ? t(0, "error") : t(r.status, r.statusText) : t(_t[r.status] || r.status, r.statusText, "text" !== (r.responseType || "text") || "string" != typeof r.responseText ? {
+                        o && (o = a = r.onload = r.onerror = r.onabort = r.ontimeout = r.onreadystatechange = null, "abort" === e ? r.abort() : "error" === e ? "" != typeof r.status ? t(0, "error") : t(r.status, r.statusText) : t(_t[r.status] || r.status, r.statusText, "text" !== (r.responseType || "text") || "string" != typeof r.responseText ? {
                             binary: r.response
                         } : {
                             text: r.responseText
@@ -3055,7 +3102,7 @@
             dataType: "html",
             data: t
         }).done(function (e) {
-            o = arguments, a.html(r ? S("<div/>").append(S.parseHTML(e)).find(r) : e)
+            o = arguments, a.html(r ? S("<div>").append(S.parseHTML(e)).find(r) : e)
         }).always(n && function (e, t) {
             a.each(function () {
                 n.apply(this, o || [e.responseText, t, e])
@@ -3070,7 +3117,7 @@
             var r, i, o, a, s, u, l = S.css(e, "position"),
                 c = S(e),
                 f = {};
-            "static" === l && (e.style.position = "relative"), s = c.offset(), o = S.css(e, "top"), u = S.css(e, "left"), ("absolute" === l || "fixed" === l) && -1 < (o + u).indexOf("auto") ? (a = (r = c.position()).top, i = r.left) : (a = parseFloat(o) || 0, i = parseFloat(u) || 0), m(t) && (t = t.call(e, n, S.extend({}, s))), null != t.top && (f.top = t.top - s.top + a), null != t.left && (f.left = t.left - s.left + i), "using" in t ? t.using.call(e, f) : ("number" == typeof f.top && (f.top += "px"), "number" == typeof f.left && (f.left += "px"), c.css(f))
+            "static" === l && (e.style.position = "relative"), s = c.offset(), o = S.css(e, "top"), u = S.css(e, "left"), ("absolute" === l || "fixed" === l) && -1 < (o + u).indexOf("auto") ? (a = (r = c.position()).top, i = r.left) : (a = parseFloat(o) || 0, i = parseFloat(u) || 0), m(t) && (t = t.call(e, n, S.extend({}, s))), null != t.top && (f.top = t.top - s.top + a), null != t.left && (f.left = t.left - s.left + i), "using" in t ? t.using.call(e, f) : ("" == typeof f.top && (f.top += "px"), "" == typeof f.left && (f.left += "px"), c.css(f))
         }
     }, S.fn.extend({
         offset: function (t) {
@@ -3181,7 +3228,7 @@
         e ? S.readyWait++ : S.ready(!0)
     }, S.isArray = Array.isArray, S.parseJSON = JSON.parse, S.nodeName = A, S.isFunction = m, S.isWindow = x, S.camelCase = X, S.type = w, S.now = Date.now, S.isNumeric = function (e) {
         var t = S.type(e);
-        return ("number" === t || "string" === t) && !isNaN(e - parseFloat(e))
+        return ("" === t || "string" === t) && !isNaN(e - parseFloat(e))
     }, S.trim = function (e) {
         return null == e ? "" : (e + "").replace(Gt, "")
     }, "function" == typeof define && define.amd && define("jquery", [], function () {
