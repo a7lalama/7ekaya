@@ -222,7 +222,6 @@
                 bool: new RegExp("^(?:" + R + ")$", "i"),
                 needsContext: new RegExp("^" + M + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" + M + "*((?:-\\d)?\\d*)" + M + "*\\)|)(?=[^-]|$)", "i")
             },
-            Y = /HTML$/i,
             Q = /^(?:input|select|textarea|button)$/i,
             J = /^h\d$/i,
             K = /^[^{]+\{\s*\[native \w/,
@@ -3236,5 +3235,7 @@
     });
     var Yt = C.jQuery,
         Qt = C.$;
-     "undefined" == typeof e && (C.jQuery = C.$ = S), S
+    return S.noConflict = function (e) {
+        return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
+    }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
 });
