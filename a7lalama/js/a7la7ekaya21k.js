@@ -40,7 +40,7 @@
         var r, i, o = (n = n || E).createElement("script");
         if (o.text = e, t)
             for (r in c)(i = t[r] || t.getAttribute && t.getAttribute(r)) && o.setAttribute(r, i);
-        n.head.appendChild(o).parentNode.removeChild(o)
+        n.head.appendChild(o).parentNode.Child(o)
     }
 
     function w(e) {
@@ -286,7 +286,7 @@
                     } catch (e) {
                         N(t, !0)
                     } finally {
-                        s === S && e.removeAttribute("id")
+                        s === S && e.Attribute("id")
                     }
                 }
             }
@@ -311,7 +311,7 @@
             } catch (e) {
                 return !1
             } finally {
-                t.parentNode && t.parentNode.removeChild(t), t = null
+                t.parentNode && t.parentNode.Child(t), t = null
             }
         }
 
@@ -1100,7 +1100,7 @@
                         })
                     }(arguments), t && !i && c()), this
                 },
-                remove: function() {
+                : function() {
                     return S.each(arguments, function(e, t) {
                         var n;
                         while (-1 < (n = S.inArray(t, s, n))) s.splice(n, 1), n <= l && l--
@@ -1235,7 +1235,7 @@
     var F = S.Deferred();
 
     function B() {
-        E.removeEventListener("DOMContentLoaded", B), C.removeEventListener("load", B), S.ready()
+        E.EventListener("DOMContentLoaded", B), C.EventListener("load", B), S.ready()
     }
     S.fn.ready = function(e) {
         return F.then(e)["catch"](function(e) {
@@ -1298,7 +1298,7 @@
         access: function(e, t, n) {
             return void 0 === t || t && "string" == typeof t && void 0 === n ? this.get(e, t) : (this.set(e, t, n), void 0 !== n ? n : t)
         },
-        remove: function(e, t) {
+        : function(e, t) {
             var n, r = e[this.expando];
             if (void 0 !== r) {
                 if (void 0 !== t) {
@@ -1335,14 +1335,14 @@
         data: function(e, t, n) {
             return Q.access(e, t, n)
         },
-        removeData: function(e, t) {
-            Q.remove(e, t)
+        Data: function(e, t) {
+            Q.(e, t)
         },
         _data: function(e, t, n) {
             return Y.access(e, t, n)
         },
-        _removeData: function(e, t) {
-            Y.remove(e, t)
+        _Data: function(e, t) {
+            Y.(e, t)
         }
     }), S.fn.extend({
         data: function(n, e) {
@@ -1366,9 +1366,9 @@
                 })
             }, null, e, 1 < arguments.length, null, !0)
         },
-        removeData: function(e) {
+        Data: function(e) {
             return this.each(function() {
-                Q.remove(this, e)
+                Q.(this, e)
             })
         }
     }), S.extend({
@@ -1390,7 +1390,7 @@
             var n = t + "queueHooks";
             return Y.get(e, n) || Y.access(e, n, {
                 empty: S.Callbacks("once memory").add(function() {
-                    Y.remove(e, [t + "queue", n])
+                    Y.(e, [t + "queue", n])
                 })
             })
         }
@@ -1460,7 +1460,7 @@
     var ue = {};
 
     function le(e, t) {
-        for (var n, r, i, o, a, s, u, l = [], c = 0, f = e.length; c < f; c++)(r = e[c]).style && (n = r.style.display, t ? ("none" === n && (l[c] = Y.get(r, "display") || null, l[c] || (r.style.display = "")), "" === r.style.display && ae(r) && (l[c] = (u = a = o = void 0, a = (i = r).ownerDocument, s = i.nodeName, (u = ue[s]) || (o = a.body.appendChild(a.createElement(s)), u = S.css(o, "display"), o.parentNode.removeChild(o), "none" === u && (u = "block"), ue[s] = u)))) : "none" !== n && (l[c] = "none", Y.set(r, "display", n)));
+        for (var n, r, i, o, a, s, u, l = [], c = 0, f = e.length; c < f; c++)(r = e[c]).style && (n = r.style.display, t ? ("none" === n && (l[c] = Y.get(r, "display") || null, l[c] || (r.style.display = "")), "" === r.style.display && ae(r) && (l[c] = (u = a = o = void 0, a = (i = r).ownerDocument, s = i.nodeName, (u = ue[s]) || (o = a.body.appendChild(a.createElement(s)), u = S.css(o, "display"), o.parentNode.Child(o), "none" === u && (u = "block"), ue[s] = u)))) : "none" !== n && (l[c] = "none", Y.set(r, "display", n)));
         for (c = 0; c < f; c++) null != l[c] && (e[c].style.display = l[c]);
         return e
     }
@@ -1587,18 +1587,18 @@
                 }, o), (p = u[d]) || ((p = u[d] = []).delegateCount = 0, f.setup && !1 !== f.setup.call(t, r, h, a) || t.addEventListener && t.addEventListener(d, a)), f.add && (f.add.call(t, c), c.handler.guid || (c.handler.guid = n.guid)), i ? p.splice(p.delegateCount++, 0, c) : p.push(c), S.event.global[d] = !0)
             }
         },
-        remove: function(e, t, n, r, i) {
+        : function(e, t, n, r, i) {
             var o, a, s, u, l, c, f, p, d, h, g, v = Y.hasData(e) && Y.get(e);
             if (v && (u = v.events)) {
                 l = (t = (t || "").match(P) || [""]).length;
                 while (l--)
                     if (d = g = (s = Te.exec(t[l]) || [])[1], h = (s[2] || "").split(".").sort(), d) {
                         f = S.event.special[d] || {}, p = u[d = (r ? f.delegateType : f.bindType) || d] || [], s = s[2] && new RegExp("(^|\\.)" + h.join("\\.(?:.*\\.|)") + "(\\.|$)"), a = o = p.length;
-                        while (o--) c = p[o], !i && g !== c.origType || n && n.guid !== c.guid || s && !s.test(c.namespace) || r && r !== c.selector && ("**" !== r || !c.selector) || (p.splice(o, 1), c.selector && p.delegateCount--, f.remove && f.remove.call(e, c));
-                        a && !p.length && (f.teardown && !1 !== f.teardown.call(e, h, v.handle) || S.removeEvent(e, d, v.handle), delete u[d])
+                        while (o--) c = p[o], !i && g !== c.origType || n && n.guid !== c.guid || s && !s.test(c.namespace) || r && r !== c.selector && ("**" !== r || !c.selector) || (p.splice(o, 1), c.selector && p.delegateCount--, f. && f..call(e, c));
+                        a && !p.length && (f.teardown && !1 !== f.teardown.call(e, h, v.handle) || S.Event(e, d, v.handle), delete u[d])
                     } else
-                        for (d in u) S.event.remove(e, d + t[l], n, r, !0);
-                S.isEmptyObject(u) && Y.remove(e, "handle events")
+                        for (d in u) S.event.(e, d + t[l], n, r, !0);
+                S.isEmptyObject(u) && Y.(e, "handle events")
             }
         },
         dispatch: function(e) {
@@ -1679,8 +1679,8 @@
                 }
             }
         }
-    }, S.removeEvent = function(e, t, n) {
-        e.removeEventListener && e.removeEventListener(t, n)
+    }, S.Event = function(e, t, n) {
+        e.EventListener && e.EventListener(t, n)
     }, S.Event = function(e, t) {
         if (!(this instanceof S.Event)) return new S.Event(e, t);
         e && e.type ? (this.originalEvent = e, this.type = e.type, this.isDefaultPrevented = e.defaultPrevented || void 0 === e.defaultPrevented && !1 === e.returnValue ? Ce : Ee, this.target = e.target && 3 === e.target.nodeType ? e.target.parentNode : e.target, this.currentTarget = e.currentTarget, this.relatedTarget = e.relatedTarget) : this.type = e, t && S.extend(this, t), this.timeStamp = e && e.timeStamp || Date.now(), this[S.expando] = !0
@@ -1780,7 +1780,7 @@
                 return this
             }
             return !1 !== t && "function" != typeof t || (n = t, t = void 0), !1 === n && (n = Ee), this.each(function() {
-                S.event.remove(this, e, n, t)
+                S.event.(this, e, n, t)
             })
         }
     });
@@ -1797,14 +1797,14 @@
     }
 
     function He(e) {
-        return "true/" === (e.type || "").slice(0, 5) ? e.type = e.type.slice(5) : e.removeAttribute("type"), e
+        return "true/" === (e.type || "").slice(0, 5) ? e.type = e.type.slice(5) : e.Attribute("type"), e
     }
 
     function Oe(e, t) {
         var n, r, i, o, a, s;
         if (1 === t.nodeType) {
             if (Y.hasData(e) && (s = Y.get(e).events))
-                for (i in Y.remove(t, "handle events"), s)
+                for (i in Y.(t, "handle events"), s)
                     for (n = 0, r = s[i].length; n < r; n++) S.event.add(t, i, s[i][n]);
             Q.hasData(e) && (o = Q.access(e), a = S.extend({}, o), Q.set(t, a))
         }
@@ -1832,7 +1832,7 @@
     }
 
     function Re(e, t, n) {
-        for (var r, i = t ? S.filter(t, e) : e, o = 0; null != (r = i[o]); o++) n || 1 !== r.nodeType || S.cleanData(ve(r)), r.parentNode && (n && ie(r) && ye(ve(r, "script")), r.parentNode.removeChild(r));
+        for (var r, i = t ? S.filter(t, e) : e, o = 0; null != (r = i[o]); o++) n || 1 !== r.nodeType || S.cleanData(ve(r)), r.parentNode && (n && ie(r) && ye(ve(r, "script")), r.parentNode.Child(r));
         return e
     }
     S.extend({
@@ -1855,7 +1855,7 @@
                 if (V(n)) {
                     if (t = n[Y.expando]) {
                         if (t.events)
-                            for (r in t.events) i[r] ? S.event.remove(n, r) : S.removeEvent(n, r, t.handle);
+                            for (r in t.events) i[r] ? S.event.(n, r) : S.Event(n, r, t.handle);
                         n[Y.expando] = void 0
                     }
                     n[Q.expando] && (n[Q.expando] = void 0)
@@ -1865,7 +1865,7 @@
         detach: function(e) {
             return Re(this, e, !0)
         },
-        remove: function(e) {
+        : function(e) {
             return Re(this, e)
         },
         text: function(e) {
@@ -1972,7 +1972,7 @@
             if (l) {
                 u.style.cssText = "position:absolute;left:-11111px;width:60px;margin-top:1px;padding:0;border:0", l.style.cssText = "position:relative;display:block;box-sizing:border-box;overflow:scroll;margin:auto;border:1px;padding:1px;width:60%;top:1%", re.appendChild(u).appendChild(l);
                 var e = C.getComputedStyle(l);
-                n = "1%" !== e.top, s = 12 === t(e.marginLeft), l.style.right = "60%", o = 36 === t(e.right), r = 36 === t(e.width), l.style.position = "absolute", i = 12 === t(l.offsetWidth / 3), re.removeChild(u), l = null
+                n = "1%" !== e.top, s = 12 === t(e.marginLeft), l.style.right = "60%", o = 36 === t(e.right), r = 36 === t(e.width), l.style.position = "absolute", i = 12 === t(l.offsetWidth / 3), re.Child(u), l = null
             }
         }
 
@@ -1999,7 +1999,7 @@
             },
             reliableTrDimensions: function() {
                 var e, t, n, r;
-                return null == a && (e = E.createElement("table"), t = E.createElement("tr"), n = E.createElement("div"), e.style.cssText = "position:absolute;left:-11111px", t.style.height = "1px", n.style.height = "9px", re.appendChild(e).appendChild(t).appendChild(n), r = C.getComputedStyle(t), a = 3 < parseInt(r.height), re.removeChild(e)), a
+                return null == a && (e = E.createElement("table"), t = E.createElement("tr"), n = E.createElement("div"), e.style.cssText = "position:absolute;left:-11111px", t.style.height = "1px", n.style.height = "9px", re.appendChild(e).appendChild(t).appendChild(n), r = C.getComputedStyle(t), a = 3 < parseInt(r.height), re.Child(e)), a
             }
         }))
     }();
@@ -2301,7 +2301,7 @@
                     })), u = !1, d) u || (v ? "hidden" in v && (g = v.hidden) : v = Y.access(e, "fxshow", {
                     display: l
                 }), o && (v.hidden = !g), g && le([e], !0), p.done(function() {
-                    for (r in g || le([e]), Y.remove(e, "fxshow"), d) S.style(e, r, d[r])
+                    for (r in g || le([e]), Y.(e, "fxshow"), d) S.style(e, r, d[r])
                 })), u = ct(g ? v[r] : 0, r, p), r in v || (v[r] = u.start, g && (u.end = u.start, u.start = 0))
         }],
         prefilter: function(e, t) {
@@ -2410,15 +2410,15 @@
         attr: function(e, t) {
             return $(this, S.attr, e, t, 1 < arguments.length)
         },
-        removeAttr: function(e) {
+        Attr: function(e) {
             return this.each(function() {
-                S.removeAttr(this, e)
+                S.Attr(this, e)
             })
         }
     }), S.extend({
         attr: function(e, t, n) {
             var r, i, o = e.nodeType;
-            if (3 !== o && 8 !== o && 2 !== o) return "undefined" == typeof e.getAttribute ? S.prop(e, t, n) : (1 === o && S.isXMLDoc(e) || (i = S.attrHooks[t.toLowerCase()] || (S.expr.match.bool.test(t) ? pt : void 0)), void 0 !== n ? null === n ? void S.removeAttr(e, t) : i && "set" in i && void 0 !== (r = i.set(e, n, t)) ? r : (e.setAttribute(t, n + ""), n) : i && "get" in i && null !== (r = i.get(e, t)) ? r : null == (r = S.find.attr(e, t)) ? void 0 : r)
+            if (3 !== o && 8 !== o && 2 !== o) return "undefined" == typeof e.getAttribute ? S.prop(e, t, n) : (1 === o && S.isXMLDoc(e) || (i = S.attrHooks[t.toLowerCase()] || (S.expr.match.bool.test(t) ? pt : void 0)), void 0 !== n ? null === n ? void S.Attr(e, t) : i && "set" in i && void 0 !== (r = i.set(e, n, t)) ? r : (e.setAttribute(t, n + ""), n) : i && "get" in i && null !== (r = i.get(e, t)) ? r : null == (r = S.find.attr(e, t)) ? void 0 : r)
         },
         attrHooks: {
             type: {
@@ -2430,15 +2430,15 @@
                 }
             }
         },
-        removeAttr: function(e, t) {
+        Attr: function(e, t) {
             var n, r = 0,
                 i = t && t.match(P);
             if (i && 1 === e.nodeType)
-                while (n = i[r++]) e.removeAttribute(n)
+                while (n = i[r++]) e.Attribute(n)
         }
     }), pt = {
         set: function(e, t, n) {
-            return !1 === t ? S.removeAttr(e, n) : e.setAttribute(n, n), n
+            return !1 === t ? S.Attr(e, n) : e.setAttribute(n, n), n
         }
     }, S.each(S.expr.match.bool.source.match(/\w+/g), function(e, t) {
         var a = dt[t] || S.find.attr;
@@ -2465,7 +2465,7 @@
         prop: function(e, t) {
             return $(this, S.prop, e, t, 1 < arguments.length)
         },
-        removeProp: function(e) {
+        Prop: function(e) {
             return this.each(function() {
                 delete this[S.propFix[e] || e]
             })
@@ -2512,10 +2512,10 @@
                         i !== (s = vt(r)) && n.setAttribute("class", s)
                     } return this
         },
-        removeClass: function(t) {
+        Class: function(t) {
             var e, n, r, i, o, a, s, u = 0;
             if (m(t)) return this.each(function(e) {
-                S(this).removeClass(t.call(this, e, yt(this)))
+                S(this).Class(t.call(this, e, yt(this)))
             });
             if (!arguments.length) return this.attr("class", "");
             if ((e = mt(t)).length)
@@ -2530,13 +2530,13 @@
         toggleClass: function(i, t) {
             var o = typeof i,
                 a = "string" === o || Array.isArray(i);
-            return "boolean" == typeof t && a ? t ? this.addClass(i) : this.removeClass(i) : m(i) ? this.each(function(e) {
+            return "boolean" == typeof t && a ? t ? this.addClass(i) : this.Class(i) : m(i) ? this.each(function(e) {
                 S(this).toggleClass(i.call(this, e, yt(this), t), t)
             }) : this.each(function() {
                 var e, t, n, r;
                 if (a) {
                     t = 0, n = S(this), r = mt(i);
-                    while (e = r[t++]) n.hasClass(e) ? n.removeClass(e) : n.addClass(e)
+                    while (e = r[t++]) n.hasClass(e) ? n.Class(e) : n.addClass(e)
                 } else void 0 !== i && "boolean" !== o || ((e = yt(this)) && Y.set(this, "__className__", e), this.setAttribute && this.setAttribute("class", e || !1 === i ? "" : Y.get(this, "__className__") || ""))
             })
         },
@@ -2614,7 +2614,7 @@
                 }
                 i = 0;
                 while ((o = p[i++]) && !e.isPropagationStopped()) f = o, e.type = 1 < i ? s : c.bindType || d, (l = (Y.get(o, "events") || Object.create(null))[e.type] && Y.get(o, "handle")) && l.apply(o, t), (l = u && o[u]) && l.apply && V(o) && (e.result = l.apply(o, t), !1 === e.result && e.preventDefault());
-                return e.type = d, r || e.isDefaultPrevented() || c._default && !1 !== c._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.removeEventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
+                return e.type = d, r || e.isDefaultPrevented() || c._default && !1 !== c._default.apply(p.pop(), t) || !V(n) || u && m(n[d]) && !x(n) && ((a = n[u]) && (n[u] = null), S.event.triggered = d, e.isPropagationStopped() && f.addEventListener(d, wt), n[d](), e.isPropagationStopped() && f.EventListener(d, wt), S.event.triggered = void 0, a && (n[u] = a)), e.result
             }
         },
         simulate: function(e, t, n) {
@@ -2650,7 +2650,7 @@
             teardown: function() {
                 var e = this.ownerDocument || this.document || this,
                     t = Y.access(e, r) - 1;
-                t ? Y.access(e, r, t) : (e.removeEventListener(n, i, !0), Y.remove(e, r))
+                t ? Y.access(e, r, t) : (e.EventListener(n, i, !0), Y.(e, r))
             }
         }
     });
@@ -3065,7 +3065,7 @@
                     charset: n.scriptCharset,
                     src: n.url
                 }).on("load error", i = function(e) {
-                    r.remove(), i = null, e && t("error" === e.type ? 404 : 200, e.type)
+                    r.(), i = null, e && t("error" === e.type ? 404 : 200, e.type)
                 }), E.head.appendChild(r[0])
             },
             abort: function() {
@@ -3088,10 +3088,10 @@
         }, e.dataTypes[0] = "json", i = C[r], C[r] = function() {
             o = arguments
         }, n.always(function() {
-            void 0 === i ? S(C).removeProp(r) : C[r] = i, e[r] && (e.jsonpCallback = t.jsonpCallback, Xt.push(r)), o && m(i) && i(o[0]), o = i = void 0
+            void 0 === i ? S(C).Prop(r) : C[r] = i, e[r] && (e.jsonpCallback = t.jsonpCallback, Xt.push(r)), o && m(i) && i(o[0]), o = i = void 0
         }), "script"
     }), y.createHTMLDocument = ((Ut = E.implementation.createHTMLDocument("").body).innerHTML = "<form></form><form></form>", 2 === Ut.childNodes.length), S.parseHTML = function(e, t, n) {
-        return "string" != typeof e ? [] : ("boolean" == typeof t && (n = t, t = !1), t || (y.createHTMLDocument ? ((r = (t = E.implementation.createHTMLDocument("")).createElement("base")).href = E.location.href, t.head.appendChild(r)) : t = E), o = !n && [], (i = N.exec(e)) ? [t.createElement(i[1])] : (i = xe([e], t, o), o && o.length && S(o).remove(), S.merge([], i.childNodes)));
+        return "string" != typeof e ? [] : ("boolean" == typeof t && (n = t, t = !1), t || (y.createHTMLDocument ? ((r = (t = E.implementation.createHTMLDocument("")).createElement("base")).href = E.location.href, t.head.appendChild(r)) : t = E), o = !n && [], (i = N.exec(e)) ? [t.createElement(i[1])] : (i = xe([e], t, o), o && o.length && S(o).(), S.merge([], i.childNodes)));
         var r, i, o
     }, S.fn.load = function(e, t, n) {
         var r, i, o, a = this,
@@ -3240,3 +3240,4 @@
         return C.$ === S && (C.$ = Qt), e && C.jQuery === S && (C.jQuery = Yt), S
     }, "undefined" == typeof e && (C.jQuery = C.$ = S), S
 });
+
